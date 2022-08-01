@@ -6,3 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* 'GLOBAL' CSS - Only include styling here that applies to all modules */
+/* * IF YOU ARE READING THIS IN A PULL REQUEST YOU MUST CHECK ALL PAGES WITH THE NEW STYLING BEFORE MERGING * */

@@ -62,7 +62,7 @@ This is the file that contains information for developers and maintainers on thi
 
 - Use TODO(): in order to leave notes for your team mates or youself for work that needs to be completed FIX: and HACK: are also suitable, although preferentially try to use TODO as opposed to the other comment styles unless it is necessary for understanding
 
-- Everything we're working on is intentionally quite modularised. To add new pages add a new subfolder in src/ with the name of the module that you're going to be adding and include one js and one css file in this folder. If there are any globally useful functions move them into the src/generic/ subfolder
+- Everything we're working on is intentionally quite modularised. To add new pages add a new subfolder in src/ with the name of the module that you're going to be adding and include one js and one css file in this folder. If there are any globally useful functions move them into the src/common/ subfolder
 
 - Almost exclusively use `let`, there's very few reasons to use `var`: https://stackoverflow.com/questions/762011/what-is-the-difference-between-let-and-var
 

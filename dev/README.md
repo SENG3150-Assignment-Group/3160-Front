@@ -13,6 +13,7 @@ This is the file that contains information for developers and maintainers on thi
     - graham/backend-api-link-bookings
 
   - If you have a branch that you specifically DON'T want merged, use a 'kitchen-sink' this will never be merged and is just a way to quickly test or share your work on a branch without having to worry about local stashing
+
     - tuppurainen/kitchen-sink
     - tuppurainen/kitchen-sink-flight-search
 
@@ -39,5 +40,30 @@ This is the file that contains information for developers and maintainers on thi
 - Valid issues should have a full list of the files requiring modification, a clear deliverable, and a clear description of the work that needs to be done.
 
 # Coding Conventions
+
+- Use the MDN (Mozilla Developer Network) Documentation regarding JavaScript coding conventions and styling, however, we will be frequently using the shorthand ES8 syntax which allows for inline functions to be written and passed around as first-class objects.
+
+- Avoid using .then() style promises, instead use the async/await syntax.
+
+- Generally use the boilerplated code rather than developing new modules, it has intentionally been organised in such a way that it is easily extensible with further functionality without compromising the readability of the code.
+
+- I (Bryce) suggest using VS Code with the following extensions in order to develop this project:
+
+  - Code Spell Checker
+  - GitLens
+  - IntelliCode
+  - Jest
+  - Prettier
+  - React Native Tools
+  - Simple React Snippets
+  - Todo Treee
+  - vscode-pdf
+  - Better Comments
+
+- Use TODO(): in order to leave notes for your team mates or youself for work that needs to be completed FIX: and HACK: are also suitable, although preferentially try to use TODO as opposed to the other comment styles unless it is necessary for understanding
+
+- Everything we're working on is intentionally quite modularised. To add new pages add a new subfolder in src/ with the name of the module that you're going to be adding and include one js and one css file in this folder. If there are any globally useful functions move them into the src/generic/ subfolder
+
+- Almost exclusively use `let`, there's very few reasons to use `var`: https://stackoverflow.com/questions/762011/what-is-the-difference-between-let-and-var
 
 <!-- TODO(BryceTuppurainen): Add front-end coding conventions here -->

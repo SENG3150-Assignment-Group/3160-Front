@@ -6,7 +6,7 @@ This is the file that contains information for developers and maintainers on thi
 
 -   To contribute to this project, all work must be completed on your own branch and then merged into the main branch. And with the exception of 'kitchen-sinks' every branch should be associated with an VALIDATED issue (see validating issues).
 
-    -   Your branch should be named: your-last-name/feature-name in lower-kebab-case i.e. dash seperation lowercase.
+    -   Your branch should be named: your-last-name/feature-name in lower-kebab-case i.e. dash separation lowercase.
 
         -   tuppurainen/flight-search-page-styling
         -   davis/destination-page-layout
@@ -45,7 +45,7 @@ This is the file that contains information for developers and maintainers on thi
 
 -   Avoid using .then() style promises, instead use the async/await syntax.
 
--   Generally use the boilerplated code rather than developing new modules, it has intentionally been organised in such a way that it is easily extensible with further functionality without compromising the readability of the code.
+-   Generally use the boiler-plated code rather than developing new modules, it has intentionally been organised in such a way that it is easily extensible with further functionality without compromising the readability of the code.
 
 -   I (Bryce) suggest using VS Code with the following extensions in order to develop this project:
 
@@ -60,7 +60,7 @@ This is the file that contains information for developers and maintainers on thi
     -   vscode-pdf
     -   Better Comments
 
--   Use TODO(): in order to leave notes for your team mates or youself for work that needs to be completed FIX: and HACK: are also suitable, although preferentially try to use TODO as opposed to the other comment styles unless it is necessary for understanding
+-   Use TODO(): in order to leave notes for your team mates or yourself for work that needs to be completed FIX: and HACK: are also suitable, although preferentially try to use TODO as opposed to the other comment styles unless it is necessary for understanding
 
 -   Everything we're working on is intentionally quite modularised. To add new pages add a new subfolder in src/ with the name of the module that you're going to be adding and include one js and one css file in this folder. If there are any globally useful functions move them into the src/common/ subfolder
 

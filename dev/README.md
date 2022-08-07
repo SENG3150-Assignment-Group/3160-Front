@@ -56,7 +56,7 @@ This is the file that contains information for developers and maintainers on thi
     -   Prettier
     -   React Native Tools
     -   Simple React Snippets
-    -   Todo Tree
+    -   To do Tree
     -   vscode-pdf
     -   Better Comments
 

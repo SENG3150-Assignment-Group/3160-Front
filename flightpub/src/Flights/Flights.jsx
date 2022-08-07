@@ -1,12 +1,14 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 const Flights = () => {
-	const [flights, setFlights] = useState([]);
+	const [flights, setFlights] = useState({ flights: [] });
 
 	useEffect(() => {
-		// TODO(BryceTuppurainen): Retrieve flight information
+		// TODO(BryceTuppurainen): Write a fetch in order to retrieve the flights from the database on startup
 	}, []);
+
+	// TODO(): Add any relevant functions in here for the management of the flight search page (authentication, suggested flights, etc.)
 
 	return (
 		<>

@@ -47,8 +47,11 @@ const Header = ({ page }) => {
 							<a
 								onClick={() => {
 									localStorage.setItem("email", "");
+									localStorage.setItem("password", "");
+									localStorage.setItem("fullname", "");
 									navigate("/");
 								}}
+								href="."
 							>
 								Sign Out
 							</a>

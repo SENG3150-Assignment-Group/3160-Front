@@ -1,12 +1,17 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
+import Header from "../Common/Header";
+
 const Account = () => {
 	const [user, setUser] = useState({});
 
 	useEffect(() => {
 		setUser({ email: "", password: "", fullname: "" });
-		if (localStorage.getItem("email") != null) {
+		if (
+			localStorage.getItem("email") != null &&
+			localStorage.getItem("email") !== ""
+		) {
 			// HACK: This should be implemented using a salted-hash password rather than plaintext
 			setUser({
 				email: localStorage.getItem("email"),
@@ -30,7 +35,7 @@ const Account = () => {
 
 	return (
 		<>
-			{user.fullname == "" ? (
+			{user.fullname === "" ? (
 				<>
 					<h1>403 - Forbidden</h1>
 					<p>
@@ -43,15 +48,8 @@ const Account = () => {
 			) : (
 				// TODO(BryceTuppurainen): Add the account management page here
 				<>
-					<h1>FlightPub Account</h1>
-					<h3>Hello {user.fullname}!</h3>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Nihil atque iste deserunt consequatur, officiis
-						repudiandae hic veniam voluptate. Omnis autem possimus
-						consequuntur architecto quidem dolorem fugiat accusamus,
-						nam nisi eaque!
-					</p>
+					<Header />
+					<h3>Hi {user.fullname}!</h3>
 				</>
 			)}
 		</>

@@ -1,6 +1,8 @@
 /* 'GLOBAL' CSS - Only include styling here that applies to all modules */
 /* * IF YOU ARE READING THIS IN A PULL REQUEST YOU MUST CHECK ALL PAGES WITH THE NEW STYLING BEFORE MERGING * */
 
+/* * High-Level Styles * */
+
 body {
 	margin: 0;
 	padding: 2.5vh 2.5vw;
@@ -14,9 +16,15 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+/* * Semantic Styling * */
+
+/* * Element Styling * */
+
 h1 {
 	color: var(--accent-color);
 }
+
+/* * Class Styling * */
 
 .accent {
 	color: var(--accent-color);
@@ -26,3 +34,7 @@ h1 {
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 }
+
+/* * ID Styling * */
+
+/* TODO(BryceTuppurainen): Global Styles to be applied here */

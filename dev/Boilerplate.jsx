@@ -1,18 +1,22 @@
-// * DELETE UNUSED CONTENT AS YOU GO
+import React from "react";
+import { useState, useEffect } from "react";
 
-// External Imports (Not from files that belong to this project)
-import { React, useState } from "react";
+import Header from "../Common/Header";
 
-// Internal Imports
-import { getBoilerplate } from "./GetBoilerplate";
+const Object = () => {
+	const [state, setState] = useState({
+		flights: [],
+	});
 
-// Use const functions rather than classes
-const Boilerplate = () => {
-	// Use useState to create stateful variables
-	const [boilerplate, setBoilerplate] = useState([]);
+	useEffect(() => {
+		// RUN on instantiation
+	}, []);
 
-	// Return JSX
-	return <></>;
+	return (
+		<>
+			<Header />
+		</>
+	);
 };
 
-export default Boilerplate;
+export default Object;

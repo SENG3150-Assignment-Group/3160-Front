@@ -1,11 +1,28 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 /* 'GLOBAL' CSS - Only include styling here that applies to all modules */
 /* * IF YOU ARE READING THIS IN A PULL REQUEST YOU MUST CHECK ALL PAGES WITH THE NEW STYLING BEFORE MERGING * */
+
+body {
+	margin: 0;
+	padding: 2.5vh 2.5vw;
+	--background-color: rgb(230, 230, 230);
+	--accent-color: rgb(204, 142, 61);
+	background-color: var(--background-color);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+	color: var(--accent-color);
+}
+
+.accent {
+	color: var(--accent-color);
+}
+
+.underlined {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+}

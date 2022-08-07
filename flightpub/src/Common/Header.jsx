@@ -5,7 +5,7 @@ import "./HeaderStyles.css";
 
 // TODO(BryceTuppurainen): Implement authentication
 
-const isAuthenticated = true;
+const isAuthenticated = false;
 
 const Header = ({ page }) => {
 	let navigate = useNavigate();

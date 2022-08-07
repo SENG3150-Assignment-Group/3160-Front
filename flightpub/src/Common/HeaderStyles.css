@@ -1,0 +1,65 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
+
+.Header {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.Header * {
+	font-family: Orbitron, sans-serif;
+	font-weight: 100;
+	white-space: nowrap;
+	margin: 0;
+	font-size: 16pt;
+	text-align: center;
+}
+
+.Header h1 {
+	font-size: 24pt;
+	font-weight: 200;
+}
+
+.Header img {
+	height: 4rem;
+}
+
+.Header nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.Header .AuthenticationOptions {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.Header .Logo {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.Header a {
+	color: unset;
+	text-decoration: none;
+	border-bottom: 3px solid rgb(138, 138, 138);
+	padding: 0 0 5px 0;
+	transition: 500ms border-bottom;
+}
+
+.Header a:hover {
+	transition: 500ms border-bottom;
+	border-bottom: 3px solid var(--accent-color);
+	cursor: pointer;
+}

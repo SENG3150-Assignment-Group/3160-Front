@@ -4,7 +4,7 @@ import "./TileStyles.css";
 
 const Tile = props => {
 	return (
-		<div className="Tile/Tile">
+		<div className="Tile">
 			<div>
 				<h3>{props.title}</h3>
 				{props.children}

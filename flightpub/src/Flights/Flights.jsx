@@ -13,27 +13,20 @@ const Flights = () => {
 
 	const getFlights = async () => {
 		setFlightTiles(
-			<div class="FlightTiles">
-				<Tile title="Dummy Flight" image="">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Enim voluptatum iste nulla, ea, eius quibusdam nam
-					asperiores explicabo doloribus quisquam blanditiis
-					molestiae? Optio, sequi maiores temporibus ex dolore illo
-					et.
-				</Tile>
-				<Tile title="Dummy Flight" image="">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Enim voluptatum iste nulla, ea, eius quibusdam nam
-					asperiores explicabo doloribus quisquam blanditiis
-					molestiae? Optio, sequi maiores temporibus ex dolore illo
-					et.
-				</Tile>
-				<Tile title="Dummy Flight" image="">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Enim voluptatum iste nulla, ea, eius quibusdam nam
-					asperiores explicabo doloribus quisquam blanditiis
-					molestiae? Optio, sequi maiores temporibus ex dolore illo
-					et.
+			<div className="FlightTiles">
+				<Tile
+					title="Example Title"
+					src="./Images/Boeing737-Generic.jpg"
+				>
+					<p>
+						This is the description of the tile, possibly the price
+						and location
+					</p>
+					<p>
+						And this will appear underneath that description in the
+						same column, the tile scales automatically to compensate
+						for this
+					</p>
 				</Tile>
 			</div>
 		);

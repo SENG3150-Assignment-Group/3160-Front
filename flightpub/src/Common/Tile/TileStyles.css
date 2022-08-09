@@ -1,16 +1,17 @@
 .Tile {
 	margin: 0;
 	padding: 0;
-	width: 100%;
-	height: 15vh;
+	--padding-size: 10px;
+	width: (100% - var(--padding-size));
+	min-height: 15vh;
 	background-color: var(--tile-color);
 	border: solid 1px var(--border-color);
 	border-radius: 20px;
 	display: grid;
 	grid-template-columns: 0.75fr 0.25fr;
 	gap: 10px;
-	padding: 10px;
-	transition: linear 350ms;
+	padding: var(--padding-size);
+	transition: ease-in-out 350ms;
 	transition-delay: 50ms;
 }
 
@@ -25,7 +26,19 @@
 }
 
 .Tile:hover {
-	height: 20vh;
-	background-color: var(--accent-color);
+	background-color: var(--active-color);
 	cursor: pointer;
+}
+
+.Tile img {
+	width: 100%;
+	height: 100%;
+	border-radius: 40px;
+	margin: 0;
+	object-fit: cover;
+}
+
+.Tile:hover * {
+	transition-delay: 50ms;
+	color: var(--active-compliment);
 }

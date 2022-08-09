@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
-import Header from "../Common/Header";
+import Header from "../Common/Header/Header";
 import Forbidden from "../Common/Forbidden";
 
 const Account = () => {

@@ -15,6 +15,8 @@ body {
 	padding: 2.5vh 2.5vw;
 	--background-color: rgb(255, 255, 255);
 	--accent-color: rgb(231, 158, 62);
+	--border-color: rgb(143, 143, 143);
+	--tile-color: rgb(218, 218, 218);
 	background-color: var(--background-color);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -37,6 +39,12 @@ h1 {
 .underlined {
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
+}
+
+.FlightTiles {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 20px;
 }
 
 /* * ID Styling * */

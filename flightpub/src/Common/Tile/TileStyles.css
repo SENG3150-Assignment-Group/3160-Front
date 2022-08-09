@@ -1,0 +1,31 @@
+.Tile {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 15vh;
+	background-color: var(--tile-color);
+	border: solid 1px var(--border-color);
+	border-radius: 20px;
+	display: grid;
+	grid-template-columns: 0.75fr 0.25fr;
+	gap: 10px;
+	padding: 10px;
+	transition: linear 350ms;
+	transition-delay: 50ms;
+}
+
+.Tile > div {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 10px;
+}
+
+.Tile > * {
+	margin: 10px;
+}
+
+.Tile:hover {
+	height: 20vh;
+	background-color: var(--accent-color);
+	cursor: pointer;
+}

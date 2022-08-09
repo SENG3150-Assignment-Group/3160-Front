@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import Header from "../Common/Header";
+import Header from "../Common/Header/Header";
 
 const Object = () => {
 	const [state, setState] = useState({

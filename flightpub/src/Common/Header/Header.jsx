@@ -12,7 +12,7 @@ const Header = ({ page }) => {
 
 	return (
 		<header>
-			<div className="Header">
+			<div className="Header/Header">
 				<div className="Logo">
 					<div>
 						<img alt="FlightPub Logo" src="./favicon.ico" />

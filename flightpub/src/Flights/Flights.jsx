@@ -17,15 +17,6 @@ const Flights = () => {
 	let flights = [];
 	let flightContent = [];
 
-	// Example Flight Content
-
-	// <div className="FlightTiles">
-	// 	<Tile
-	// 		title="Example Title"
-	// 		src="./Images/Boeing737-Generic.jpg"
-	// 	></Tile>
-	// </div>
-
 	const airlineCodeToName = airlineCode => {
 		switch (airlineCode) {
 			case "EXPFLT":

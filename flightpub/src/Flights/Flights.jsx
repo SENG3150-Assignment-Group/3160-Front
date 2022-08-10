@@ -4,47 +4,98 @@ import { useState, useEffect } from "react";
 import Header from "../Common/Header/Header";
 import Tile from "../Common/Tile/Tile";
 
+// HACK: For now we're just hardcoding the flights locally
+import dummyFlightData from "./dummy-flights.json";
+
+import "./FlightsStyles.css";
+
 const Flights = () => {
 	const [flightTiles, setFlightTiles] = useState(
 		<div class="FlightTiles"></div>
 	);
 
 	let flights = [];
+	let flightContent = [];
+
+	// Example Flight Content
+
+	// <div className="FlightTiles">
+	// 	<Tile
+	// 		title="Example Title"
+	// 		src="./Images/Boeing737-Generic.jpg"
+	// 	></Tile>
+	// </div>
+
+	const airlineCodeToName = airlineCode => {
+		switch (airlineCode) {
+			case "EXPFLT":
+				return "Example-Flight";
+			case "QF":
+				return "Qantas";
+			default:
+				return airlineCode;
+		}
+	};
+
+	const locationCodeToName = locationCode => {
+		switch (locationCode) {
+			// TODO(): This needs to be updated to reflect the actual locations
+			case "SYD":
+				return "Sydney";
+			case "BRI":
+				return "Brisbane";
+			default:
+				return locationCode;
+		}
+	};
 
 	const getFlights = async () => {
-		setFlightTiles(
-			<div className="FlightTiles">
+		// const response = await fetch("/path-to-api-for-flights");
+		// const data = await response.json();
+
+		// HACK: For now we're just hardcoding the flights locally
+
+		flights = dummyFlightData;
+
+		flights.forEach(flight => {
+			console.log(flight);
+			flightContent.push(
 				<Tile
-					title="Example Title"
-					src="./Images/Boeing737-Generic.jpg"
+					title={
+						airlineCodeToName(flight.airlineCode) +
+						":	" +
+						locationCodeToName(flight.departureCode) +
+						" - " +
+						locationCodeToName(flight.destinationCode)
+					}
+					src={
+						"/Images/" + flight.planeCode + ".jpg"
+						// TODO(BryceTuppurainen): Can likely make this specific to airlines
+					}
+					href={"/flight/?q=" + flight.flightCode}
 				>
 					<p>
-						This is the description of the tile, possibly the price
-						and location
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Porro pariatur fuga officiis, quo eaque beatae enim
+						omnis dolorem voluptate ducimus eius rem nobis quos
+						voluptas totam molestias ex culpa sunt.
 					</p>
+
 					<p>
-						And this will appear underneath that description in the
-						same column, the tile scales automatically to compensate
-						for this
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Velit repellat corporis enim recusandae, odit dolore
+						doloribus sit officiis repudiandae expedita amet
+						mollitia officia voluptatibus ratione dignissimos earum
+						obcaecati eos error?
 					</p>
 				</Tile>
-			</div>
-		);
+			);
+		});
+
+		setFlightTiles(<div className="FlightTiles">{flightContent}</div>);
 		return;
 
 		// TODO(BryceTuppurainen): Write a fetch in order to retrieve the flights from the database on startup
-
-		const response = await fetch("/");
-		const data = await response.json();
-		flights = data;
-		console.log(flights);
-		setFlightTiles(
-			<div class="FlightTiles">
-				{flights.map(flight => (
-					<Tile title="TODO():" image="TODO():"></Tile>
-				))}
-			</div>
-		);
 	};
 
 	useEffect(() => {
@@ -59,6 +110,42 @@ const Flights = () => {
 	return (
 		<>
 			<Header />
+			<form
+				className="MajorSearchCriterion"
+				onSubmit={e => {
+					e.preventDefault();
+					// TODO(): Implement search trigger here
+				}}
+			>
+				<div>
+					<img src="/Images/gps-teardrop.png" alt="GPS Teardrop" />
+					<input
+						type="text"
+						placeholder="Leaving from..."
+						name="departure"
+					></input>
+				</div>
+
+				<img src="/Images/swap-circle.jpg" alt="Cycle Icon" />
+
+				<div>
+					<img src="/Images/gps-teardrop.png" alt="GPS Teardrop" />
+					<input
+						type="text"
+						placeholder="Leaving from..."
+						name="departure"
+					></input>
+				</div>
+
+				<select>
+					<option>Sort by Popularity</option>
+					<option>Sort by Price (Lowest-Highest)</option>
+					<option>Sort by Price (Highest-Lowest)</option>
+					<option>Sort by Departure Date</option>
+				</select>
+
+				<input type="submit" value="Search" id="SearchButton"></input>
+			</form>
 			<div>{flightTiles}</div>
 		</>
 	);

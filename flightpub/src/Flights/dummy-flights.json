@@ -1,0 +1,13 @@
+[
+	{
+		"flightCode": "EXPFLT",
+		"departureDate": "2020-01-01",
+		"departureTime": "1200",
+		"departureCode": "SYD",
+		"destinationCode": "BRI",
+		"airlineCode": "QF",
+		"planeCode": "Boeing737",
+		"duration": "13",
+		"numberOfSeats": "100"
+	}
+]

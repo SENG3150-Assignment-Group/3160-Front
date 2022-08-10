@@ -15,11 +15,12 @@ body {
 	margin: 0;
 	padding: 2.5vh 2.5vw;
 	--background-color: rgb(255, 255, 255);
-	--accent-color: rgb(231, 158, 62);
-	--active-color: rgb(98, 136, 161);
+	--accent-color: rgb(153, 187, 209);
+	--accent-compliment: rgb(10, 10, 10);
+	--active-color: rgb(60, 140, 194);
 	--active-compliment: rgb(240, 240, 240);
 	--border-color: rgb(143, 143, 143);
-	--tile-color: rgb(207, 229, 235);
+	--tile-color: rgb(255, 255, 255);
 	background-color: var(--background-color);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

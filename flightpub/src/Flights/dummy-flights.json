@@ -1,13 +1,24 @@
 [
 	{
-		"flightCode": "EXPFLT",
-		"departureDate": "2020-01-01",
-		"departureTime": "1200",
-		"departureCode": "SYD",
-		"destinationCode": "BRI",
-		"airlineCode": "QF",
-		"planeCode": "Boeing737",
+		"id": "ExampleId",
+		"date": "2020-01-01",
+		"time": "1200",
+		"departure": "Sydney",
+		"destination": "Brisbane",
+		"airline": "Qantas",
+		"plane": "Boeing737",
 		"duration": "13",
-		"numberOfSeats": "100"
+		"seats": "100"
+	},
+	{
+		"id": "ExampleId",
+		"date": "2022-02-01",
+		"time": "1200",
+		"departure": "Sydney",
+		"destination": "Brisbane",
+		"airline": "Qantas",
+		"plane": "Boeing737",
+		"duration": "13",
+		"seats": "100"
 	}
 ]

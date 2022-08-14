@@ -1,10 +1,9 @@
 ---
-name: Generic Tempalte
+name: Generic Template
 about: Generic Issue Template
 title: Feature Request
 labels: enhancement, requires validation
-assignees: ''
-
+assignees: ""
 ---
 
 # Delete this template and template name before submitting your issue
@@ -15,6 +14,6 @@ assignees: ''
 
 3. Include the filenames that need to be modified as list elements at the bottom of your issue, or UNKNOWN:
 
-- Example
-- Example
-- Example
+-   Example
+-   Example
+-   Example

@@ -15,10 +15,10 @@ body {
 	margin: 0;
 	padding: 2.5vh 2.5vw;
 	--background-color: rgb(255, 255, 255);
-	--accent-color: rgb(153, 187, 209);
-	--accent-compliment: rgb(10, 10, 10);
-	--active-color: rgb(60, 140, 194);
-	--active-compliment: rgb(240, 240, 240);
+	--accent-color: rgb(107, 160, 196);
+	--accent-compliment: rgb(248, 252, 255);
+	--active-color: rgb(80, 136, 176);
+	--active-compliment: rgb(255, 255, 255);
 	--border-color: rgb(143, 143, 143);
 	--tile-color: rgb(255, 255, 255);
 	background-color: var(--background-color);

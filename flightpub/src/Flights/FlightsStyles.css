@@ -30,6 +30,7 @@
 
 .MajorSearchCriterion input {
 	border: none;
+	width: 100%;
 }
 
 #SearchButton {

@@ -14,70 +14,39 @@ const Flights = () => {
 		<div class="FlightTiles"></div>
 	);
 
-	let flights = [];
-	let flightContent = [];
-
-	const airlineCodeToName = airlineCode => {
-		switch (airlineCode) {
-			case "EXPFLT":
-				return "Example-Flight";
-			case "QF":
-				return "Qantas";
-			default:
-				return airlineCode;
-		}
-	};
-
-	const locationCodeToName = locationCode => {
-		switch (locationCode) {
-			// TODO(): This needs to be updated to reflect the actual locations
-			case "SYD":
-				return "Sydney";
-			case "BRI":
-				return "Brisbane";
-			default:
-				return locationCode;
-		}
-	};
+	const [departureSuggestions, setDepartureSuggestions] = useState(
+		<div class="DepartureSuggestions"></div>
+	);
 
 	const getFlights = async () => {
+		let flightContent = [];
 		// const response = await fetch("/path-to-api-for-flights");
 		// const data = await response.json();
 
 		// HACK: For now we're just hardcoding the flights locally
 
-		flights = dummyFlightData;
+		let flights = dummyFlightData;
 
-		flights.forEach(flight => {
+		flights.forEach((flight) => {
 			console.log(flight);
 			flightContent.push(
 				<Tile
-					title={
-						airlineCodeToName(flight.airlineCode) +
-						":	" +
-						locationCodeToName(flight.departureCode) +
-						" - " +
-						locationCodeToName(flight.destinationCode)
-					}
+					title={flight.departure + " - " + flight.destination}
 					src={
-						"/Images/" + flight.planeCode + ".jpg"
+						"/Images/" + flight.plane + ".jpg"
 						// TODO(BryceTuppurainen): Can likely make this specific to airlines
 					}
-					href={"/flight/?q=" + flight.flightCode}
+					href={"/flight/?q=" + flight.id}
 				>
+					<h4>{flight.id}</h4>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Porro pariatur fuga officiis, quo eaque beatae enim
-						omnis dolorem voluptate ducimus eius rem nobis quos
-						voluptas totam molestias ex culpa sunt.
+						This is some example information about your flight that
+						is going to get replaced
 					</p>
 
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Velit repellat corporis enim recusandae, odit dolore
-						doloribus sit officiis repudiandae expedita amet
-						mollitia officia voluptatibus ratione dignissimos earum
-						obcaecati eos error?
+						This is some example information about your flight that
+						is going to get replaced
 					</p>
 				</Tile>
 			);
@@ -103,7 +72,7 @@ const Flights = () => {
 			<Header />
 			<form
 				className="MajorSearchCriterion"
-				onSubmit={e => {
+				onSubmit={(e) => {
 					e.preventDefault();
 					// TODO(): Implement search trigger here
 				}}

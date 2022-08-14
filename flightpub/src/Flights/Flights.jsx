@@ -81,15 +81,15 @@ const Flights = () => {
 					}
 					href={"/flight/?q=" + flight.code}
 				>
-					<h4>{flight.code}</h4>
+					<h4>
+						{flight.code} - {flight.airline}
+					</h4>
 					<p>
-						This is some example information about your flight that
-						is going to get replaced
-					</p>
-
-					<p>
-						This is some example information about your flight that
-						is going to get replaced
+						This flight leaves from {flight.departure} on{" "}
+						{flight.date} at {flight.time}. This is a{" "}
+						{flight.duration}-hour flight, and will be arriving at{" "}
+						{flight.destination} on{" "}
+						{flight.time + " " + flight.duration}
 					</p>
 				</Tile>
 			);
@@ -171,6 +171,13 @@ const Flights = () => {
 	// TODO(): Add any relevant functions in here for the management of the flight search page (authentication, suggested flights, etc.)
 
 	// TODO(BryceTuppurainen): Implement the flight search criterion and display window
+
+	/**
+	 * Helper function to perform hour addition on 24-hour time strings
+	 */
+	const addHours = (time, hours) => {
+		// TODO(BryceTuppurainen): Allow for 24-hour time and duration addition
+	};
 
 	return (
 		<>

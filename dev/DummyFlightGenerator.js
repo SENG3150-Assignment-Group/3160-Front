@@ -112,7 +112,7 @@ const getRandomDate = () => {
 };
 
 const getRandomTwentyFourHourTime = () => {
-    return (random(22) + 1).toString().padEnd(4, "0");
+    return (random(22) + 1).toString().padStart(2, "0") + "00";
 }
 
 const getRandomLocation = (illegalLocation) => {
@@ -154,9 +154,7 @@ const getRandomLocation = (illegalLocation) => {
         "Toronto"
     ];
     
-    locations = locations.filter(location => location !== illegalLocation);
-    
-    return locations[random(locations.length - 1)];
+    return locations.filter(location => location !== illegalLocation)[random(locations.length - 1)];
 };
 
 const getRandomPlane = () => {

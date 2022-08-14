@@ -11,6 +11,10 @@ ul {
 	margin: 30px 0;
 	align-items: center;
 	justify-self: center;
+	position: sticky;
+	top: 0;
+	background-color: var(--background-color);
+	padding: 2.5vh 0;
 }
 
 .QueryCriteria > img {

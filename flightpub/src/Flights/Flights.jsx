@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 
 import Header from "../Common/Header/Header";
 import Tile from "../Common/Tile/Tile";
@@ -17,6 +16,8 @@ const Flights = () => {
 
 	const [destination, setDestination] = useState("");
 
+	const [sortOrder, setSortOrder] = useState("Popularity");
+
 	const [flightTiles, setFlightTiles] = useState(
 		<div class="FlightTiles"></div>
 	);
@@ -25,19 +26,49 @@ const Flights = () => {
 
 	const [destinationAutofill, setDestinationAutofill] = useState(<></>);
 
+	/**
+	 * * Request is an object with the search criterion of departure and destination *
+	 */
 	const updateFlights = async () => {
+		if (departure === "") {
+			setFlightTiles(<div className="FlightTiles"></div>);
+			return;
+		}
+
 		let flightContent = [];
 
 		// const response = await fetch("/path-to-api-for-flights");
 
 		// const data = await response.json();
 
-		// HACK: For now we're just hardcoding the flights locally
 		// TODO(BryceTuppurainen): dummyFlightData is a dummy data set for testing purposes, should be a straight replace
+
+		// HACK: For now we're just hardcoding the flights locally, this filtering would be handled by the API NOT HERE
 
 		let flights = dummyFlightData;
 
-		flights.forEach((flight) => {
+		if (departure !== "") {
+			if (destination === "") {
+				flights = flights.filter(
+					(flight) => flight.departure === departure
+				);
+			} else {
+				flights = flights.filter((flight) => {
+					return (
+						flight.departure === departure &&
+						flight.destination === destination
+					);
+				});
+			}
+		}
+
+		// HACK: End of hack...
+
+		flights.forEach((flight, idx) => {
+			// HACK: This simply limits to this number of elements, this should be a const
+			if (idx > 100) {
+				return;
+			}
 			flightContent.push(
 				<Tile
 					className="flight"
@@ -48,9 +79,9 @@ const Flights = () => {
 						// "/Images/" + flight.plane + ".jpg"
 						// TODO(BryceTuppurainen): Can likely make this specific to airlines
 					}
-					href={"/flight/?q=" + flight.id}
+					href={"/flight/?q=" + flight.code}
 				>
-					<h4>{flight.id}</h4>
+					<h4>{flight.code}</h4>
 					<p>
 						This is some example information about your flight that
 						is going to get replaced
@@ -71,6 +102,13 @@ const Flights = () => {
 		updateFlights();
 		// TODO(BryceTuppurainen): Add some event hooks in here so that on change of state of any information related to a flight search (or when the form is submitted) then make the request to get flights from the server
 	}, []);
+
+	useEffect(() => {
+		// TODO(BryceTuppurainen): Implement flight filtering with local selected preferences
+		organiseFlights();
+	}, [sortOrder]);
+
+	const organiseFlights = () => {};
 
 	const updateDepartureAutofill = (input) => {
 		setDepartureAutofill(<ul></ul>);
@@ -141,7 +179,7 @@ const Flights = () => {
 				className="QueryCriteria"
 				onSubmit={(e) => {
 					e.preventDefault();
-					// TODO(): Implement search trigger here
+					updateFlights();
 				}}
 			>
 				<div>

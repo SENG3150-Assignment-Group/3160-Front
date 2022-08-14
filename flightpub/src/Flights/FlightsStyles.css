@@ -1,17 +1,25 @@
-.MajorSearchCriterion {
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.QueryCriteria {
 	display: grid;
 	grid-template-columns: 1fr 0.2fr 1fr 1fr 1fr;
 	gap: 10px;
 	margin: 30px 0;
+	align-items: center;
+	justify-self: center;
 }
 
-.MajorSearchCriterion > img {
+.QueryCriteria > img {
 	height: 2.5rem;
 	width: auto;
 	padding: 5px;
 }
 
-.MajorSearchCriterion > div {
+.QueryCriteria > div {
 	border: solid 1px rgb(0, 0, 0);
 	display: flex;
 	gap: 5px;
@@ -20,7 +28,7 @@
 	border-radius: 5px;
 }
 
-.MajorSearchCriterion > div > * {
+.QueryCriteria img {
 	display: inline;
 	height: 2.5rem;
 	margin: 0;
@@ -28,12 +36,52 @@
 	width: auto;
 }
 
-.MajorSearchCriterion input {
+.QueryCriteria input {
+	display: inline;
+	height: 2.5rem;
+	margin: 0;
+	padding: 0;
+	width: 100%;
 	border: none;
+}
+
+.QueryCriteria select {
+	display: inline;
+	height: 3rem;
+	margin: 0;
+	padding: 0;
 	width: 100%;
 }
 
+.AutofillWrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	width: 100%;
+	height: 100%;
+}
+
+.Autofill {
+	position: relative;
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	border-radius: 5px;
+	margin: 10px 0;
+	padding: 20px 3px;
+	transition: 500ms ease-in-out;
+}
+
+.Autofill:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}
+
 #SearchButton {
+	display: inline;
+	height: 3rem;
+	margin: 0;
+	padding: 0;
+	width: 100%;
 	background-color: var(--accent-color);
 	color: var(--accent-compliment);
 	border-radius: 5px;
@@ -44,4 +92,9 @@
 	cursor: pointer;
 	background-color: var(--active-color);
 	color: var(--active-compliment);
+}
+
+#SwapCircleWrapper {
+	border: none;
+	justify-content: center;
 }

@@ -1,7 +1,7 @@
 .Tile {
 	margin: 0;
 	padding: 0;
-	width: calc(100% - 10px);
+	width: calc(100% - 25px);
 	min-height: 15vh;
 	background-color: var(--tile-color);
 	border: solid 1px var(--border-color);

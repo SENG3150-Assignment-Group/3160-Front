@@ -33,7 +33,9 @@ const Flights = () => {
 				<Tile
 					title={flight.departure + " - " + flight.destination}
 					src={
-						"/Images/" + flight.plane + ".jpg"
+						"/Images/Boeing737.jpg"
+
+						// "/Images/" + flight.plane + ".jpg"
 						// TODO(BryceTuppurainen): Can likely make this specific to airlines
 					}
 					href={"/flight/?q=" + flight.id}

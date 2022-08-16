@@ -268,7 +268,7 @@ const Flights = () => {
 					</div>
 				</div>
 
-				<div id="SwapCircleWrapper">
+				<div id="swap-circle-wrapper">
 					<img src="/Images/swap-circle.jpg" alt="Cycle Icon" />
 				</div>
 
@@ -301,9 +301,9 @@ const Flights = () => {
 					<option>Sort by Departure Date</option>
 				</select>
 
-				<input type="submit" value="Search" id="SearchButton"></input>
+				<input type="submit" value="Search" id="search-button"></input>
 			</form>
-			<div id="ContentWrapper">
+			<div id="content-wrapper">
 				{minorSearchCriterion}
 				{flightTiles}
 			</div>

@@ -76,7 +76,7 @@
 	transition: 500ms ease-in-out;
 }
 
-#ContentWrapper {
+#content-wrapper {
 	display: grid;
 	grid-template-columns: 15vw calc(80vw - 15px);
 	gap: 15px;
@@ -105,7 +105,7 @@
 	cursor: pointer;
 }
 
-#SearchButton {
+#search-button {
 	display: inline;
 	height: 3rem;
 	margin: 0;
@@ -117,13 +117,13 @@
 	transition: ease-in-out 800ms;
 }
 
-#SearchButton:hover {
+#search-button:hover {
 	cursor: pointer;
 	background-color: var(--active-color);
 	color: var(--active-compliment);
 }
 
-#SwapCircleWrapper {
+#swap-circle-wrapper {
 	border: none;
 	justify-content: center;
 }

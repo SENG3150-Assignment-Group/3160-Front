@@ -90,6 +90,11 @@ ul {
 	gap: 15px;
 }
 
+.MinorSearchCriterion * {
+	width: 100%;
+	margin: 5px 0;
+}
+
 .Autofill:hover {
 	background-color: var(--active-color);
 	color: var(--active-compliment);

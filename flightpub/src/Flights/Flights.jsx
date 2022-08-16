@@ -26,6 +26,8 @@ const Flights = () => {
 
 	const [minorSearchCriterion, setMinorSearchCriterion] = useState(<></>);
 
+	// TODO(BryceTuppurainen): Add all flight search criterion here:
+
 	const [minimumPrice, setMinimumPrice] = useState("0");
 
 	const [maximumPrice, setMaximumPrice] = useState("10000");
@@ -80,14 +82,15 @@ const Flights = () => {
 					src={
 						"/Images/Boeing737.jpg"
 
+						// TODO(BryceTuppurainen): Can likely make this specific to airlines - See below
 						// "/Images/" + flight.plane + ".jpg"
-						// TODO(BryceTuppurainen): Can likely make this specific to airlines
 					}
 					href={"/flight/?q=" + flight.code}
 				>
 					<h4>
 						{flight.code} - {flight.airline}
 					</h4>
+					<h4>${flight.price} (AUD)</h4>
 					<p>
 						This flight leaves from {flight.departure} on{" "}
 						{flight.date} at {formatTime(flight.time)}. This is a{" "}

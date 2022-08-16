@@ -5,6 +5,7 @@
 }
 
 .QueryCriteria {
+	width: 95vw;
 	display: grid;
 	grid-template-columns: 1fr 0.2fr 1fr 1fr 1fr;
 	gap: 10px;
@@ -15,6 +16,7 @@
 	top: 0;
 	background-color: var(--background-color);
 	padding: 2.5vh 0;
+	max-height: 3rem;
 }
 
 .QueryCriteria > img {
@@ -83,6 +85,8 @@
 }
 
 .MinorSearchCriterion {
+	position: sticky;
+	top: 10vh;
 	display: grid;
 	grid-template-columns: 1fr;
 	max-width: 20vw;

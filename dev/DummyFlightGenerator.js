@@ -154,7 +154,9 @@ const getRandomLocation = (illegalLocation) => {
         "Toronto"
     ];
     
-    return locations.filter(location => location !== illegalLocation)[random(locations.length - 1)];
+    locations = locations.filter(location => location !== illegalLocation);
+
+    return locations[random(locations.length - 1)];
 };
 
 const getRandomPlane = () => {

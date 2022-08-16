@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import Header from "../Common/Header/Header";
 import Tile from "../Common/Tile/Tile";
 
-import locations from "./locations.json";
-
 // HACK: For now we're just hardcoding the flights locally
 import dummyFlightData from "./dummy-flights.json";
+import locations from "./locations.json";
 
 import "./FlightsStyles.css";
 
@@ -17,24 +16,15 @@ const Flights = () => {
 	const MAX_PRICE = 10000;
 	const MIN_PRICE = 0;
 
+	// TODO(BryceTuppurainen): Add all flight search criterion here and restructure states
 	const [departure, setDeparture] = useState("");
-
 	const [destination, setDestination] = useState("");
-
 	const [sortOrder, setSortOrder] = useState("Popularity");
-
 	const [flightTiles, setFlightTiles] = useState();
-
 	const [departureAutofill, setDepartureAutofill] = useState(<></>);
-
 	const [destinationAutofill, setDestinationAutofill] = useState(<></>);
-
 	const [minorSearchCriterion, setMinorSearchCriterion] = useState(<></>);
-
-	// TODO(BryceTuppurainen): Add all flight search criterion here:
-
 	const [minimumPrice, setMinimumPrice] = useState(MIN_PRICE);
-
 	const [maximumPrice, setMaximumPrice] = useState(MAX_PRICE);
 
 	const updateFlights = async () => {
@@ -73,10 +63,10 @@ const Flights = () => {
 		// HACK: End of hack...
 
 		flights.forEach((flight, idx) => {
-			// HACK: This simply limits to this number of elements, this should be a const
 			if (idx > MAX_TILES) {
 				return;
 			}
+			// TODO(BryceTuppurainen): This flight tile rendering can be moved out into another function
 			flightContent.push(
 				<Tile
 					className="flight"
@@ -104,60 +94,56 @@ const Flights = () => {
 			);
 		});
 
-		if (flightContent.length === 0) {
-			setMinorSearchCriterion(<></>);
-		} else {
-			setFlightTiles(<div className="flight-tiles">{flightContent}</div>);
-			setMinorSearchCriterion(
-				<form className="minor-search-criterion">
-					<details>
-						<summary>Price Range</summary>
-						<div>
-							<label htmlFor="minimum-price">min: </label>
-							<input
-								type="range"
-								min={MIN_PRICE}
-								max={maximumPrice}
-								onChange={e => {
-									setMinimumPrice(e.target.value);
-								}}
-								step="10"
-							></input>
-						</div>
-						<div>
-							<label htmlFor="maximum-price">max: </label>
-							<input
-								type="range"
-								min={minimumPrice}
-								max={MAX_PRICE}
-								onChange={e => {
-									setMaximumPrice(e.target.value);
-								}}
-								step="10"
-							></input>
-						</div>
-						<p id="price-range">
-							<input
-								type="number"
-								value={minimumPrice}
-								onChange={e => {
-									setMinimumPrice(e.target.value);
-								}}
-							/>{" "}
-							-{" "}
-							<input
-								type="number"
-								value={maximumPrice}
-								onChange={e => {
-									setMaximumPrice(e.target.value);
-								}}
-							/>{" "}
-							($AUD)
-						</p>
-					</details>
-				</form>
-			);
-		}
+		setFlightTiles(<div className="flight-tiles">{flightContent}</div>);
+		setMinorSearchCriterion(
+			<form className="minor-search-criterion">
+				<details>
+					<summary>Price Range</summary>
+					<div>
+						<label htmlFor="minimum-price">min: </label>
+						<input
+							type="range"
+							min={MIN_PRICE}
+							max={maximumPrice}
+							onChange={e => {
+								setMinimumPrice(e.target.value);
+							}}
+							step="10"
+						></input>
+					</div>
+					<div>
+						<label htmlFor="maximum-price">max: </label>
+						<input
+							type="range"
+							min={minimumPrice}
+							max={MAX_PRICE}
+							onChange={e => {
+								setMaximumPrice(e.target.value);
+							}}
+							step="10"
+						></input>
+					</div>
+					<p id="price-range">
+						<input
+							type="number"
+							value={minimumPrice}
+							onChange={e => {
+								setMinimumPrice(e.target.value);
+							}}
+						/>{" "}
+						-{" "}
+						<input
+							type="number"
+							value={maximumPrice}
+							onChange={e => {
+								setMaximumPrice(e.target.value);
+							}}
+						/>{" "}
+						($AUD)
+					</p>
+				</details>
+			</form>
+		);
 	};
 
 	useEffect(() => {
@@ -232,12 +218,8 @@ const Flights = () => {
 		);
 	};
 
-	// TODO(): Add any relevant functions in here for the management of the flight search page (authentication, suggested flights, etc.)
-
-	// TODO(BryceTuppurainen): Implement the flight search criterion and display window
-
 	/**
-	 * * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr *
+	 * * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr
 	 */
 	const formatTime = (time, additionalHours = 0) => {
 		additionalHours = parseInt(additionalHours);

@@ -233,16 +233,16 @@ const Flights = () => {
 	// TODO(BryceTuppurainen): Implement the flight search criterion and display window
 
 	/**
-	 * Helper function to perform hour addition on 24-hour time strings
+	 * * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr *
 	 */
-	const formatTime = (time, hours = 0) => {
-		hours = parseInt(hours);
+	const formatTime = (time, additionalHours = 0) => {
+		additionalHours = parseInt(additionalHours);
 		let h = parseInt(time.substr(0, 2));
 		let m = time.substr(2, 2);
 
 		let am = h < 12;
 
-		h += hours;
+		h += additionalHours;
 
 		while (h > 12) {
 			h -= 12;

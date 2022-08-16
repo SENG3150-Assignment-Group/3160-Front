@@ -12,6 +12,11 @@ import dummyFlightData from "./dummy-flights.json";
 import "./FlightsStyles.css";
 
 const Flights = () => {
+	// TODO(BryceTuppurainen): Allow this value to be changed and allow the user to continue scrolling after reaching the end of the list
+	const MAX_TILES = 50;
+	const MAX_PRICE = 10000;
+	const MIN_PRICE = 0;
+
 	const [departure, setDeparture] = useState("");
 
 	const [destination, setDestination] = useState("");
@@ -28,9 +33,9 @@ const Flights = () => {
 
 	// TODO(BryceTuppurainen): Add all flight search criterion here:
 
-	const [minimumPrice, setMinimumPrice] = useState("0");
+	const [minimumPrice, setMinimumPrice] = useState(MIN_PRICE);
 
-	const [maximumPrice, setMaximumPrice] = useState("10000");
+	const [maximumPrice, setMaximumPrice] = useState(MAX_PRICE);
 
 	/**
 	 * * Request is an object with the search criterion of departure and destination *
@@ -72,7 +77,7 @@ const Flights = () => {
 
 		flights.forEach((flight, idx) => {
 			// HACK: This simply limits to this number of elements, this should be a const
-			if (idx > 100) {
+			if (idx > MAX_TILES) {
 				return;
 			}
 			flightContent.push(
@@ -114,7 +119,7 @@ const Flights = () => {
 							<label HTMLfor="minimum-price">min: </label>
 							<input
 								type="range"
-								min="0"
+								min={MIN_PRICE}
 								max={maximumPrice}
 								onChange={e => {
 									setMinimumPrice(e.target.value);
@@ -127,7 +132,7 @@ const Flights = () => {
 							<input
 								type="range"
 								min={minimumPrice}
-								max="10000"
+								max={MAX_PRICE}
 								onChange={e => {
 									setMaximumPrice(e.target.value);
 								}}
@@ -171,7 +176,7 @@ const Flights = () => {
 	const organiseFlights = () => {};
 
 	const updateDepartureAutofill = input => {
-		setDepartureAutofill(<ul></ul>);
+		setDepartureAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
@@ -183,24 +188,24 @@ const Flights = () => {
 			if (location.toLowerCase().startsWith(input.toLowerCase())) {
 				if (location !== destination) {
 					matches.push(
-						<li
-							className="Autofill"
+						<p
+							className="autofill-item"
 							onClick={() => {
 								setDeparture(location);
 								updateDepartureAutofill("");
 							}}
 						>
 							{location}
-						</li>
+						</p>
 					);
 				}
 			}
 		});
-		setDepartureAutofill(<ul>{matches}</ul>);
+		setDepartureAutofill(<div className="autofill-content">{matches}</div>);
 	};
 
 	const updateDestinationAutofill = input => {
-		setDestinationAutofill(<ul></ul>);
+		setDestinationAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
@@ -212,20 +217,22 @@ const Flights = () => {
 			if (location.toLowerCase().startsWith(input.toLowerCase())) {
 				if (location !== departure) {
 					matches.push(
-						<li
-							className="Autofill"
+						<p
+							className="autofill-item"
 							onClick={() => {
 								setDestination(location);
 								updateDestinationAutofill("");
 							}}
 						>
 							{location}
-						</li>
+						</p>
 					);
 				}
 			}
 		});
-		setDestinationAutofill(<ul>{matches}</ul>);
+		setDestinationAutofill(
+			<div className="autofill-content">{matches}</div>
+		);
 	};
 
 	// TODO(): Add any relevant functions in here for the management of the flight search page (authentication, suggested flights, etc.)

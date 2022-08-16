@@ -1,4 +1,4 @@
-ul {
+.autofill {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -64,7 +64,7 @@ ul {
 	height: 100%;
 }
 
-.Autofill {
+.autofill-item {
 	position: relative;
 	background-color: var(--accent-color);
 	color: var(--accent-compliment);
@@ -95,7 +95,7 @@ ul {
 	margin: 5px 0;
 }
 
-.Autofill:hover {
+.autofill-item:hover {
 	background-color: var(--active-color);
 	color: var(--active-compliment);
 	cursor: pointer;

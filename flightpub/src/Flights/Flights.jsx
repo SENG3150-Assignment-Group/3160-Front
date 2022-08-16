@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Header from "../Common/Header/Header";
 import Tile from "../Common/Tile/Tile";
@@ -9,162 +9,60 @@ import dummyFlightData from "./dummy-flights.json";
 import locations from "./locations.json";
 
 import "./FlightsStyles.css";
+import { useEffect } from "react";
 
 const Flights = () => {
 	// TODO(BryceTuppurainen): Allow this value to be changed and allow the user to continue scrolling after reaching the end of the list
 	const MAX_TILES = 50;
 	const MAX_PRICE = 10000;
 	const MIN_PRICE = 0;
+	const MAX_STOPS = 7;
 
-	// TODO(BryceTuppurainen): Add all flight search criterion here and restructure states
-	const [departure, setDeparture] = useState("");
-	const [destination, setDestination] = useState("");
-	const [sortOrder, setSortOrder] = useState("Popularity");
+	const [flights, setFlights] = useState([]);
 	const [flightTiles, setFlightTiles] = useState();
+
 	const [departureAutofill, setDepartureAutofill] = useState(<></>);
 	const [destinationAutofill, setDestinationAutofill] = useState(<></>);
-	const [minorSearchCriterion, setMinorSearchCriterion] = useState(<></>);
+
+	const [sortOrder, setSortOrder] = useState("Popularity");
+
+	// TODO(BryceTuppurainen): Add all flight search criterion here
+	const [departure, setDeparture] = useState("");
+	const [destination, setDestination] = useState("");
 	const [minimumPrice, setMinimumPrice] = useState(MIN_PRICE);
 	const [maximumPrice, setMaximumPrice] = useState(MAX_PRICE);
 
-	const updateFlights = async () => {
-		if (departure === "") {
-			setFlightTiles(<div className="flight-tiles"></div>);
-			return;
-		}
+	useEffect(() => {
+		fetchFlights();
+	}, []);
 
-		let flightContent = [];
+	useEffect(() => {
+		updateFlightTiles();
+	}, [flights]);
 
-		// const response = await fetch("/path-to-api-for-flights");
-
-		// const data = await response.json();
-
-		// TODO(BryceTuppurainen): dummyFlightData is a dummy data set for testing purposes, should be a straight replace
-
-		// HACK: For now we're just hardcoding the flights locally, this filtering would be handled by the API NOT HERE
-
-		let flights = dummyFlightData;
-
-		if (departure !== "") {
-			if (destination === "") {
-				flights = flights.filter(
-					flight => flight.departure === departure
-				);
-			} else {
-				flights = flights.filter(flight => {
-					return (
-						flight.departure === departure &&
-						flight.destination === destination
-					);
-				});
-			}
-		}
-
-		// HACK: End of hack...
+	/**
+	 * This function is responsible for displaying the flight tiles based on the current version of the flights state
+	 */
+	const updateFlightTiles = () => {
+		let tiles = [];
 
 		flights.forEach((flight, idx) => {
 			if (idx > MAX_TILES) {
 				return;
 			}
-			// TODO(BryceTuppurainen): This flight tile rendering can be moved out into another function
-			flightContent.push(
-				<Tile
-					className="flight"
-					title={flight.departure + " - " + flight.destination}
-					src={
-						"/Images/Boeing737.jpg"
-
-						// TODO(BryceTuppurainen): Can likely make this specific to airlines - See below
-						// "/Images/" + flight.plane + ".jpg"
-					}
-					href={"/flight/?q=" + flight.code}
-				>
-					<h4>
-						{flight.code} - {flight.airline}
-					</h4>
-					<h4>${flight.price} (AUD)</h4>
-					<p>
-						This flight leaves from {flight.departure} on{" "}
-						{flight.date} at {formatTime(flight.time)}. This is a{" "}
-						{flight.duration}-hour flight, and will be arriving at{" "}
-						{flight.destination} at{" "}
-						{formatTime(flight.time, flight.duration)}
-					</p>
-				</Tile>
-			);
+			tiles.push(flightTile(flight));
 		});
 
-		setFlightTiles(<div className="flight-tiles">{flightContent}</div>);
-		setMinorSearchCriterion(
-			<form className="minor-search-criterion">
-				<details>
-					<summary>Price Range</summary>
-					<div>
-						<label htmlFor="minimum-price">min: </label>
-						<input
-							type="range"
-							min={MIN_PRICE}
-							max={maximumPrice}
-							onChange={e => {
-								setMinimumPrice(e.target.value);
-							}}
-							step="10"
-						></input>
-					</div>
-					<div>
-						<label htmlFor="maximum-price">max: </label>
-						<input
-							type="range"
-							min={minimumPrice}
-							max={MAX_PRICE}
-							onChange={e => {
-								setMaximumPrice(e.target.value);
-							}}
-							step="10"
-						></input>
-					</div>
-					<p id="price-range">
-						<input
-							type="number"
-							value={minimumPrice}
-							onChange={e => {
-								setMinimumPrice(e.target.value);
-							}}
-						/>{" "}
-						-{" "}
-						<input
-							type="number"
-							value={maximumPrice}
-							onChange={e => {
-								setMaximumPrice(e.target.value);
-							}}
-						/>{" "}
-						($AUD)
-					</p>
-				</details>
-			</form>
-		);
+		setFlightTiles(<div className="flight-tiles">{tiles}</div>);
 	};
 
-	useEffect(() => {
-		updateFlights();
-		// TODO(BryceTuppurainen): Add some event hooks in here so that on change of state of any information related to a flight search (or when the form is submitted) then make the request to get flights from the server
-	}, [minimumPrice, maximumPrice]);
-
-	useEffect(() => {
-		// TODO(BryceTuppurainen): Implement flight filtering with local selected preferences
-		organiseFlights();
-	}, [sortOrder]);
-
-	const organiseFlights = () => {};
-
-	const updateDepartureAutofill = input => {
+	const updateDepartureAutofill = (input) => {
 		setDepartureAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
 		}
-		locations.forEach(location => {
+		locations.forEach((location) => {
 			if (location.toLowerCase() === input.toLowerCase()) {
 				return;
 			}
@@ -187,13 +85,13 @@ const Flights = () => {
 		setDepartureAutofill(<div className="autofill-content">{matches}</div>);
 	};
 
-	const updateDestinationAutofill = input => {
+	const updateDestinationAutofill = (input) => {
 		setDestinationAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
 		}
-		locations.forEach(location => {
+		locations.forEach((location) => {
 			if (location.toLowerCase() === input.toLowerCase()) {
 				return;
 			}
@@ -219,36 +117,84 @@ const Flights = () => {
 	};
 
 	/**
-	 * * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr
+	 * Helper function that returns a flight tile from a flight object
+	 */
+	const flightTile = (flight) => {
+		return (
+			<Tile
+				className="flight"
+				title={flight.departure + " - " + flight.destination}
+				src={"/Images/" + flight.plane + ".jpg"}
+				href={"/flight/?q=" + flight.code}
+			>
+				<h4>
+					{flight.code} - {flight.airline}
+				</h4>
+				<h4>${flight.price} (AUD)</h4>
+				<p>
+					This flight leaves from {flight.departure} on {flight.date}{" "}
+					at {formatTime(flight.time)}. This is a {flight.duration}
+					-hour flight, and will be arriving at {
+						flight.destination
+					}{" "}
+					at {formatTime(flight.time, flight.duration)}
+				</p>
+			</Tile>
+		);
+	};
+
+	/**
+	 * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr
 	 */
 	const formatTime = (time, additionalHours = 0) => {
 		additionalHours = parseInt(additionalHours);
 		let h = parseInt(time.substr(0, 2));
 		let m = time.substr(2, 2);
-
 		let am = h < 12;
-
 		h += additionalHours;
-
 		while (h > 12) {
 			h -= 12;
 			am = !am;
 		}
-
 		if (am) {
 			return h + ":" + m + "am";
 		}
 		return h + ":" + m + "pm";
 	};
 
+	/**
+	 * This function is responsible for the retrieval of all flights from the server matching the query
+	 */
+	const fetchFlights = async () => {
+		// TODO(BryceTuppurainen): For now we're just hardcoding the flights locally, this filtering would be handled by the API NOT HERE
+
+		if (departure !== "" && destination !== "") {
+			setFlights(
+				dummyFlightData.filter((flight) => {
+					return (
+						flight.departure === departure &&
+						flight.destination === destination
+					);
+				})
+			);
+		} else if (departure !== "") {
+			setFlights(
+				dummyFlightData.filter((flight) => {
+					return flight.departure === departure;
+				})
+			);
+		}
+	};
+
 	return (
 		<>
 			<Header />
+
 			<form
 				className="query-criterion"
-				onSubmit={e => {
+				onSubmit={(e) => {
 					e.preventDefault();
-					updateFlights();
+					fetchFlights();
 				}}
 			>
 				<div>
@@ -258,7 +204,7 @@ const Flights = () => {
 							type="text"
 							placeholder="Leaving from..."
 							name="departure"
-							onChange={e => {
+							onChange={(e) => {
 								setDeparture(e.target.value);
 								updateDepartureAutofill(e.target.value);
 							}}
@@ -267,11 +213,9 @@ const Flights = () => {
 						{departureAutofill}
 					</div>
 				</div>
-
 				<div id="swap-circle-wrapper">
 					<img src="/Images/swap-circle.jpg" alt="Cycle Icon" />
 				</div>
-
 				<div>
 					<img src="/Images/gps-teardrop.png" alt="GPS Teardrop" />
 					<div className="autofill-wrapper">
@@ -279,7 +223,7 @@ const Flights = () => {
 							type="text"
 							placeholder="Heading to..."
 							name="destination"
-							onChange={e => {
+							onChange={(e) => {
 								setDestination(e.target.value);
 								updateDestinationAutofill(e.target.value);
 							}}
@@ -288,10 +232,9 @@ const Flights = () => {
 						{destinationAutofill}
 					</div>
 				</div>
-
 				<select
 					value={sortOrder}
-					onChange={e => {
+					onChange={(e) => {
 						setSortOrder(e.target.value);
 					}}
 				>
@@ -300,11 +243,67 @@ const Flights = () => {
 					<option>Sort by Price (Highest-Lowest)</option>
 					<option>Sort by Departure Date</option>
 				</select>
-
 				<input type="submit" value="Search" id="search-button"></input>
 			</form>
+
 			<div id="content-wrapper">
-				{minorSearchCriterion}
+				<form className="minor-search-criterion">
+					<details>
+						<summary>Price Range</summary>
+						<div>
+							<label htmlFor="minimum-price">min: </label>
+							<input
+								type="range"
+								min={MIN_PRICE}
+								max={maximumPrice}
+								onChange={(e) => {
+									setMinimumPrice(e.target.value);
+								}}
+								step="10"
+							></input>
+						</div>
+						<div>
+							<label htmlFor="maximum-price">max: </label>
+							<input
+								type="range"
+								min={minimumPrice}
+								max={MAX_PRICE}
+								onChange={(e) => {
+									setMaximumPrice(e.target.value);
+								}}
+								step="10"
+							></input>
+						</div>
+						<p id="price-range">
+							<input
+								type="number"
+								value={minimumPrice}
+								onChange={(e) => {
+									setMinimumPrice(e.target.value);
+								}}
+							/>{" "}
+							-{" "}
+							<input
+								type="number"
+								value={maximumPrice}
+								onChange={(e) => {
+									setMaximumPrice(e.target.value);
+								}}
+							/>{" "}
+							($AUD)
+						</p>
+					</details>
+
+					<details>
+						<summary>Maximum Stops</summary>
+						<input
+							type="number"
+							min={0}
+							max={MAX_STOPS}
+							placeholder="0"
+						/>
+					</details>
+				</form>
 				{flightTiles}
 			</div>
 		</>

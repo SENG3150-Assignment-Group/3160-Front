@@ -13,6 +13,7 @@
 	align-items: center;
 	justify-self: center;
 	position: sticky;
+	z-index: 2;
 	top: 0;
 	background-color: var(--background-color);
 	padding: 2.5vh 0;
@@ -97,6 +98,11 @@
 .minor-search-criterion * {
 	width: 100%;
 	margin: 5px 0;
+}
+
+.autofill-content {
+	background-color: var(--background-color);
+	margin-top: 15px;
 }
 
 .autofill-item:hover {

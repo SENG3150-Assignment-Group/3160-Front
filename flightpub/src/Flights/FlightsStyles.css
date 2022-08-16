@@ -74,6 +74,22 @@ ul {
 	transition: 500ms ease-in-out;
 }
 
+#ContentWrapper {
+	display: grid;
+	grid-template-columns: 15vw calc(80vw - 15px);
+	gap: 15px;
+	margin: 0;
+	padding: 0;
+}
+
+.MinorSearchCriterion {
+	display: grid;
+	grid-template-columns: 1fr;
+	max-width: 20vw;
+	height: min-content;
+	gap: 15px;
+}
+
 .Autofill:hover {
 	background-color: var(--active-color);
 	color: var(--active-compliment);
@@ -101,4 +117,19 @@ ul {
 #SwapCircleWrapper {
 	border: none;
 	justify-content: center;
+}
+
+#price-range {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	padding: 0;
+	width: 100%;
+}
+
+#price-range > input {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	width: 5vw;
+	border: none;
 }

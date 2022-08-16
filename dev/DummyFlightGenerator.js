@@ -184,6 +184,7 @@ const generateFlightsJSON = (numberOfFlights) => {
         const plane = getRandomPlane();
         const duration = (random(11) + 1).toString();
         const seats = random(99) + 1;
+        const price = random(9899) + 101;
 
         const flight = {
             code,
@@ -194,7 +195,8 @@ const generateFlightsJSON = (numberOfFlights) => {
             airline,
             plane,
             duration,
-            seats
+            seats,
+            price
         };
         flights.push(flight);
     }

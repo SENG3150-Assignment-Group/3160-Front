@@ -37,9 +37,6 @@ const Flights = () => {
 
 	const [maximumPrice, setMaximumPrice] = useState(MAX_PRICE);
 
-	/**
-	 * * Request is an object with the search criterion of departure and destination *
-	 */
 	const updateFlights = async () => {
 		if (departure === "") {
 			setFlightTiles(<div className="FlightTiles"></div>);

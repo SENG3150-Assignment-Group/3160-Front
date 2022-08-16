@@ -111,7 +111,7 @@ const Flights = () => {
 					<details>
 						<summary>Price Range</summary>
 						<div>
-							<label for="minimum-price">min: </label>
+							<label HTMLfor="minimum-price">min: </label>
 							<input
 								type="range"
 								min="0"
@@ -123,7 +123,7 @@ const Flights = () => {
 							></input>
 						</div>
 						<div>
-							<label for="maximum-price">max: </label>
+							<label HTMLfor="maximum-price">max: </label>
 							<input
 								type="range"
 								min={minimumPrice}

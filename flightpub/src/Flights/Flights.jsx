@@ -39,7 +39,7 @@ const Flights = () => {
 
 	const updateFlights = async () => {
 		if (departure === "") {
-			setFlightTiles(<div className="FlightTiles"></div>);
+			setFlightTiles(<div className="flight-tiles"></div>);
 			return;
 		}
 
@@ -107,9 +107,9 @@ const Flights = () => {
 		if (flightContent.length === 0) {
 			setMinorSearchCriterion(<></>);
 		} else {
-			setFlightTiles(<div className="FlightTiles">{flightContent}</div>);
+			setFlightTiles(<div className="flight-tiles">{flightContent}</div>);
 			setMinorSearchCriterion(
-				<form className="MinorSearchCriterion">
+				<form className="minor-search-criterion">
 					<details>
 						<summary>Price Range</summary>
 						<div>
@@ -263,7 +263,7 @@ const Flights = () => {
 		<>
 			<Header />
 			<form
-				className="QueryCriteria"
+				className="query-criterion"
 				onSubmit={e => {
 					e.preventDefault();
 					updateFlights();
@@ -271,7 +271,7 @@ const Flights = () => {
 			>
 				<div>
 					<img src="/Images/gps-teardrop.png" alt="GPS Teardrop" />
-					<div className="AutofillWrapper">
+					<div className="autofill-wrapper">
 						<input
 							type="text"
 							placeholder="Leaving from..."
@@ -292,7 +292,7 @@ const Flights = () => {
 
 				<div>
 					<img src="/Images/gps-teardrop.png" alt="GPS Teardrop" />
-					<div className="AutofillWrapper">
+					<div className="autofill-wrapper">
 						<input
 							type="text"
 							placeholder="Heading to..."

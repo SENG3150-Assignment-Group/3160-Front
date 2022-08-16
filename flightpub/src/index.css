@@ -45,7 +45,7 @@ h1 {
 	text-decoration-thickness: 1px;
 }
 
-.FlightTiles {
+.flight-tiles {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 20px;

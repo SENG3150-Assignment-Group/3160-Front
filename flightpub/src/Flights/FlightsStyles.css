@@ -1,3 +1,11 @@
+summary {
+	color: var(--active-compliment);
+}
+
+summary:hover {
+	cursor: pointer;
+}
+
 .autofill {
 	list-style: none;
 	margin: 0;
@@ -79,8 +87,8 @@
 
 #content-wrapper {
 	display: grid;
-	grid-template-columns: 15vw calc(80vw - 15px);
-	gap: 15px;
+	grid-template-columns: 20vw calc(75vw - 15px);
+	gap: 5px;
 	margin: 0;
 	padding: 0;
 }
@@ -90,19 +98,38 @@
 	top: 10vh;
 	display: grid;
 	grid-template-columns: 1fr;
-	max-width: 20vw;
+	width: 15vw;
 	height: min-content;
 	gap: 15px;
+	border: solid var(--accent-color) 1px;
+	padding: 15px;
+	border-radius: 5px;
+	background-color: var(--active-color);
 }
 
 .minor-search-criterion * {
+	color: var(--accent-compliment);
 	width: 100%;
-	margin: 5px 0;
+	margin: 7px 0;
+}
+
+.minor-search-criterion input,
+.minor-search-criterion select,
+.minor-search-criterion option {
+	height: 3.5vh;
+	color: rgb(0, 0, 0);
+	cursor: pointer;
+}
+
+.minor-search-criterion input[type="number"] {
+	width: min-content;
 }
 
 .autofill-content {
 	background-color: var(--background-color);
 	margin-top: 15px;
+	padding: 10px;
+	border-radius: 5px;
 }
 
 .autofill-item:hover {
@@ -135,8 +162,12 @@
 }
 
 #price-range {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 5px;
 	padding: 0;
 	width: 100%;
 }

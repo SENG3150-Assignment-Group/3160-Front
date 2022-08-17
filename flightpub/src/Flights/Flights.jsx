@@ -235,22 +235,57 @@ const Flights = () => {
 						{destinationAutofill}
 					</div>
 				</div>
-				<select
-					value={sortOrder}
-					onChange={e => {
-						setSortOrder(e.target.value);
-					}}
-				>
-					<option>Sort by Popularity</option>
-					<option>Sort by Price (Lowest-Highest)</option>
-					<option>Sort by Price (Highest-Lowest)</option>
-					<option>Sort by Departure Date</option>
-				</select>
+				<div>
+					<input type="date" />
+				</div>
 				<input type="submit" value="Search" id="search-button"></input>
 			</form>
 
 			<div id="content-wrapper">
 				<form className="minor-search-criterion">
+					<details>
+						<summary>Sort By</summary>
+
+						<select
+							value={sortOrder}
+							onChange={e => {
+								setSortOrder(e.target.value);
+							}}
+						>
+							<option>Sort by Popularity</option>
+							<option>Sort by Price (Lowest-Highest)</option>
+							<option>Sort by Price (Highest-Lowest)</option>
+							<option>Sort by Departure Date</option>
+						</select>
+					</details>
+
+					<details>
+						<summary>One Way?</summary>
+						<select>
+							<option>One Way</option>
+							<option>Return</option>
+						</select>
+					</details>
+
+					<details>
+						<summary>Maximum Stops</summary>
+						<input
+							type="number"
+							min={0}
+							max={MAX_STOPS}
+							placeholder="0"
+							value={maxStops}
+							onChange={e => {
+								if (e.target.value > MAX_STOPS) {
+									e.target.value = MAX_STOPS;
+								} else if (e.target.value < 0) {
+									e.target.value = 0;
+								}
+								setMaxStops(e.target.value);
+							}}
+						/>
+					</details>
+
 					<details>
 						<summary>Price Range</summary>
 						<div>
@@ -264,7 +299,7 @@ const Flights = () => {
 									setMinPrice(e.target.value);
 								}}
 								step="10"
-							></input>
+							/>
 						</div>
 						<div>
 							<label htmlFor="maximum-price">max: </label>
@@ -277,7 +312,7 @@ const Flights = () => {
 									setMaxPrice(e.target.value);
 								}}
 								step="10"
-							></input>
+							/>
 						</div>
 						<p id="price-range">
 							<input
@@ -300,13 +335,52 @@ const Flights = () => {
 					</details>
 
 					<details>
-						<summary>Maximum Stops</summary>
-						<input
-							type="number"
-							min={0}
-							max={MAX_STOPS}
-							placeholder="0"
-						/>
+						<summary>Flexible Date Search</summary>
+						<label htmlFor="latest-departure-date">
+							Latest Departure Date
+						</label>
+						<input type="date" name="latest-departure-date" />
+
+						<label htmlFor="return-date">Return Date</label>
+						<input type="date" name="return-date" />
+
+						<label htmlFor="latest-return-date">
+							Latest Return Date
+						</label>
+						<input type="date" name="latest-return-date" />
+					</details>
+
+					<details>
+						<summary>Airline</summary>
+						<select>
+							<option>No Preference</option>
+							<option>Jetstar</option>
+							<option>Qantas</option>
+							{/* // TODO(BryceTuppurainen): Update this to instead use a list of options that you can import from another file */}
+						</select>
+					</details>
+
+					<details>
+						<summary>Class</summary>
+						<select>
+							<option>No Preference</option>
+							<option>First Class</option>
+							<option>Business Class</option>
+							<option>Premium Economy Class</option>
+							<option>Economy Class</option>
+							{/* // TODO(BryceTuppurainen): Update this to instead use a list of options that you can import from another file */}
+						</select>
+					</details>
+
+					<details>
+						<summary>Time of Flight</summary>
+						<select>
+							<option>No Preference</option>
+							<option>Early (Before 6am)</option>
+							<option>Morning (6am-12pm)</option>
+							<option>Afternoon (12pm-6pm)</option>
+							<option>Late (After 6pm)</option>
+						</select>
 					</details>
 				</form>
 				{flightTiles}

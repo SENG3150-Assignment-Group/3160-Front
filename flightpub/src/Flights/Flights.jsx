@@ -24,7 +24,7 @@ const Flights = () => {
 	const [departureAutofill, setDepartureAutofill] = useState(<></>);
 	const [destinationAutofill, setDestinationAutofill] = useState(<></>);
 
-	const [sortOrder, setSortOrder] = useState("Popularity");
+	const [sortOrder, setSortOrder] = useState("popularity");
 
 	const [departure, setDeparture] = useState("");
 	const [destination, setDestination] = useState("");

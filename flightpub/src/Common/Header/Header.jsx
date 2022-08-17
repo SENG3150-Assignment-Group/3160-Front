@@ -108,8 +108,13 @@ const Header = () => {
 			default:
 				setAuthenticationOptions(
 					<div className="AuthenticationOptions">
-						<a href="/authentication?q=sign-in">Sign In</a>
-						<a href="/authentication?q=sign-up">Sign Up</a>
+						<div></div>
+						<div>
+							<a href="/authentication?q=sign-in">Sign In</a>
+						</div>
+						<div>
+							<a href="/authentication?q=sign-up">Sign Up</a>
+						</div>
 					</div>
 				);
 		}

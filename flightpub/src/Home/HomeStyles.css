@@ -26,6 +26,8 @@
 	height: min-content;
 	padding: 15px;
 	border-radius: 10px;
+	position: sticky;
+	top: 5vh;
 }
 
 .home #view-selector p {
@@ -46,4 +48,8 @@
 
 .home #view-content {
 	height: 100%;
+}
+
+.home h3 {
+	font-size: 26pt;
 }

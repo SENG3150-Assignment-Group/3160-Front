@@ -8,12 +8,14 @@ const processView = view => {
 			return (
 				<div>
 					{/* // TODO(BryceTuppurainen): Add in account management controls */}
-					<h3>Manage Account</h3>
-					<p>
-						This is the view where you would be able to manage your
-						account
-					</p>
 					<div className="single-col-grid">
+						<div>
+							<h3>Manage Account</h3>
+							<p>
+								This is the view where you would be able to
+								manage your account
+							</p>
+						</div>
 						<div>
 							<input
 								type="text"
@@ -30,8 +32,8 @@ const processView = view => {
 						</div>
 						<div>
 							<input
-                                type="text"
-                                placeholder="Enter a new password..."
+								type="text"
+								placeholder="Enter a new password..."
 							/>
 							<input type="button" value="Save Changes" />
 						</div>

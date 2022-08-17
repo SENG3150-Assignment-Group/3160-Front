@@ -1,13 +1,120 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import permission from "../Permission/Permission";
 
 import "./HeaderStyles.css";
 
 // TODO(BryceTuppurainen): Implement authentication
 
-const isAuthenticated = false;
+const Header = () => {
+	const [authenticationOptions, setAuthenticationOptions] = useState(<></>);
 
-const Header = ({ page }) => {
+	useEffect(() => {
+		switch (permission()) {
+			case 4:
+				setAuthenticationOptions(
+					<div className="AuthenticationOptions">
+						<div>
+							<a href="/admin">Admin</a>
+						</div>
+						<div>
+							<a href="/account">My Account</a>
+						</div>
+						<div>
+							<a
+								onClick={() => {
+									localStorage.clear();
+									navigate("/");
+								}}
+								href="."
+							>
+								Sign Out
+							</a>
+						</div>
+					</div>
+				);
+				return;
+
+			case 3:
+				setAuthenticationOptions(
+					<div className="AuthenticationOptions">
+						<div>
+							<a href="/agent">Agent</a>
+						</div>
+						<div>
+							<a href="/account">My Account</a>
+						</div>
+						<div>
+							<a
+								onClick={() => {
+									localStorage.clear();
+									navigate("/");
+								}}
+								href="."
+							>
+								Sign Out
+							</a>
+						</div>
+					</div>
+				);
+
+				return;
+			case 2:
+				setAuthenticationOptions(
+					<div className="AuthenticationOptions">
+						<div>
+							<a href="/staff">Staff Page</a>
+						</div>
+						<div>
+							<a href="/account">My Account</a>
+						</div>
+						<div>
+							<a
+								onClick={() => {
+									localStorage.clear();
+									navigate("/");
+								}}
+								href="."
+							>
+								Sign Out
+							</a>
+						</div>
+					</div>
+				);
+				return;
+			case 1:
+				setAuthenticationOptions(
+					<div className="AuthenticationOptions">
+						<div></div>
+						<div>
+							<a href="/account">My Account</a>
+						</div>
+						<div>
+							<a
+								onClick={() => {
+									localStorage.clear();
+									navigate("/");
+								}}
+								href="."
+							>
+								Sign Out
+							</a>
+						</div>
+					</div>
+				);
+				return;
+			default:
+				setAuthenticationOptions(
+					<div className="AuthenticationOptions">
+						<a href="/authentication?q=sign-in">Sign In</a>
+						<a href="/authentication?q=sign-up">Sign Up</a>
+					</div>
+				);
+		}
+	}, []);
+
 	let navigate = useNavigate();
 
 	return (
@@ -39,38 +146,7 @@ const Header = ({ page }) => {
 					</div> */}
 				</nav>
 
-				{isAuthenticated ? (
-					<div className="AuthenticationOptions">
-						<div></div>
-						<div>
-							<a href="/account">My Account</a>
-						</div>
-						<div>
-							<a
-								onClick={() => {
-									localStorage.setItem("email", "");
-									localStorage.setItem("password", "");
-									localStorage.setItem("fullname", "");
-									navigate("/");
-								}}
-								href="."
-							>
-								Sign Out
-							</a>
-						</div>
-					</div>
-				) : (
-					<div className="AuthenticationOptions">
-						<div></div>
-						<div>
-							<a href="/authentication?q=sign-in">Sign In</a>
-						</div>
-
-						<div>
-							<a href="/authentication?q=sign-up">Sign Up</a>
-						</div>
-					</div>
-				)}
+				{authenticationOptions}
 			</div>
 			<hr />
 		</header>

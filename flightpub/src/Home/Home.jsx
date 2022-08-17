@@ -55,9 +55,6 @@ const Home = () => {
 				// TODO(BryceTuppurainen): Add the account management page here
 				<div className="home">
 					<Header />
-					<header>
-						<p>This is the homepage for {localStorage.fullname}</p>
-					</header>
 					<main>
 						<section id="view-selector">
 							<p

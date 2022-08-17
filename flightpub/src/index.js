@@ -25,7 +25,7 @@ root.render(
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Flights />} />
-				<Route path="/account" element={<Home />} />
+				<Route path="/home" element={<Home />} />
 				<Route path="/authentication" element={<Authentication />} />
 				<Route path="/booking" element={<Booking />} />
 				<Route path="/checkout" element={<Checkout />} />

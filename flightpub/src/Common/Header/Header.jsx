@@ -20,7 +20,7 @@ const Header = () => {
 							<a href="/admin">Admin</a>
 						</div>
 						<div>
-							<a href="/account">My Account</a>
+							<a href="/home">Home</a>
 						</div>
 						<div>
 							<a
@@ -44,7 +44,7 @@ const Header = () => {
 							<a href="/agent">Agent</a>
 						</div>
 						<div>
-							<a href="/account">My Account</a>
+							<a href="/home">Home</a>
 						</div>
 						<div>
 							<a
@@ -68,7 +68,7 @@ const Header = () => {
 							<a href="/staff">Staff Page</a>
 						</div>
 						<div>
-							<a href="/account">My Account</a>
+							<a href="/home">Home</a>
 						</div>
 						<div>
 							<a
@@ -89,7 +89,7 @@ const Header = () => {
 					<div className="AuthenticationOptions">
 						<div></div>
 						<div>
-							<a href="/account">My Account</a>
+							<a href="/home">Home</a>
 						</div>
 						<div>
 							<a
@@ -143,12 +143,6 @@ const Header = () => {
 					<div>
 						<a href="/destinations">Explore</a>
 					</div>
-
-					{/*
-					// TODO(): Travel Groups is currently not an existing feature of this system
-					<div>
-						<a href="/group">Travel Groups</a>
-					</div> */}
 				</nav>
 
 				{authenticationOptions}

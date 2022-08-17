@@ -12,6 +12,7 @@ const Tile = props => {
 	let src = props.src;
 	let children = props.children;
 
+	// HACK: Remove before submission - This is the WIP tile
 	if (props.title === "" || props.title === undefined) {
 		title = "Example Tile";
 		href = ".";

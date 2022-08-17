@@ -1,0 +1,49 @@
+.home main {
+	display: grid;
+	grid-template-columns: 1fr 7fr;
+	gap: 50px;
+}
+
+.home header {
+	width: 100%;
+	height: 10vh;
+}
+
+.home header p {
+	font-size: 12pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+}
+
+.home #view-selector {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--accent-color);
+	width: 100%;
+	height: min-content;
+	padding: 15px;
+	border-radius: 10px;
+}
+
+.home #view-selector p {
+	margin: 0;
+	background-color: var(--background-color);
+	color: rgb(0, 0, 0);
+	padding: 15px;
+	border-radius: 10px;
+	transition: ease-in-out 400ms;
+	transition-delay: 100ms;
+}
+
+.home #view-selector p:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}
+
+.home #view-content {
+	height: 100%;
+}

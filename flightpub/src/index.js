@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./index.css";
-import Account from "./Account/Account";
+import Home from "./Home/Home";
 import Authentication from "./Authentication/Authentication";
 import Booking from "./Booking/Booking";
 import Checkout from "./Checkout/Checkout";
@@ -25,7 +25,7 @@ root.render(
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Flights />} />
-				<Route path="/account" element={<Account />} />
+				<Route path="/account" element={<Home />} />
 				<Route path="/authentication" element={<Authentication />} />
 				<Route path="/booking" element={<Booking />} />
 				<Route path="/checkout" element={<Checkout />} />

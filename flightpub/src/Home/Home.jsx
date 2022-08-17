@@ -3,9 +3,22 @@ import { useState } from "react";
 
 import Header from "../Common/Header/Header";
 import Forbidden from "../Common/Forbidden";
+import processView from "./processView";
 
-const Account = () => {
+import "./HomeStyles.css";
+
+const Home = () => {
+	const [viewContent, setViewContent] = useState(<></>);
+	const [view, setView] = useState("home");
 	const [user, setUser] = useState({});
+
+	useEffect(() => {
+		setViewContent(
+			<div>
+				<p>{processView(view)}</p>
+			</div>
+		);
+	}, [view]);
 
 	useEffect(() => {
 		setUser({ email: "", password: "", fullname: "" });
@@ -40,13 +53,48 @@ const Account = () => {
 				<Forbidden />
 			) : (
 				// TODO(BryceTuppurainen): Add the account management page here
-				<>
+				<div className="home">
 					<Header />
-					<h3>Hi {user.fullname}!</h3>
-				</>
+					<header>
+						<p>This is the homepage for {localStorage.fullname}</p>
+					</header>
+					<main>
+						<section id="view-selector">
+							<p
+								onClick={e => {
+									setView("home");
+								}}
+							>
+								Home
+							</p>
+							<p
+								onClick={e => {
+									setView("account");
+								}}
+							>
+								My Account
+							</p>
+							<p
+								onClick={e => {
+									setView("watchlist");
+								}}
+							>
+								Watchlist
+							</p>
+							<p
+								onClick={e => {
+									setView("history");
+								}}
+							>
+								Booking History
+							</p>
+						</section>
+						<section id="view-content">{viewContent}</section>
+					</main>
+				</div>
 			)}
 		</>
 	);
 };
 
-export default Account;
+export default Home;

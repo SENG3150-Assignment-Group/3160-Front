@@ -56,7 +56,7 @@ const Flights = () => {
 			}
 			tiles.push(flightTile(flight));
 		});
-		setFlightTiles(<div className="flight-tiles">{tiles}</div>);
+		setFlightTiles(<div className="tiles">{tiles}</div>);
 	};
 
 	const updateDepartureAutofill = input => {

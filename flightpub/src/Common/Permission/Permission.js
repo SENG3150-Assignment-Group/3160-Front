@@ -5,7 +5,7 @@ const permission = () => {
     switch (localStorage.getItem("permission")) {
         case "admin":
             return 4;
-        case "travel agent":
+        case "agent":
             return 3;
         case "staff":
             return 2;

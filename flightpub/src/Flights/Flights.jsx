@@ -26,11 +26,16 @@ const Flights = () => {
 
 	const [sortOrder, setSortOrder] = useState("Popularity");
 
-	// TODO(BryceTuppurainen): Add all flight search criterion here
 	const [departure, setDeparture] = useState("");
 	const [destination, setDestination] = useState("");
-	const [minimumPrice, setMinimumPrice] = useState(MIN_PRICE);
-	const [maximumPrice, setMaximumPrice] = useState(MAX_PRICE);
+
+	const [minPrice, setMinPrice] = useState(MIN_PRICE);
+	const [maxPrice, setMaxPrice] = useState(MAX_PRICE);
+	const [maxStops, setMaxStops] = useState(0);
+	const [departureTime, setDepartureTime] = useState([]);
+	const [latestDepartureTime, setLatestDepartureTime] = useState([]);
+
+	// TODO(BryceTuppurainen): Add all flight search criterion here
 
 	useEffect(() => {
 		fetchFlights();
@@ -45,24 +50,22 @@ const Flights = () => {
 	 */
 	const updateFlightTiles = () => {
 		let tiles = [];
-
 		flights.forEach((flight, idx) => {
 			if (idx > MAX_TILES) {
 				return;
 			}
 			tiles.push(flightTile(flight));
 		});
-
 		setFlightTiles(<div className="flight-tiles">{tiles}</div>);
 	};
 
-	const updateDepartureAutofill = (input) => {
+	const updateDepartureAutofill = input => {
 		setDepartureAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
 		}
-		locations.forEach((location) => {
+		locations.forEach(location => {
 			if (location.toLowerCase() === input.toLowerCase()) {
 				return;
 			}
@@ -85,13 +88,13 @@ const Flights = () => {
 		setDepartureAutofill(<div className="autofill-content">{matches}</div>);
 	};
 
-	const updateDestinationAutofill = (input) => {
+	const updateDestinationAutofill = input => {
 		setDestinationAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
 		}
-		locations.forEach((location) => {
+		locations.forEach(location => {
 			if (location.toLowerCase() === input.toLowerCase()) {
 				return;
 			}
@@ -119,7 +122,7 @@ const Flights = () => {
 	/**
 	 * Helper function that returns a flight tile from a flight object
 	 */
-	const flightTile = (flight) => {
+	const flightTile = flight => {
 		return (
 			<Tile
 				className="flight"
@@ -170,7 +173,7 @@ const Flights = () => {
 
 		if (departure !== "" && destination !== "") {
 			setFlights(
-				dummyFlightData.filter((flight) => {
+				dummyFlightData.filter(flight => {
 					return (
 						flight.departure === departure &&
 						flight.destination === destination
@@ -179,7 +182,7 @@ const Flights = () => {
 			);
 		} else if (departure !== "") {
 			setFlights(
-				dummyFlightData.filter((flight) => {
+				dummyFlightData.filter(flight => {
 					return flight.departure === departure;
 				})
 			);
@@ -192,7 +195,7 @@ const Flights = () => {
 
 			<form
 				className="query-criterion"
-				onSubmit={(e) => {
+				onSubmit={e => {
 					e.preventDefault();
 					fetchFlights();
 				}}
@@ -204,7 +207,7 @@ const Flights = () => {
 							type="text"
 							placeholder="Leaving from..."
 							name="departure"
-							onChange={(e) => {
+							onChange={e => {
 								setDeparture(e.target.value);
 								updateDepartureAutofill(e.target.value);
 							}}
@@ -223,7 +226,7 @@ const Flights = () => {
 							type="text"
 							placeholder="Heading to..."
 							name="destination"
-							onChange={(e) => {
+							onChange={e => {
 								setDestination(e.target.value);
 								updateDestinationAutofill(e.target.value);
 							}}
@@ -234,7 +237,7 @@ const Flights = () => {
 				</div>
 				<select
 					value={sortOrder}
-					onChange={(e) => {
+					onChange={e => {
 						setSortOrder(e.target.value);
 					}}
 				>
@@ -255,9 +258,10 @@ const Flights = () => {
 							<input
 								type="range"
 								min={MIN_PRICE}
-								max={maximumPrice}
-								onChange={(e) => {
-									setMinimumPrice(e.target.value);
+								max={maxPrice}
+								placeholder={MIN_PRICE}
+								onChange={e => {
+									setMinPrice(e.target.value);
 								}}
 								step="10"
 							></input>
@@ -266,10 +270,11 @@ const Flights = () => {
 							<label htmlFor="maximum-price">max: </label>
 							<input
 								type="range"
-								min={minimumPrice}
+								min={minPrice}
 								max={MAX_PRICE}
-								onChange={(e) => {
-									setMaximumPrice(e.target.value);
+								placeholder={MAX_PRICE}
+								onChange={e => {
+									setMaxPrice(e.target.value);
 								}}
 								step="10"
 							></input>
@@ -277,17 +282,17 @@ const Flights = () => {
 						<p id="price-range">
 							<input
 								type="number"
-								value={minimumPrice}
-								onChange={(e) => {
-									setMinimumPrice(e.target.value);
+								value={minPrice}
+								onChange={e => {
+									setMinPrice(e.target.value);
 								}}
 							/>{" "}
 							-{" "}
 							<input
 								type="number"
-								value={maximumPrice}
-								onChange={(e) => {
-									setMaximumPrice(e.target.value);
+								value={maxPrice}
+								onChange={e => {
+									setMaxPrice(e.target.value);
 								}}
 							/>{" "}
 							($AUD)

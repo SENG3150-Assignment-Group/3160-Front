@@ -98,7 +98,9 @@ const Admin = () => {
 				</section>
 				<section id="view-content">{viewContent}</section>
 			</main>
+
 			<p>Number of matching users: {users.length}</p>
+
 			<div className="user-table">
 				<div className="user-items">
 					<div>

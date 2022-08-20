@@ -62,10 +62,9 @@ const processView = view => {
 				</div>
 			);
 		default:
-			// Assume 'admin'
+			// Assume "admin"
 			return (
 				<h3>All Flightpub Members</h3>
-				
 			);
 	}
 };

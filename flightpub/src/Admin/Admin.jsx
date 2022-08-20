@@ -30,13 +30,15 @@ const Admin = () => {
 		response.forEach(user => {
 			userContent.push(
 				<div className="user-item">
-					<input type="text" placeholder={user.email} />
+					<input type="text" placeholder={user.accountId} />
 					<input type="text" placeholder={user.fullname} />
+					<input type="text" placeholder={user.email} />
 					<input type="text" placeholder={user.password} />
+					<input type="text" placeholder={user.permission} />
 					<input type="text" placeholder={user.creditCard} />
 					<div>
-						<input type="button" value="View User" />
-						<input type="button" value="Save Updated User" />
+						<input type="button" value="Update" />
+						<input type="button" value="Remove" />
 					</div>
 				</div>
 			);
@@ -63,7 +65,10 @@ const Admin = () => {
 				<div className="user-table">
 					<div className="user-items">
 						<div>
-							<h3>Email</h3>
+							<h3>Account ID</h3>
+							<input
+								type="text"
+							/>
 						</div>
 						<div>
 							<h3>Name</h3>
@@ -75,9 +80,32 @@ const Admin = () => {
 								}}
 							/>
 						</div>
-						<h3>Password</h3>
+						<div>
+							<h3>Email</h3>
+							<input
+								type="text"
+							/>
+						</div>
+						<div>
+							<h3>Password</h3>
+							<input
+								type="text"
+							/>
+						</div>
+						<div>
+							<h3>Account Type</h3>
+							<input
+								type="text"
+							/>
+						</div>
+						<div>
+							<h3>Credit Card</h3>
+							<input
+								type="text"
+							/>
+						</div>
 						<h3>Credit Card</h3>
-						<h3>Update User Details</h3>
+						<h3>User</h3>
 					</div>
 					{users}
 				</div>

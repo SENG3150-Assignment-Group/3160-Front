@@ -16,7 +16,10 @@ const Admin = () => {
 	const [view, setView] = useState("admin");
 	const [users, setUsers] = useState([<></>]);
 	const [fullnameSearch, setFullnameSearch] = useState("");
-	// TODO(GeorgeDavis): Add further search criteria here
+	const [emailSearch, setEmailSearch] = useState("");
+	const [passwordSearch, setPasswordSearch] = useState("");
+	const [permissionSearch, setPermissionSearch] = useState("");
+	//const [accountIdSearch, setAccountIdSearch] = useState("");
 	
 	useEffect(() => {
 		setViewContent(
@@ -36,7 +39,11 @@ const Admin = () => {
 		// setUsers(body);
 
 		const response = dummyUsers.filter(user => {
-			return user.fullname.toLowerCase().includes(fullnameSearch.toLowerCase());
+			//return user.fullname.includes(fullnameSearch);
+			return user.fullname.toLowerCase().includes(fullnameSearch.toLowerCase()) &&
+				   user.email.toLowerCase().includes(emailSearch.toLowerCase()) &&
+				   user.password.includes(passwordSearch) &&
+				   user.permission.includes(permissionSearch);
 		});
 
 		let userContent = [];
@@ -105,9 +112,13 @@ const Admin = () => {
 				<div className="user-items">
 					<div>
 						<h3>Account ID</h3>
-						<input
-							type="text"
-						/>
+						{/* <input
+							// type="text"
+							// value={accountIdSearch}
+							// onChange={e => {
+							// 	setAccountIdSearch(e.target.value);
+							// }}
+						/> */}
 					</div>
 					<div>
 						<h3>Name</h3>
@@ -123,18 +134,30 @@ const Admin = () => {
 						<h3>Email</h3>
 						<input
 							type="text"
+							value={emailSearch}
+							onChange={e => {
+								setEmailSearch(e.target.value);
+							}}
 						/>
 					</div>
 					<div>
 						<h3>Password</h3>
 						<input
 							type="text"
+							value={passwordSearch}
+							onChange={e => {
+								setPasswordSearch(e.target.value);
+							}}
 						/>
 					</div>
 					<div>
 						<h3>Account Type</h3>
 						<input
 							type="text"
+							value={permissionSearch}
+							onChange={e => {
+								setPermissionSearch(e.target.value);
+							}}
 						/>
 					</div>
 					<div>

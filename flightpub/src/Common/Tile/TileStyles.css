@@ -1,7 +1,6 @@
 .Tile {
 	margin: 0;
 	padding: 0;
-	--padding-size: 10px;
 	width: calc(100% - 25px);
 	min-height: 15vh;
 	background-color: var(--tile-color);
@@ -41,4 +40,18 @@
 .Tile:hover * {
 	transition-delay: 50ms;
 	color: var(--active-compliment);
+}
+
+.Tile h3 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin: 0;
+	color: var(--active-color);
+}
+
+.Tile h4 {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin: 0;
+	color: var(--active-color);
 }

@@ -122,7 +122,7 @@ const Header = () => {
 			<div className="Header">
 				<div className="Logo">
 					<div>
-						<img alt="FlightPub Logo" src="./favicon.ico" />
+						<img alt="FlightPub Logo" src="/favicon.ico" />
 					</div>
 
 					<div>
@@ -139,9 +139,11 @@ const Header = () => {
 						<a href="/destinations">Explore</a>
 					</div>
 
+					{/*
+					// TODO(): Travel Groups is currently not an existing feature of this system
 					<div>
 						<a href="/group">Travel Groups</a>
-					</div>
+					</div> */}
 				</nav>
 
 				{authenticationOptions}

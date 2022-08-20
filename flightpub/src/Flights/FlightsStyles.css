@@ -1,0 +1,181 @@
+summary {
+	color: var(--active-compliment);
+}
+
+summary:hover {
+	cursor: pointer;
+}
+
+.autofill {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.query-criterion {
+	width: 95vw;
+	display: grid;
+	grid-template-columns: 1fr 0.2fr 1fr 1fr 1fr;
+	gap: 10px;
+	margin: 30px 0;
+	align-items: center;
+	justify-self: center;
+	position: sticky;
+	z-index: 2;
+	top: 0;
+	background-color: var(--background-color);
+	padding: 2.5vh 0;
+	max-height: 3rem;
+}
+
+.query-criterion > img {
+	height: 2.5rem;
+	width: auto;
+	padding: 5px;
+}
+
+.query-criterion > div {
+	border: solid 1px rgb(0, 0, 0);
+	display: flex;
+	gap: 5px;
+	height: 2.5rem;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.query-criterion img {
+	display: inline;
+	height: 2.5rem;
+	margin: 0;
+	padding: 0;
+	width: auto;
+}
+
+.query-criterion input {
+	display: inline;
+	height: 2.5rem;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border: none;
+}
+
+.query-criterion select {
+	display: inline;
+	height: 3rem;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.autofill-wrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	width: 100%;
+	height: 100%;
+}
+
+.autofill-item {
+	position: relative;
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	border-radius: 5px;
+	margin: 10px 0;
+	padding: 20px 3px;
+	transition: 500ms ease-in-out;
+}
+
+#content-wrapper {
+	display: grid;
+	grid-template-columns: 20vw calc(75vw - 15px);
+	gap: 5px;
+	margin: 0;
+	padding: 0;
+}
+
+.minor-search-criterion {
+	position: sticky;
+	top: 10vh;
+	display: grid;
+	grid-template-columns: 1fr;
+	width: 15vw;
+	height: min-content;
+	gap: 15px;
+	border: solid var(--accent-color) 1px;
+	padding: 15px;
+	border-radius: 5px;
+	background-color: var(--active-color);
+}
+
+.minor-search-criterion * {
+	color: var(--accent-compliment);
+	width: 100%;
+	margin: 7px 0;
+}
+
+.minor-search-criterion input,
+.minor-search-criterion select,
+.minor-search-criterion option {
+	height: 3.5vh;
+	color: rgb(0, 0, 0);
+	cursor: pointer;
+}
+
+.minor-search-criterion input[type="number"] {
+	width: min-content;
+}
+
+.autofill-content {
+	background-color: var(--background-color);
+	margin-top: 15px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.autofill-item:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}
+
+#search-button {
+	display: inline;
+	height: 3rem;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	border-radius: 5px;
+	transition: ease-in-out 800ms;
+}
+
+#search-button:hover {
+	cursor: pointer;
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+}
+
+#swap-circle-wrapper {
+	border: none;
+	justify-content: center;
+}
+
+#price-range {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 5px;
+	padding: 0;
+	width: 100%;
+}
+
+#price-range > input {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	width: 5vw;
+	border: none;
+}

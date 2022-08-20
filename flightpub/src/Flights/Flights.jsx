@@ -16,7 +16,7 @@ const Flights = () => {
 	const MAX_TILES = 50;
 	const MAX_PRICE = 10000;
 	const MIN_PRICE = 0;
-	const MAX_STOPS = 7;
+	const MAX_STOPS = 4;
 
 	const [flights, setFlights] = useState([]);
 	const [flightTiles, setFlightTiles] = useState();

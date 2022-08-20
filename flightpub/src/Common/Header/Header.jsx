@@ -59,8 +59,8 @@ const Header = () => {
 						</div>
 					</div>
 				);
-
 				return;
+
 			case 2:
 				setAuthenticationOptions(
 					<div className="AuthenticationOptions">
@@ -84,6 +84,7 @@ const Header = () => {
 					</div>
 				);
 				return;
+
 			case 1:
 				setAuthenticationOptions(
 					<div className="AuthenticationOptions">
@@ -105,6 +106,7 @@ const Header = () => {
 					</div>
 				);
 				return;
+
 			default:
 				setAuthenticationOptions(
 					<div className="AuthenticationOptions">

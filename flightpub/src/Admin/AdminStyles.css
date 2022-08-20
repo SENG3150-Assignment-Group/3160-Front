@@ -1,0 +1,21 @@
+.user-table h3 {
+	font-size: 30pt;
+	color: var(--accent-color);
+}
+
+.user-table {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.user-table > div {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	margin: 0;
+}
+
+.user-table > div > * {
+	border: solid rgb(0, 0, 0) 1px;
+	margin: 0;
+	padding: 15px;
+}

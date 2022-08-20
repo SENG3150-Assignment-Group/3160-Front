@@ -112,10 +112,10 @@ const Header = () => {
 					<div className="AuthenticationOptions">
 						<div></div>
 						<div>
-							<a href="/authentication?q=sign-in">Sign In</a>
+							<a href="/authentication">Sign In</a>
 						</div>
 						<div>
-							<a href="/authentication?q=sign-up">Sign Up</a>
+							<a href="/authentication">Sign Up</a>
 						</div>
 					</div>
 				);

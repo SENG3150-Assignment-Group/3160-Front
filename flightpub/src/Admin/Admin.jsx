@@ -17,7 +17,7 @@ const Admin = () => {
 	const [users, setUsers] = useState([<></>]);
 	const [fullnameSearch, setFullnameSearch] = useState("");
 	// TODO(GeorgeDavis): Add further search criteria here
-
+	
 	useEffect(() => {
 		setViewContent(
 			<div>
@@ -50,6 +50,10 @@ const Admin = () => {
 					<input type="text" placeholder={user.password} />
 					<input type="text" placeholder={user.permission} />
 					<input type="text" placeholder={user.creditCard} />
+					<div>
+						<input type="button" value="Update" />
+						<input type="button" value="Remove" />
+					</div>
 				</div>
 			);
 		});
@@ -139,7 +143,6 @@ const Admin = () => {
 							type="text"
 						/>
 					</div>
-					<h3>Credit Card</h3>
 					<h3>User</h3>
 				</div>
 				{users}

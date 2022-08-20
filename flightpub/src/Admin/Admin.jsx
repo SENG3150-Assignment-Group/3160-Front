@@ -8,6 +8,8 @@ import dummyUsers from "./dummy-users.json";
 import "./AdminStyles.css";
 
 const Admin = () => {
+	const [viewContent, setViewContent] = useState(<></>);
+	const [view, setView] = useState("admin");
 	const [users, setUsers] = useState([<></>]);
 	const [fullnameSearch, setFullnameSearch] = useState("");
 	// TODO(GeorgeDavis): Add further search criteria here
@@ -36,10 +38,6 @@ const Admin = () => {
 					<input type="text" placeholder={user.password} />
 					<input type="text" placeholder={user.permission} />
 					<input type="text" placeholder={user.creditCard} />
-					<div>
-						<input type="button" value="Update" />
-						<input type="button" value="Remove" />
-					</div>
 				</div>
 			);
 		});
@@ -49,67 +47,92 @@ const Admin = () => {
 
 	return (
 		<>
+		<div className="admin">
 			<Header />
-			<div className="admin-page">
-				<h3>
-					<a href="/staff">Staff</a>
-				</h3>
-				<h3>
-					<a href="/agent">Travel Agent</a>
-				</h3>
+			<main>
+				<section id="view-selector">
+					<p
+						onClick={e => {
+							setView("admin");
+						}}
+					>
+						Admin
+					</p>
+					<p
+						onClick={e => {
+							setView("sign-up");
+						}}
+					>
+						Add User
+					</p>
+					<p
+						onClick={e => {
+							setView("agent");
+						}}
+					>
+						Agent
+					</p>
+					<p
+						onClick={e => {
+							setView("staff");
+						}}
+					>
+						Staff
+					</p>
+				</section>
+				<section id="view-content">{viewContent}</section>
+			</main>
 
-				<input type="button" value="Add User" />
+			<p>Number of matching users: {users.length}</p>
 
-				<p>Number of matching users: {users.length}</p>
-
-				<div className="user-table">
-					<div className="user-items">
-						<div>
-							<h3>Account ID</h3>
-							<input
-								type="text"
-							/>
-						</div>
-						<div>
-							<h3>Name</h3>
-							<input
-								type="text"
-								value={fullnameSearch}
-								onChange={e => {
-									setFullnameSearch(e.target.value);
-								}}
-							/>
-						</div>
-						<div>
-							<h3>Email</h3>
-							<input
-								type="text"
-							/>
-						</div>
-						<div>
-							<h3>Password</h3>
-							<input
-								type="text"
-							/>
-						</div>
-						<div>
-							<h3>Account Type</h3>
-							<input
-								type="text"
-							/>
-						</div>
-						<div>
-							<h3>Credit Card</h3>
-							<input
-								type="text"
-							/>
-						</div>
-						<h3>Credit Card</h3>
-						<h3>User</h3>
+			<div className="user-table">
+				<div className="user-items">
+					<div>
+						<h3>Account ID</h3>
+						<input
+							type="text"
+						/>
 					</div>
-					{users}
+					<div>
+						<h3>Name</h3>
+						<input
+							type="text"
+							value={fullnameSearch}
+							onChange={e => {
+								setFullnameSearch(e.target.value);
+							}}
+						/>
+					</div>
+					<div>
+						<h3>Email</h3>
+						<input
+							type="text"
+						/>
+					</div>
+					<div>
+						<h3>Password</h3>
+						<input
+							type="text"
+						/>
+					</div>
+					<div>
+						<h3>Account Type</h3>
+						<input
+							type="text"
+						/>
+					</div>
+					<div>
+						<h3>Credit Card</h3>
+						<input
+							type="text"
+						/>
+					</div>
+					<h3>Credit Card</h3>
+					<h3>User</h3>
 				</div>
+				{users}
 			</div>
+		</div>
 		</>
 	);
 };

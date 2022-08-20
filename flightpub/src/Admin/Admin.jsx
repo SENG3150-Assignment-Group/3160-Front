@@ -166,7 +166,9 @@ const Admin = () => {
 							type="text"
 						/>
 					</div>
-					<h3>User</h3>
+					<div>
+						<h3>User</h3>
+					</div>
 				</div>
 				{users}
 			</div>

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Header from "../Common/Header/Header";
 import processView from "./processView";
@@ -9,6 +10,8 @@ import dummyUsers from "./dummy-users.json";
 import "./AdminStyles.css";
 
 const Admin = () => {
+	let navigate = useNavigate();
+
 	const [viewContent, setViewContent] = useState(<></>);
 	const [view, setView] = useState("admin");
 	const [users, setUsers] = useState([<></>]);
@@ -33,7 +36,7 @@ const Admin = () => {
 		// setUsers(body);
 
 		const response = dummyUsers.filter(user => {
-			return user.fullname.includes(fullnameSearch);
+			return user.fullname.toLowerCase().includes(fullnameSearch.toLowerCase());
 		});
 
 		let userContent = [];
@@ -76,14 +79,14 @@ const Admin = () => {
 					</p>
 					<p
 						onClick={e => {
-							setView("agent");
+							navigate("/agent");
 						}}
 					>
 						Agent
 					</p>
 					<p
 						onClick={e => {
-							setView("staff");
+							navigate("/staff");
 						}}
 					>
 						Staff

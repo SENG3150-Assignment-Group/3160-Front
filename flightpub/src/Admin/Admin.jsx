@@ -1,7 +1,8 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 
 import Header from "../Common/Header/Header";
+import processView from "./processView";
 
 import dummyUsers from "./dummy-users.json";
 
@@ -14,6 +15,14 @@ const Admin = () => {
 	const [fullnameSearch, setFullnameSearch] = useState("");
 	// TODO(GeorgeDavis): Add further search criteria here
 
+	useEffect(() => {
+		setViewContent(
+			<div>
+				<p>{processView(view)}</p>
+			</div>
+		);
+	}, [view]);
+	
 	useEffect(() => {
 		fetchUsers();
 	});

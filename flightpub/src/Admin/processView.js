@@ -16,21 +16,36 @@ const processView = view => {
 						<div>
 							<input
 								type="text"
-								placeholder={localStorage.fullname}
+								placeholder="Firstname Lastname"
 							/>
 							<input type="button" value="Save Changes" />
 						</div>
 						<div>
 							<input
 								type="text"
-								placeholder={localStorage.email}
+								placeholder="firstname.lastname@email.com"
 							/>
 							<input type="button" value="Save Changes" />
 						</div>
 						<div>
 							<input
 								type="text"
-								placeholder="Enter a new password..."
+								placeholder="password"
+							/>
+							<input type="button" value="Save Changes" />
+						</div>
+						<div>
+							<input
+								type="text"
+								placeholder="admin | agent | staff | user"
+							/>
+							<input type="button" value="Save Changes" />
+						</div>
+						<div>
+							{/* //TODO (George Davis) creditCardNumber: string - creditCardDate: Date - creditCardSecurity: string */}
+							<input
+								type="text"
+								placeholder="credit card details"
 							/>
 							<input type="button" value="Save Changes" />
 						</div>
@@ -39,16 +54,17 @@ const processView = view => {
 			);
 		case "agent":
 			return (
-				<h3>{localStorage.fullname}'s Agent Info</h3>
+				<h3>Agent Info</h3>
 			);
 		case "staff":
 			return (
-				<h3>{localStorage.fullname}'s Staff Info</h3>
+				<h3>Staff Info</h3>
 			);
 		default:
 			// Assume 'admin'
 			return (
 				<h3>All Flightpub Members</h3>
+				
 			);
 	}
 };

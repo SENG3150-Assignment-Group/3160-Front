@@ -215,7 +215,7 @@ const Flights = () => {
 			<Header />
 
 			<form
-				className="query-criterion"
+				className="top-criteria"
 				onSubmit={(e) => {
 					e.preventDefault();
 					fetchFlights();
@@ -263,7 +263,7 @@ const Flights = () => {
 			</form>
 
 			<div id="content-wrapper">
-				<form className="minor-search-criterion">
+				<form className="left-criteria">
 					<details>
 						<summary>Sort By</summary>
 

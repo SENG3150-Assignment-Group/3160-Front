@@ -3,22 +3,23 @@ import { useState } from "react";
 
 import Header from "../Common/Header/Header";
 
-import dummyAirports from "./dummy-airports.json";
+import dummyAirportRestrictions from "./dummy-airport-restrictions.json";
 
 import "./StaffStyles.css";
 
 
 const Staff = () => {
-	const [airports, setAirports] = useState([<></>]);
+	const [restrictions, setAirports] = useState([<></>]);
 	const [airportSearch, setAirportSearch] = useState("");
-	const [restrictionPeriodSearch, setRestrictionPeriodSearch] = useState("");
+	const [startSearch, setStartSearch] = useState("");
+	const [endSearch, setEndSearch] = useState("");
 	
 	useEffect(() => {
 		fetchAirports();
 	});
 
 	const fetchAirports = async () => {
-		const response = dummyAirports.filter(airport => {
+		const response = dummyAirportRestrictions.filter(airport => {
 			return  airport.airport.toLowerCase().includes(airportSearch.toLowerCase());
 			//&& airport.restrictionPeriod.includes(restrictionPeriod);
 		});
@@ -29,7 +30,8 @@ const Staff = () => {
 			airportContent.push(
 				<div className="airport-item">
 					<input type="text" placeholder={airport.airport} />
-					<input type="text" placeholder={airport.restrictionPeriod} />
+					<input type="text" placeholder={airport.start} />
+					<input type="text" placeholder={airport.end} />
 					<div>
 						<input type="button" value="Update" />
 					</div>
@@ -44,7 +46,7 @@ const Staff = () => {
 		<>
 		<div className="staff">
 			<Header />
-			<p>Number of matching airports: {airports.length}</p>
+			<p>Number of matching airports: {restrictions.length}</p>
 			<div className="airport-table">
 				<div className="airport-items">
 					<div>
@@ -58,12 +60,22 @@ const Staff = () => {
 						/>
 					</div>
 					<div>
-						<h3>Restriction Period</h3>
+						<h3>Restriction Start</h3>
 						<input
 							type="text"
-							value={restrictionPeriodSearch}
+							value={startSearch}
 							onChange={e => {
-								setRestrictionPeriodSearch(e.target.value);
+								setStartSearch(e.target.value);
+							}}
+						/>
+					</div>
+					<div>
+						<h3>Restriction End</h3>
+						<input
+							type="text"
+							value={endSearch}
+							onChange={e => {
+								setEndSearch(e.target.value);
 							}}
 						/>
 					</div>
@@ -71,7 +83,7 @@ const Staff = () => {
 						<h3></h3>
 					</div>
 				</div>
-				{airports}
+				{restrictions}
 			</div>
 		</div>
 		</>

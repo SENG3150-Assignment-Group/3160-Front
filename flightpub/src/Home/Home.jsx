@@ -3,10 +3,10 @@ import { useState } from "react";
 
 import Header from "../Common/Header/Header";
 import Forbidden from "../Common/Forbidden";
+import permission from "../Common/Permission/Permission";
 import processView from "./processView";
 
 import "./HomeStyles.css";
-import permission from "../Common/Permission/Permission";
 
 const Home = () => {
 	const [viewContent, setViewContent] = useState(<></>);

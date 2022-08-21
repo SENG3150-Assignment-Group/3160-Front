@@ -39,7 +39,7 @@ const Booking = () => {
 
 	useEffect(() => {
 		setFlight(dummyFlightData[code]);
-	}, []);
+	}, [code]);
 
 	if (permission() < 1) {
 		return (

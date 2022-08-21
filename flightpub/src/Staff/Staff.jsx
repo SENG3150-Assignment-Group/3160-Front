@@ -5,7 +5,7 @@ import Header from "../Common/Header/Header";
 
 import dummyAirports from "./dummy-airports.json";
 
-import "./AdminStyles.css";
+import "./StaffStyles.css";
 
 
 const Staff = () => {

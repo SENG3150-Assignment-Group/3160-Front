@@ -82,8 +82,8 @@ const Agent = () => {
 
 			<p>Number of matching users: {users.length}</p>
 
-			<div className="user-table">
-				<div className="user-items">
+			<div className="wishlist-table">
+				<div className="wishlist-items">
 					<div>
 						<h3>Account ID</h3>
 						{/* <input

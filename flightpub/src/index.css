@@ -45,10 +45,14 @@ h1 {
 	text-decoration-thickness: 1px;
 }
 
-.flight-tiles {
+.tiles,
+.single-col-grid {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 20px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 
 /* * ID Styling * */

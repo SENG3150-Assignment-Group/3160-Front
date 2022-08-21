@@ -34,9 +34,11 @@
 	align-items: center;
 	text-align: center;
 	gap: 10px;
+	height: 100%;
 }
 
 .Header .AuthenticationOptions {
+	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	justify-content: center;

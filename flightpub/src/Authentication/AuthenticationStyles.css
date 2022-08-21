@@ -1,0 +1,71 @@
+.authentication-content {
+	width: 100%;
+	min-height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.authentication-wrapper {
+	background-color: var(--accent-color);
+	padding: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	border-radius: 15px;
+}
+
+.sign-in-opt,
+.sign-up-opt {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	padding: 20px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 20px;
+}
+
+.sign-in-opt input,
+.sign-up-opt input {
+	width: 100%;
+	padding: 0 15px;
+	border: 0;
+}
+
+.authentication-content input[type="text"],
+.authentication-content input[type="password"],
+.authentication-content input[type="email"] {
+	width: calc(100% - 30px);
+}
+
+.authentication-content input[type="submit"] {
+	background-color: var(--accent-color);
+	border: var(--accent-compliment) 1px solid;
+	color: var(--accent-compliment);
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+.authentication-content input[type="submit"]:hover {
+	cursor: pointer;
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+}
+
+.sign-in-opt > div > select,
+.sign-up-opt > div > select {
+	width: 100%;
+	padding: 0 15px;
+	border: 0;
+}
+
+.authentication-content h3 {
+	font-size: 28pt;
+	font-weight: bold;
+	text-align: center;
+}
+
+.authentication-content input,
+.authentication-content select {
+	height: 3rem;
+}

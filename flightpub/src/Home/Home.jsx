@@ -12,6 +12,14 @@ const Home = () => {
 	const [viewContent, setViewContent] = useState(<></>);
 	const [view, setView] = useState("home");
 
+	let requestedView = new URLSearchParams(window.location.search).get("view");
+
+	useEffect(() => {
+		if (requestedView) {
+			setView(requestedView);
+		}
+	}, []);
+
 	useEffect(() => {
 		setViewContent(
 			<div>
@@ -52,10 +60,10 @@ const Home = () => {
 							</p>
 							<p
 								onClick={(e) => {
-									setView("history");
+									setView("bookings");
 								}}
 							>
-								Booking History
+								Bookings
 							</p>
 						</section>
 						<section id="view-content">{viewContent}</section>

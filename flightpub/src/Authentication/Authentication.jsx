@@ -7,6 +7,10 @@ import Header from "../Common/Header/Header";
 import "./AuthenticationStyles.css";
 
 const Authentication = () => {
+	const requestedRedirect = new URLSearchParams(window.location.search).get(
+		"redirect"
+	);
+
 	let navigate = useNavigate();
 
 	const [email, setEmail] = useState("");
@@ -27,10 +31,15 @@ const Authentication = () => {
 							localStorage.setItem("password", password);
 							localStorage.setItem(
 								"fullname",
-								email.split("@")[0]
+								email.charAt(0).toUpperCase() +
+									email.slice(1).split("@")[0]
 							);
 							localStorage.setItem("permission", "admin");
-							navigate("/home");
+							if (requestedRedirect !== undefined) {
+								navigate("/" + requestedRedirect);
+							} else {
+								navigate("/home");
+							}
 						}}
 					>
 						<h3>Sign-In</h3>
@@ -58,7 +67,11 @@ const Authentication = () => {
 							localStorage.setItem("password", password);
 							localStorage.setItem("fullname", fullname);
 							localStorage.setItem("permission", permission);
-							navigate("/home");
+							if (requestedRedirect !== undefined) {
+								navigate("/" + requestedRedirect);
+							} else {
+								navigate("/home");
+							}
 						}}
 					>
 						<h3>Sign-Up</h3>

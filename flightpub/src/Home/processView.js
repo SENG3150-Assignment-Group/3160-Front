@@ -47,12 +47,10 @@ const processView = view => {
 					<Tile />
 				</div>
 			);
-		case "history":
+		case "bookings":
 			return (
 				<div className="tiles">
-					<h3>{localStorage.fullname}'s Previous Bookings</h3>
-					<Tile />
-					<Tile />
+					<h3>{localStorage.fullname}'s Bookings</h3>
 					<Tile />
 				</div>
 			);

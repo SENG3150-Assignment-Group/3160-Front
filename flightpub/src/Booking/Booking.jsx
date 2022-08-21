@@ -46,7 +46,7 @@ const Booking = () => {
 			<>
 				<Header />
 				<h3>
-					<a href="/authentication">
+					<a href={`/authentication?redirect=booking?q=${code}`}>
 						You need to be logged in to book this flight, click here
 						to log-in
 					</a>

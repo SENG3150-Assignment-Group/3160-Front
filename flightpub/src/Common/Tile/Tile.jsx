@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./TileStyles.css";
 
-const Tile = props => {
+const Tile = (props) => {
 	let navigate = useNavigate();
 
 	let title = props.title;
@@ -46,7 +46,9 @@ const Tile = props => {
 				<h3>{title}</h3>
 				{children}
 			</div>
-			<img src={src} alt={title} />
+			<div className="image-wrapper">
+				<img src={props.src} alt={props.title} />
+			</div>
 		</div>
 	);
 };

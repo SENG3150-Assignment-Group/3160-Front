@@ -18,7 +18,7 @@ const Flights = () => {
 	const MIN_PRICE = 0;
 	const MAX_STOPS = 7;
 
-	const [flights, setFlights] = useState([]);
+	const [flights, setFlights] = useState({});
 	const [flightTiles, setFlightTiles] = useState();
 
 	const [departureAutofill, setDepartureAutofill] = useState(<></>);
@@ -50,22 +50,27 @@ const Flights = () => {
 	 */
 	const updateFlightTiles = () => {
 		let tiles = [];
-		flights.forEach((flight, idx) => {
+		let keys = Object.keys(flights);
+		let idx = 0;
+		for (let code in flights) {
 			if (idx > MAX_TILES) {
 				return;
 			}
-			tiles.push(flightTile(flight));
-		});
+
+			tiles.push(flightTile(keys[idx], flights[code]));
+
+			idx++;
+		}
 		setFlightTiles(<div className="flight-tiles">{tiles}</div>);
 	};
 
-	const updateDepartureAutofill = input => {
+	const updateDepartureAutofill = (input) => {
 		setDepartureAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
 		}
-		locations.forEach(location => {
+		locations.forEach((location) => {
 			if (location.toLowerCase() === input.toLowerCase()) {
 				return;
 			}
@@ -88,13 +93,13 @@ const Flights = () => {
 		setDepartureAutofill(<div className="autofill-content">{matches}</div>);
 	};
 
-	const updateDestinationAutofill = input => {
+	const updateDestinationAutofill = (input) => {
 		setDestinationAutofill(<div></div>);
 		let matches = [];
 		if (input === "") {
 			return;
 		}
-		locations.forEach(location => {
+		locations.forEach((location) => {
 			if (location.toLowerCase() === input.toLowerCase()) {
 				return;
 			}
@@ -122,16 +127,16 @@ const Flights = () => {
 	/**
 	 * Helper function that returns a flight tile from a flight object
 	 */
-	const flightTile = flight => {
+	const flightTile = (code, flight) => {
 		return (
 			<Tile
 				className="flight"
 				title={flight.departure + " - " + flight.destination}
 				src={"/Images/" + flight.plane + ".jpg"}
-				href={"/flight/?q=" + flight.code}
+				href={"/flight/?q=" + code}
 			>
 				<h4>
-					{flight.code} - {flight.airline}
+					{code} - {flight.airline}
 				</h4>
 				<h4>${flight.price} (AUD)</h4>
 				<p>
@@ -171,22 +176,33 @@ const Flights = () => {
 	const fetchFlights = async () => {
 		// TODO(BryceTuppurainen): For now we're just hardcoding the flights locally, this filtering would be handled by the API NOT HERE
 
+		console.log("Fetching flights");
+		console.log(dummyFlightData);
+
+		setFlights({ "Bryce's Test Data": "Dummy Data..." });
+
+		console.log(flights);
+
+		let tempFlights = {};
+
 		if (departure !== "" && destination !== "") {
-			setFlights(
-				dummyFlightData.filter(flight => {
-					return (
-						flight.departure === departure &&
-						flight.destination === destination
-					);
-				})
-			);
+			for (let code in dummyFlightData) {
+				if (
+					dummyFlightData[code].departure === departure &&
+					dummyFlightData[code].destination === destination
+				) {
+					tempFlights[code] = dummyFlightData[code];
+				}
+			}
 		} else if (departure !== "") {
-			setFlights(
-				dummyFlightData.filter(flight => {
-					return flight.departure === departure;
-				})
-			);
+			for (let code in dummyFlightData) {
+				if (dummyFlightData[code].departure === departure) {
+					tempFlights[code] = dummyFlightData[code];
+				}
+			}
 		}
+		console.log(tempFlights);
+		setFlights(tempFlights);
 	};
 
 	return (
@@ -195,7 +211,7 @@ const Flights = () => {
 
 			<form
 				className="query-criterion"
-				onSubmit={e => {
+				onSubmit={(e) => {
 					e.preventDefault();
 					fetchFlights();
 				}}
@@ -207,7 +223,7 @@ const Flights = () => {
 							type="text"
 							placeholder="Leaving from..."
 							name="departure"
-							onChange={e => {
+							onChange={(e) => {
 								setDeparture(e.target.value);
 								updateDepartureAutofill(e.target.value);
 							}}
@@ -226,7 +242,7 @@ const Flights = () => {
 							type="text"
 							placeholder="Heading to..."
 							name="destination"
-							onChange={e => {
+							onChange={(e) => {
 								setDestination(e.target.value);
 								updateDestinationAutofill(e.target.value);
 							}}
@@ -248,7 +264,7 @@ const Flights = () => {
 
 						<select
 							value={sortOrder}
-							onChange={e => {
+							onChange={(e) => {
 								setSortOrder(e.target.value);
 							}}
 						>
@@ -275,7 +291,7 @@ const Flights = () => {
 							max={MAX_STOPS}
 							placeholder="0"
 							value={maxStops}
-							onChange={e => {
+							onChange={(e) => {
 								if (e.target.value > MAX_STOPS) {
 									e.target.value = MAX_STOPS;
 								} else if (e.target.value < 0) {
@@ -295,7 +311,7 @@ const Flights = () => {
 								min={MIN_PRICE}
 								max={maxPrice}
 								placeholder={MIN_PRICE}
-								onChange={e => {
+								onChange={(e) => {
 									setMinPrice(e.target.value);
 								}}
 								step="10"
@@ -308,7 +324,7 @@ const Flights = () => {
 								min={minPrice}
 								max={MAX_PRICE}
 								placeholder={MAX_PRICE}
-								onChange={e => {
+								onChange={(e) => {
 									setMaxPrice(e.target.value);
 								}}
 								step="10"
@@ -318,7 +334,7 @@ const Flights = () => {
 							<input
 								type="number"
 								value={minPrice}
-								onChange={e => {
+								onChange={(e) => {
 									setMinPrice(e.target.value);
 								}}
 							/>{" "}
@@ -326,7 +342,7 @@ const Flights = () => {
 							<input
 								type="number"
 								value={maxPrice}
-								onChange={e => {
+								onChange={(e) => {
 									setMaxPrice(e.target.value);
 								}}
 							/>{" "}

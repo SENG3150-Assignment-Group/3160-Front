@@ -24,6 +24,7 @@ body {
 	background-color: var(--background-color);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	min-height: calc(100vh - 5vh);
 }
 
 /* * Semantic Styling * */
@@ -56,3 +57,7 @@ h1 {
 }
 
 /* * ID Styling * */
+
+#root {
+	min-height: calc(100vh - 5vh);
+}

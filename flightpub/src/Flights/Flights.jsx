@@ -133,7 +133,7 @@ const Flights = () => {
 				className="flight"
 				title={flight.departure + " - " + flight.destination}
 				src={"/Images/" + flight.plane + ".jpg"}
-				href={"/flight/?q=" + code}
+				href={"/flight?q=" + code}
 			>
 				<h4>
 					{code} - {flight.airline}

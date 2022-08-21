@@ -1,0 +1,67 @@
+#flight-title {
+	font-size: 38pt;
+	width: 100%;
+	text-align: center;
+	font-weight: 800;
+	color: var(--active-color);
+}
+
+.flight-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	justify-items: center;
+	height: 100%;
+}
+
+.flight-container img {
+	width: 450px;
+	aspect-ratio: 1920/1280;
+	border-radius: 40px;
+	margin: 0;
+	object-fit: cover;
+}
+
+.flight-container input {
+	height: 3.5rem;
+	width: 100%;
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+.flight-container input:hover {
+	height: 3.5rem;
+	width: 100%;
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}
+
+.flight-information {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 20px;
+	border-radius: 15px;
+	border: solid 1px var(--accent-color);
+	padding: 20px;
+	height: calc(100% - 40px);
+}
+
+.plane-information {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 10px;
+	justify-items: center;
+	align-items: center;
+	padding: 20px;
+	border-radius: 15px;
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	height: calc(100% - 40px);
+}
+
+.plane-information * {
+	font-size: 20pt;
+}

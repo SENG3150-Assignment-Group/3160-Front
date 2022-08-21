@@ -52,13 +52,12 @@ const Flights = () => {
 		let tiles = [];
 		let keys = Object.keys(flights);
 		let idx = 0;
-		for (let flight in flights) {
-			console.log("On " + flight);
+		for (let code in flights) {
 			if (idx > MAX_TILES) {
 				return;
 			}
 
-			tiles.push(flightTile(keys[idx], flight));
+			tiles.push(flightTile(keys[idx], flights[code]));
 
 			idx++;
 		}
@@ -134,7 +133,7 @@ const Flights = () => {
 				className="flight"
 				title={flight.departure + " - " + flight.destination}
 				src={"/Images/" + flight.plane + ".jpg"}
-				href={"/flight/?q=" + flight.code}
+				href={"/flight/?q=" + code}
 			>
 				<h4>
 					{code} - {flight.airline}
@@ -180,25 +179,25 @@ const Flights = () => {
 		console.log("Fetching flights");
 		console.log(dummyFlightData);
 
-		setFlights({ ...dummyFlightData });
+		setFlights({ "Bryce's Test Data": "Dummy Data..." });
 
 		console.log(flights);
 
 		let tempFlights = {};
 
 		if (departure !== "" && destination !== "") {
-			for (let code in flights) {
+			for (let code in dummyFlightData) {
 				if (
-					flights[code].departure === departure &&
-					flights[code].destination === destination
+					dummyFlightData[code].departure === departure &&
+					dummyFlightData[code].destination === destination
 				) {
-					tempFlights[code] = flights[code];
+					tempFlights[code] = dummyFlightData[code];
 				}
 			}
 		} else if (departure !== "") {
-			for (let code in flights) {
-				if (flights[code].departure === departure) {
-					tempFlights[code] = flights[code];
+			for (let code in dummyFlightData) {
+				if (dummyFlightData[code].departure === departure) {
+					tempFlights[code] = dummyFlightData[code];
 				}
 			}
 		}

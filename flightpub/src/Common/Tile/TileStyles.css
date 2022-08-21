@@ -1,4 +1,4 @@
-.tile {
+.tile-content {
 	margin: 0;
 	padding: 0;
 	width: calc(100% - 25px);
@@ -15,27 +15,27 @@
 	transition-delay: 50ms;
 }
 
-.tile > div {
+.tile-content > div {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 10px;
 }
 
-.tile > .image-wrapper {
+.tile-content > .image-wrapper {
 	align-items: center;
 	justify-items: center;
 }
 
-.tile > * {
+.tile-content > * {
 	margin: 10px;
 }
 
-.tile:hover {
+.tile-content:hover {
 	background-color: var(--active-color);
 	cursor: pointer;
 }
 
-.tile img {
+.tile-content img {
 	width: 450px;
 	aspect-ratio: 1920/1280;
 	border-radius: 40px;
@@ -43,19 +43,19 @@
 	object-fit: cover;
 }
 
-.tile:hover * {
+.tile-content:hover * {
 	transition-delay: 50ms;
 	color: var(--active-compliment);
 }
 
-.tile h3 {
+.tile-content h3 {
 	font-size: 2rem;
 	font-weight: bold;
 	margin: 0;
 	color: var(--active-color);
 }
 
-.tile h4 {
+.tile-content h4 {
 	font-size: 1.2rem;
 	font-weight: bold;
 	margin: 0;

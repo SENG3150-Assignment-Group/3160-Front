@@ -37,7 +37,7 @@ const Tile = (props) => {
 
 	return (
 		<div
-			className="tile"
+			className="tile-content"
 			onClick={() => {
 				navigate(href);
 			}}

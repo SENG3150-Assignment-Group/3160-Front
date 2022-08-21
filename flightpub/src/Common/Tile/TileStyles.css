@@ -1,4 +1,4 @@
-.Tile {
+.tile {
 	margin: 0;
 	padding: 0;
 	width: calc(100% - 25px);
@@ -15,27 +15,27 @@
 	transition-delay: 50ms;
 }
 
-.Tile > div {
+.tile > div {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 10px;
 }
 
-.Tile > .image-wrapper {
+.tile > .image-wrapper {
 	align-items: center;
 	justify-items: center;
 }
 
-.Tile > * {
+.tile > * {
 	margin: 10px;
 }
 
-.Tile:hover {
+.tile:hover {
 	background-color: var(--active-color);
 	cursor: pointer;
 }
 
-.Tile img {
+.tile img {
 	width: 450px;
 	aspect-ratio: 1920/1280;
 	border-radius: 40px;
@@ -43,19 +43,19 @@
 	object-fit: cover;
 }
 
-.Tile:hover * {
+.tile:hover * {
 	transition-delay: 50ms;
 	color: var(--active-compliment);
 }
 
-.Tile h3 {
+.tile h3 {
 	font-size: 2rem;
 	font-weight: bold;
 	margin: 0;
 	color: var(--active-color);
 }
 
-.Tile h4 {
+.tile h4 {
 	font-size: 1.2rem;
 	font-weight: bold;
 	margin: 0;

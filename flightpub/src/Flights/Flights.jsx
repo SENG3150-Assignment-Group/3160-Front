@@ -61,7 +61,7 @@ const Flights = () => {
 
 			idx++;
 		}
-		setFlightTiles(<div className="flight-tiles">{tiles}</div>);
+		setFlightTiles(<div className="tiles">{tiles}</div>);
 	};
 
 	const updateDepartureAutofill = (input) => {
@@ -177,13 +177,9 @@ const Flights = () => {
 		// TODO(BryceTuppurainen): For now we're just hardcoding the flights locally, this filtering would be handled by the API NOT HERE
 
 		console.log("Fetching flights");
-		console.log(dummyFlightData);
-
-		setFlights({ "Bryce's Test Data": "Dummy Data..." });
-
-		console.log(flights);
 
 		let tempFlights = {};
+		let idx = 0;
 
 		if (departure !== "" && destination !== "") {
 			for (let code in dummyFlightData) {
@@ -191,17 +187,26 @@ const Flights = () => {
 					dummyFlightData[code].departure === departure &&
 					dummyFlightData[code].destination === destination
 				) {
+					console.log("Found a match" + code);
 					tempFlights[code] = dummyFlightData[code];
+					if (idx > MAX_TILES) {
+						break;
+					}
+					idx++;
 				}
 			}
 		} else if (departure !== "") {
 			for (let code in dummyFlightData) {
 				if (dummyFlightData[code].departure === departure) {
+					if (idx > MAX_TILES) {
+						break;
+					}
+					console.log("Found a match" + code);
 					tempFlights[code] = dummyFlightData[code];
+					idx++;
 				}
 			}
 		}
-		console.log(tempFlights);
 		setFlights(tempFlights);
 	};
 

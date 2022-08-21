@@ -22,43 +22,33 @@ const processView = view => {
 							>
 								<h3>New Package</h3>
 								<input
-									type="email"
-									placeholder="Email"
-									name="email"
+									type="text"
+									placeholder="Account ID"
+									name="accountId"
 									required
-									onChange={(e) => setEmail(e.target.value)}
-								/>
-								<input
-									type="password"
-									placeholder="Password"
-									name="password"
-									required
-									onChange={(e) => setPassword(e.target.value)}
+									onChange={(e) => setAccount(e.target.value)}
 								/>
 								<input
 									type="text"
-									placeholder="Please enter your full name..."
-									name="password"
+									placeholder="Flight Code"
+									name="flightCode"
 									required
-									onChange={(e) => setFullname(e.target.value)}
+									onChange={(e) => setFlightCode(e.target.value)}
 								/>
-								<div>
-									<select
-										name="permission"
-										required
-										onChange={(e) => {
-											setPermission(e.target.value);
-										}}
-									>
-										<option value="" default>
-											Select a permission
-										</option>
-										<option value="admin">Admin</option>
-										<option value="staff">Staff</option>
-										<option value="agent">Agent</option>
-										<option value="user">Customer</option>
-									</select>
-								</div>
+								<input
+									type="text"
+									placeholder="Accommodation Description"
+									name="accommodation"
+									required
+									onChange={(e) => setAccommodation(e.target.value)}
+								/>
+								<input
+									type="text"
+									placeholder="Accommodation Cost"
+									name="accommodationCost"
+									required
+									onChange={(e) => setAccommodationCost(e.target.value)}
+								/>
 								<input type="submit" value="Create Package" />
 							</form>
 						</div>

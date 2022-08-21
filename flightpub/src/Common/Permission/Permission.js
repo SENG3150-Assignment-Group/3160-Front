@@ -1,8 +1,9 @@
 const permission = () => {
-    console.log(localStorage.getItem('permission'));
-    if (localStorage.getItem("permission") === null) {
+
+    if (!localStorage.getItem("permission")) {
         return 0;
     }
+
     switch (localStorage.getItem("permission")) {
         case "admin":
         case "4":
@@ -13,9 +14,13 @@ const permission = () => {
         case "staff":
         case "2":
             return 2;
-        default:
+        case "user":
+        case "1":
             return 1;
+        default:
+         return 0;
     }
+
 };
 
 export default permission;

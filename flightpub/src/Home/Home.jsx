@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Header from "../Common/Header/Header";
 import Forbidden from "../Common/Forbidden";
+import permission from "../Common/Permission/Permission";
 import processView from "./processView";
 
 import "./HomeStyles.css";
@@ -10,7 +11,6 @@ import "./HomeStyles.css";
 const Home = () => {
 	const [viewContent, setViewContent] = useState(<></>);
 	const [view, setView] = useState("home");
-	const [user, setUser] = useState({});
 
 	useEffect(() => {
 		setViewContent(
@@ -20,66 +20,38 @@ const Home = () => {
 		);
 	}, [view]);
 
-	useEffect(() => {
-		setUser({ email: "", password: "", fullname: "" });
-		if (
-			localStorage.getItem("email") != null &&
-			localStorage.getItem("email") !== ""
-		) {
-			// HACK: This should be implemented using a salted-hash password rather than plaintext
-			setUser({
-				email: localStorage.getItem("email"),
-				fullname: localStorage.getItem("fullname")
-			});
-			if (localStorage.getItem("password") != null) {
-				// TODO(BryceTuppurainen): Make the request to the server to validate the provided password
-				const validatePassword = password => {
-					return true;
-				};
-				if (validatePassword(localStorage.getItem("password"))) {
-					localStorage.setItem("password", "");
-					setUser({
-						email: localStorage.getItem("email"),
-						fullname: localStorage.getItem("fullname")
-					});
-				}
-			}
-		}
-	}, []);
-
 	return (
 		<>
-			{user.fullname === "" ? (
+			{permission() < 1 ? (
 				<Forbidden />
 			) : (
-				// TODO(BryceTuppurainen): Add the account management page here
-				<div className="home">
+				<div className="home-content">
 					<Header />
 					<main>
 						<section id="view-selector">
 							<p
-								onClick={e => {
+								onClick={(e) => {
 									setView("home");
 								}}
 							>
 								Home
 							</p>
 							<p
-								onClick={e => {
+								onClick={(e) => {
 									setView("account");
 								}}
 							>
 								My Account
 							</p>
 							<p
-								onClick={e => {
+								onClick={(e) => {
 									setView("watchlist");
 								}}
 							>
 								Watchlist
 							</p>
 							<p
-								onClick={e => {
+								onClick={(e) => {
 									setView("history");
 								}}
 							>

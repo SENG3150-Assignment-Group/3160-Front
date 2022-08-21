@@ -219,4 +219,8 @@ const saveFlights = (flights) => {
 	fs.writeFileSync("./dummy-flights.json", json);
 };
 
-saveFlights(generateFlightsJSON(100));
+if (!process.argv[2]) {
+	saveFlights(generateFlightsJSON(100));
+} else {
+	saveFlights(generateFlightsJSON(process.argv[2]));
+}

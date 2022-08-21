@@ -1,14 +1,14 @@
-.home p {
+.home-content p {
 	margin: 0;
 }
 
-.home main {
+.home-content main {
 	display: grid;
 	grid-template-columns: 1fr 7fr;
 	gap: 50px;
 }
 
-.home #view-selector {
+.home-content #view-selector {
 	margin: 20px 0 0 0;
 	display: grid;
 	grid-template-columns: 1fr;
@@ -24,7 +24,7 @@
 	top: 5vh;
 }
 
-.home #view-selector p {
+.home-content #view-selector p {
 	margin: 0;
 	background-color: var(--background-color);
 	color: rgb(0, 0, 0);
@@ -34,16 +34,16 @@
 	transition-delay: 100ms;
 }
 
-.home #view-selector p:hover {
+.home-content #view-selector p:hover {
 	background-color: var(--active-color);
 	color: var(--active-compliment);
 	cursor: pointer;
 }
 
-.home #view-content {
+.home-content #view-content {
 	height: 100%;
 }
 
-.home h3 {
+.home-content h3 {
 	font-size: 26pt;
 }

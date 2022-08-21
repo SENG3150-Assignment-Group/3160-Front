@@ -6,7 +6,7 @@
 	justify-content: center;
 }
 
-.authentication-wrapper {
+.authentication-content > div {
 	background-color: var(--accent-color);
 	padding: 20px;
 	display: grid;
@@ -15,8 +15,13 @@
 	border-radius: 15px;
 }
 
-.sign-in-opt,
-.sign-up-opt {
+.authentication-content h3 {
+	font-size: 28pt;
+	font-weight: bold;
+	text-align: center;
+}
+
+.opt {
 	background-color: var(--active-color);
 	color: var(--active-compliment);
 	padding: 20px;
@@ -25,11 +30,21 @@
 	grid-gap: 20px;
 }
 
-.sign-in-opt input,
-.sign-up-opt input {
+.opt input {
 	width: 100%;
 	padding: 0 15px;
 	border: 0;
+}
+
+.opt select {
+	width: 100%;
+	padding: 0 15px;
+	border: 0;
+}
+
+.authentication-content input,
+.authentication-content select {
+	height: 3rem;
 }
 
 .authentication-content input[type="text"],
@@ -50,22 +65,4 @@
 	cursor: pointer;
 	background-color: var(--active-color);
 	color: var(--active-compliment);
-}
-
-.sign-in-opt > div > select,
-.sign-up-opt > div > select {
-	width: 100%;
-	padding: 0 15px;
-	border: 0;
-}
-
-.authentication-content h3 {
-	font-size: 28pt;
-	font-weight: bold;
-	text-align: center;
-}
-
-.authentication-content input,
-.authentication-content select {
-	height: 3rem;
 }

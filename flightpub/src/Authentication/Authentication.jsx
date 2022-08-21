@@ -18,9 +18,9 @@ const Authentication = () => {
 		<>
 			<Header />
 			<div className="authentication-content">
-				<div className="authentication-wrapper">
+				<div>
 					<form
-						className="sign-in-opt"
+						className="opt"
 						onSubmit={(e) => {
 							e.preventDefault();
 							localStorage.setItem("email", email);
@@ -51,7 +51,7 @@ const Authentication = () => {
 						<input type="submit" value="Login" />
 					</form>
 					<form
-						className="sign-up-opt"
+						className="opt"
 						onSubmit={(e) => {
 							e.preventDefault();
 							localStorage.setItem("email", email);

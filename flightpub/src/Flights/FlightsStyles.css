@@ -12,7 +12,7 @@ summary:hover {
 	padding: 0;
 }
 
-.query-criterion {
+.top-criteria {
 	width: 95vw;
 	display: grid;
 	grid-template-columns: 1fr 0.2fr 1fr 1fr 1fr;
@@ -28,13 +28,13 @@ summary:hover {
 	max-height: 3rem;
 }
 
-.query-criterion > img {
+.top-criteria > img {
 	height: 2.5rem;
 	width: auto;
 	padding: 5px;
 }
 
-.query-criterion > div {
+.top-criteria > div {
 	border: solid 1px rgb(0, 0, 0);
 	display: flex;
 	gap: 5px;
@@ -43,7 +43,7 @@ summary:hover {
 	border-radius: 5px;
 }
 
-.query-criterion img {
+.top-criteria img {
 	display: inline;
 	height: 2.5rem;
 	margin: 0;
@@ -51,7 +51,7 @@ summary:hover {
 	width: auto;
 }
 
-.query-criterion input {
+.top-criteria input {
 	display: inline;
 	height: 2.5rem;
 	margin: 0;
@@ -60,7 +60,7 @@ summary:hover {
 	border: none;
 }
 
-.query-criterion select {
+.top-criteria select {
 	display: inline;
 	height: 3rem;
 	margin: 0;
@@ -93,7 +93,7 @@ summary:hover {
 	padding: 0;
 }
 
-.minor-search-criterion {
+.left-criteria {
 	position: sticky;
 	top: 10vh;
 	display: grid;
@@ -107,21 +107,21 @@ summary:hover {
 	background-color: var(--active-color);
 }
 
-.minor-search-criterion * {
+.left-criteria * {
 	color: var(--accent-compliment);
 	width: 100%;
 	margin: 7px 0;
 }
 
-.minor-search-criterion input,
-.minor-search-criterion select,
-.minor-search-criterion option {
+.left-criteria input,
+.left-criteria select,
+.left-criteria option {
 	height: 3.5vh;
 	color: rgb(0, 0, 0);
 	cursor: pointer;
 }
 
-.minor-search-criterion input[type="number"] {
+.left-criteria input[type="number"] {
 	width: min-content;
 }
 

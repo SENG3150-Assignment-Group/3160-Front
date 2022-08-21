@@ -11,6 +11,7 @@ import "./StaffStyles.css";
 const Staff = () => {
 	const [airports, setAirports] = useState([<></>]);
 	const [airportSearch, setAirportSearch] = useState("");
+	const [restrictionPeriodSearch, setRestrictionPeriodSearch] = useState("");
 	
 	useEffect(() => {
 		fetchAirports();
@@ -18,7 +19,8 @@ const Staff = () => {
 
 	const fetchAirports = async () => {
 		const response = dummyAirports.filter(airport => {
-			return airport.airport.toLowerCase().includes(airportSearch.toLowerCase());
+			return  airport.airport.toLowerCase().includes(airportSearch.toLowerCase());
+			//&& airport.restrictionPeriod.includes(restrictionPeriod);
 		});
 
 		let airportContent = [];
@@ -27,10 +29,9 @@ const Staff = () => {
 			airportContent.push(
 				<div className="airport-item">
 					<input type="text" placeholder={airport.airport} />
-					<input type="text" placeholder={airport.RestrictionPeriod} />
+					<input type="text" placeholder={airport.restrictionPeriod} />
 					<div>
 						<input type="button" value="Update" />
-						<input type="button" value="Remove" />
 					</div>
 				</div>
 			);
@@ -43,6 +44,7 @@ const Staff = () => {
 		<>
 		<div className="staff">
 			<Header />
+			<p>Number of matching airports: {airports.length}</p>
 			<div className="airport-table">
 				<div className="airport-items">
 					<div>
@@ -59,6 +61,10 @@ const Staff = () => {
 						<h3>Restriction Period</h3>
 						<input
 							type="text"
+							value={restrictionPeriodSearch}
+							onChange={e => {
+								setRestrictionPeriodSearch(e.target.value);
+							}}
 						/>
 					</div>
 					<div>

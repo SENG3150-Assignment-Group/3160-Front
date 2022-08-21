@@ -9,13 +9,13 @@ import "./HeaderStyles.css";
 // TODO(BryceTuppurainen): Implement authentication
 
 const Header = () => {
-	const [authenticationOptions, setAuthenticationOptions] = useState(<></>);
+	const [opts, setOpts] = useState(<></>);
 
 	useEffect(() => {
 		switch (permission()) {
 			case 4:
-				setAuthenticationOptions(
-					<div className="AuthenticationOptions">
+				setOpts(
+					<div className="opts">
 						<div>
 							<a href="/admin">Admin</a>
 						</div>
@@ -38,8 +38,8 @@ const Header = () => {
 				return;
 
 			case 3:
-				setAuthenticationOptions(
-					<div className="AuthenticationOptions">
+				setOpts(
+					<div className="opts">
 						<div>
 							<a href="/agent">Agent</a>
 						</div>
@@ -62,8 +62,8 @@ const Header = () => {
 				return;
 
 			case 2:
-				setAuthenticationOptions(
-					<div className="AuthenticationOptions">
+				setOpts(
+					<div className="opts">
 						<div>
 							<a href="/staff">Staff Page</a>
 						</div>
@@ -86,8 +86,8 @@ const Header = () => {
 				return;
 
 			case 1:
-				setAuthenticationOptions(
-					<div className="AuthenticationOptions">
+				setOpts(
+					<div className="opts">
 						<div></div>
 						<div>
 							<a href="/home">Home</a>
@@ -108,8 +108,8 @@ const Header = () => {
 				return;
 
 			default:
-				setAuthenticationOptions(
-					<div className="AuthenticationOptions">
+				setOpts(
+					<div className="opts">
 						<div></div>
 						<div>
 							<a href="/authentication">Sign In</a>
@@ -126,8 +126,8 @@ const Header = () => {
 
 	return (
 		<header>
-			<div className="Header">
-				<div className="Logo">
+			<div className="header-content">
+				<div className="logo">
 					<div>
 						<img alt="FlightPub Logo" src="/favicon.ico" />
 					</div>
@@ -147,7 +147,7 @@ const Header = () => {
 					</div>
 				</nav>
 
-				{authenticationOptions}
+				{opts}
 			</div>
 			<hr />
 		</header>

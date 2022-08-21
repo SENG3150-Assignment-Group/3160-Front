@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Orbitron);
 
-.Header {
+.header-content {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	justify-content: center;
@@ -9,7 +9,7 @@
 	gap: 5px;
 }
 
-.Header * {
+.header-content * {
 	font-family: Orbitron, sans-serif;
 	font-weight: 100;
 	white-space: nowrap;
@@ -18,16 +18,16 @@
 	text-align: center;
 }
 
-.Header h1 {
+.header-content h1 {
 	font-size: 24pt;
 	font-weight: 200;
 }
 
-.Header img {
+.header-content img {
 	height: 4rem;
 }
 
-.Header nav {
+.header-content nav {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	justify-content: center;
@@ -37,7 +37,21 @@
 	height: 100%;
 }
 
-.Header .AuthenticationOptions {
+.header-content a {
+	color: unset;
+	text-decoration: none;
+	border-bottom: 3px solid rgb(138, 138, 138);
+	padding: 0 0 5px 0;
+	transition: 500ms border-bottom;
+}
+
+.header-content a:hover {
+	transition: 500ms border-bottom;
+	border-bottom: 3px solid var(--accent-color);
+	cursor: pointer;
+}
+
+.header-content .opts {
 	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -47,24 +61,10 @@
 	gap: 10px;
 }
 
-.Header .Logo {
+.header-content .logo {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-}
-
-.Header a {
-	color: unset;
-	text-decoration: none;
-	border-bottom: 3px solid rgb(138, 138, 138);
-	padding: 0 0 5px 0;
-	transition: 500ms border-bottom;
-}
-
-.Header a:hover {
-	transition: 500ms border-bottom;
-	border-bottom: 3px solid var(--accent-color);
-	cursor: pointer;
 }

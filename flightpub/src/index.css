@@ -16,6 +16,10 @@
 	--active-compliment: rgb(255, 255, 255);
 	--border-color: rgb(143, 143, 143);
 	--tile-color: rgb(255, 255, 255);
+	--warning-color: rgb(255, 160, 160);
+	--warning-compliment: rgb(255, 255, 255);
+	--active-warning-color: rgb(255, 0, 0);
+	--active-warning-compliment: rgb(255, 255, 255);
 }
 
 body {
@@ -50,4 +54,17 @@ h1 {
 
 #root {
 	min-height: calc(100vh - 5vh);
+}
+
+#warning {
+	background-color: var(--warning-color);
+	color: var(--warning-compliment);
+	padding: 20px;
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+#warning:hover {
+	background-color: var(--active-warning-color);
+	color: var(--active-warning-compliment);
 }

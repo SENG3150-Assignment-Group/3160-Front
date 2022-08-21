@@ -155,6 +155,9 @@ const Flights = () => {
 	 * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr
 	 */
 	const formatTime = (time, additionalHours = 0) => {
+		if (!time) {
+			return;
+		}
 		additionalHours = parseInt(additionalHours);
 		let h = parseInt(time.substr(0, 2));
 		let m = time.substr(2, 2);

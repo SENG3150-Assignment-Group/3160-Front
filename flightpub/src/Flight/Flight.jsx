@@ -73,7 +73,13 @@ const Flight = () => {
 						value={`Book Now ($${flight.price} /seat)`}
 						onClick={() => navigate(`/booking?q=${code}`)}
 					/>
-					<input type="button" value={`Add to Watchlist`} />
+					<input type="button" value="Add to Watchlist" />
+					<input
+						type="button"
+						id="warning"
+						value="Return to Search"
+						onClick={() => navigate(`/flights`)}
+					/>
 				</div>
 				<div className="plane-information">
 					<img

@@ -31,6 +31,7 @@ const formatTime = (time, additionalHours = 0) => {
 
 const Booking = () => {
 	const [flight, setFlight] = useState({});
+	const [numberOfSeats, setNumberOfSeats] = useState(1);
 
 	const navigate = useNavigate();
 
@@ -77,10 +78,35 @@ const Booking = () => {
 						<p>{flight.plane}</p>
 						<form>
 							<input
+								type="number"
+								min="1"
+								max={flight.seats}
+								value={numberOfSeats}
+								onChange={(e) => {
+									if (e.target.value < 1) {
+										e.target.value = 1;
+										alert(
+											"You can't book less than 1 seat"
+										);
+									} else if (e.target.value > flight.seats) {
+										alert(
+											`There are only ${flight.seats} seats available on this plane`
+										);
+										e.target.value = flight.seats;
+									}
+									setNumberOfSeats(e.target.value);
+								}}
+							/>
+							<input
 								type="button"
 								value="Place Booking"
 								onClick={(e) => {
-									navigate("/checkout?q=");
+									// TODO(BryceTuppurainen): What a hacky way to do this... Please, Please Rework this...
+									navigate(
+										`/checkout?q=${code}&price=${
+											flight.price * numberOfSeats
+										}&seats=${numberOfSeats}`
+									);
 								}}
 							/>
 						</form>

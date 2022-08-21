@@ -8,7 +8,7 @@ const processView = view => {
 			return (
 				<div>
 					{/* // TODO(BryceTuppurainen): Add in account management controls */}
-					<div className="single-col-grid">
+					<div className="tiles">
 						<div>
 							<h3>Manage Account</h3>
 							<p>

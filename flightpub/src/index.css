@@ -46,8 +46,7 @@ h1 {
 	text-decoration-thickness: 1px;
 }
 
-.tiles,
-.single-col-grid {
+.tiles {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 20px;

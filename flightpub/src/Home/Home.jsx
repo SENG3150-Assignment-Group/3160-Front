@@ -25,7 +25,7 @@ const Home = () => {
 			{permission() < 1 ? (
 				<Forbidden />
 			) : (
-				<div className="home">
+				<div className="home-content">
 					<Header />
 					<main>
 						<section id="view-selector">

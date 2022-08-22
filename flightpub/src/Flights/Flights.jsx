@@ -1,15 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Header from "../Common/Header/Header";
 import Tile from "../Common/Tile/Tile";
 
 // HACK: For now we're just hardcoding the flights locally
 import dummyFlightData from "./dummy-flights.json";
+
 import locations from "./locations.json";
+import AirlineOptions from "./AirlineOptions";
 
 import "./FlightsStyles.css";
-import { useEffect } from "react";
 
 const Flights = () => {
 	// TODO(BryceTuppurainen): Allow this value to be changed and allow the user to continue scrolling after reaching the end of the list
@@ -34,8 +35,6 @@ const Flights = () => {
 	const [maxStops, setMaxStops] = useState(0);
 	const [departureTime, setDepartureTime] = useState([]);
 	const [latestDepartureTime, setLatestDepartureTime] = useState([]);
-
-	// TODO(BryceTuppurainen): Add all flight search criterion here
 
 	useEffect(() => {
 		fetchFlights();
@@ -190,7 +189,7 @@ const Flights = () => {
 					dummyFlightData[code].departure === departure &&
 					dummyFlightData[code].destination === destination
 				) {
-					console.log("Found a match" + code);
+					console.log("Found a match " + code);
 					tempFlights[code] = dummyFlightData[code];
 					if (idx > MAX_TILES) {
 						break;
@@ -204,7 +203,7 @@ const Flights = () => {
 					if (idx > MAX_TILES) {
 						break;
 					}
-					console.log("Found a match" + code);
+					console.log("Found a match " + code);
 					tempFlights[code] = dummyFlightData[code];
 					idx++;
 				}
@@ -378,9 +377,7 @@ const Flights = () => {
 						<summary>Airline</summary>
 						<select>
 							<option>No Preference</option>
-							<option>Jetstar</option>
-							<option>Qantas</option>
-							{/* // TODO(BryceTuppurainen): Update this to instead use a list of options that you can import from another file */}
+							<AirlineOptions />
 						</select>
 					</details>
 
@@ -392,7 +389,6 @@ const Flights = () => {
 							<option>Business Class</option>
 							<option>Premium Economy Class</option>
 							<option>Economy Class</option>
-							{/* // TODO(BryceTuppurainen): Update this to instead use a list of options that you can import from another file */}
 						</select>
 					</details>
 

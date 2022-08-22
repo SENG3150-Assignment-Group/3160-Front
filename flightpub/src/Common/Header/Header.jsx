@@ -6,8 +6,6 @@ import permission from "../Permission/Permission";
 
 import "./HeaderStyles.css";
 
-// TODO(BryceTuppurainen): Implement authentication
-
 const Header = () => {
 	const [opts, setOpts] = useState(<></>);
 

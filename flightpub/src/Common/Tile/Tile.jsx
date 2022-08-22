@@ -47,7 +47,7 @@ const Tile = (props) => {
 				{children}
 			</div>
 			<div className="image-wrapper">
-				<img src={props.src} alt={props.title} />
+				<img src={src} alt={title} />
 			</div>
 		</div>
 	);

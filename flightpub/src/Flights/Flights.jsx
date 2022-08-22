@@ -13,7 +13,6 @@ import AirlineOptions from "./AirlineOptions";
 import "./FlightsStyles.css";
 
 const Flights = () => {
-	// TODO(BryceTuppurainen): Allow this value to be changed and allow the user to continue scrolling after reaching the end of the list
 	const MAX_PRICE = 10000;
 	const MIN_PRICE = 0;
 	const MAX_STOPS = 4;

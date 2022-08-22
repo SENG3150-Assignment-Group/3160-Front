@@ -240,142 +240,117 @@ const Flights = () => {
 
 			<div id="content-wrapper">
 				<form className="left-criteria">
-					<details>
-						<summary>Sort By</summary>
+					<select
+						value={sortOrder}
+						onChange={(e) => {
+							setSortOrder(e.target.value);
+						}}
+					>
+						<option>Sort by Popularity</option>
+						<option>Sort by Price (Lowest-Highest)</option>
+						<option>Sort by Price (Highest-Lowest)</option>
+						<option>Sort by Departure Date</option>
+					</select>
 
-						<select
-							value={sortOrder}
+					<select>
+						<option>One Way</option>
+						<option>Return</option>
+					</select>
+
+					<input
+						type="number"
+						min={0}
+						max={MAX_STOPS}
+						placeholder="0"
+						value={maxStops}
+						onChange={(e) => {
+							if (e.target.value > MAX_STOPS) {
+								e.target.value = MAX_STOPS;
+							} else if (e.target.value < 0) {
+								e.target.value = 0;
+							}
+							setMaxStops(e.target.value);
+						}}
+					/>
+
+					<div>
+						<label htmlFor="minimum-price">min: </label>
+						<input
+							type="range"
+							min={MIN_PRICE}
+							max={maxPrice}
+							placeholder={MIN_PRICE}
 							onChange={(e) => {
-								setSortOrder(e.target.value);
+								setMinPrice(e.target.value);
 							}}
-						>
-							<option>Sort by Popularity</option>
-							<option>Sort by Price (Lowest-Highest)</option>
-							<option>Sort by Price (Highest-Lowest)</option>
-							<option>Sort by Departure Date</option>
-						</select>
-					</details>
-
-					<details>
-						<summary>One Way?</summary>
-						<select>
-							<option>One Way</option>
-							<option>Return</option>
-						</select>
-					</details>
-
-					<details>
-						<summary>Maximum Stops</summary>
+							step="10"
+						/>
+					</div>
+					<div>
+						<label htmlFor="maximum-price">max: </label>
+						<input
+							type="range"
+							min={minPrice}
+							max={MAX_PRICE}
+							placeholder={MAX_PRICE}
+							onChange={(e) => {
+								setMaxPrice(e.target.value);
+							}}
+							step="10"
+						/>
+					</div>
+					<p id="price-range">
 						<input
 							type="number"
-							min={0}
-							max={MAX_STOPS}
-							placeholder="0"
-							value={maxStops}
+							value={minPrice}
 							onChange={(e) => {
-								if (e.target.value > MAX_STOPS) {
-									e.target.value = MAX_STOPS;
-								} else if (e.target.value < 0) {
-									e.target.value = 0;
-								}
-								setMaxStops(e.target.value);
+								setMinPrice(e.target.value);
 							}}
-						/>
-					</details>
+						/>{" "}
+						-{" "}
+						<input
+							type="number"
+							value={maxPrice}
+							onChange={(e) => {
+								setMaxPrice(e.target.value);
+							}}
+						/>{" "}
+						($AUD)
+					</p>
 
-					<details>
-						<summary>Price Range</summary>
-						<div>
-							<label htmlFor="minimum-price">min: </label>
-							<input
-								type="range"
-								min={MIN_PRICE}
-								max={maxPrice}
-								placeholder={MIN_PRICE}
-								onChange={(e) => {
-									setMinPrice(e.target.value);
-								}}
-								step="10"
-							/>
-						</div>
-						<div>
-							<label htmlFor="maximum-price">max: </label>
-							<input
-								type="range"
-								min={minPrice}
-								max={MAX_PRICE}
-								placeholder={MAX_PRICE}
-								onChange={(e) => {
-									setMaxPrice(e.target.value);
-								}}
-								step="10"
-							/>
-						</div>
-						<p id="price-range">
-							<input
-								type="number"
-								value={minPrice}
-								onChange={(e) => {
-									setMinPrice(e.target.value);
-								}}
-							/>{" "}
-							-{" "}
-							<input
-								type="number"
-								value={maxPrice}
-								onChange={(e) => {
-									setMaxPrice(e.target.value);
-								}}
-							/>{" "}
-							($AUD)
-						</p>
-					</details>
+					<label htmlFor="latest-departure-date">
+						Latest Departure Date
+					</label>
+					<input type="date" name="latest-departure-date" />
 
-					<details>
-						<summary>Flexible Date Search</summary>
-						<label htmlFor="latest-departure-date">
-							Latest Departure Date
-						</label>
-						<input type="date" name="latest-departure-date" />
+					<label htmlFor="return-date">Return Date</label>
+					<input type="date" name="return-date" />
 
-						<label htmlFor="return-date">Return Date</label>
-						<input type="date" name="return-date" />
+					<label htmlFor="latest-return-date">
+						Latest Return Date
+					</label>
+					<input type="date" name="latest-return-date" />
 
-						<label htmlFor="latest-return-date">
-							Latest Return Date
-						</label>
-						<input type="date" name="latest-return-date" />
-					</details>
+					<select>
+						<option>No Preference</option>
+						<AirlineOptions />
+					</select>
 
-					<details>
-						<summary>Airline</summary>
-						<select>
-							<option>No Preference</option>
-							<AirlineOptions />
-						</select>
-					</details>
+					<select>
+						<option>No Preference</option>
+						<option>First Class</option>
+						<option>Business Class</option>
+						<option>Premium Economy Class</option>
+						<option>Economy Class</option>
+					</select>
 
-					<details>
-						<summary>Class</summary>
-						<select>
-							<option>No Preference</option>
-							<option>First Class</option>
-							<option>Business Class</option>
-							<option>Premium Economy Class</option>
-							<option>Economy Class</option>
-						</select>
-					</details>
-
-					<details>
-						<summary>Time of Flight</summary>
-						<select>
-							<option>No Preference</option>
-							<option>Early (Before 6am)</option>
-							<option>Morning (6am-12pm)</option>
-							<option>Afternoon (12pm-6pm)</option>
-							<option>Late (After 6pm)</option>
-						</select>
-					</details>
+					<select>
+						<option>No Preference</option>
+						<option>Early (Before 6am)</option>
+						<option>Morning (6am-12pm)</option>
+						<option>Afternoon (12pm-6pm)</option>
+						<option>Late (After 6pm)</option>
+					</select>
 				</form>
 				{flightTiles}
 			</div>

@@ -27,6 +27,7 @@ const Checkout = () => {
 						e.preventDefault();
 						// HACK: This simply states that the seats are booked, remove this notice and make this more effective of a solution
 						alert("Seats Booked!");
+						localStorage.removeItem("departingFlight");
 						navigate("/home?view=bookings");
 						// TODO(BryceTuppurainen): Submit a booking to the server with the provided information
 					}}

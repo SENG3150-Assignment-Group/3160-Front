@@ -25,6 +25,32 @@ const formatTime = (time, additionalHours = 0) => {
 };
 
 const FlightTile = (props) => {
+	if (props.departing === "true") {
+		return (
+			<Tile
+				className="flight"
+				title={
+					props.flight.departure + " - " + props.flight.destination
+				}
+				src={"/Images/" + props.flight.plane + ".jpg"}
+				onClick={props.onClick}
+			>
+				<h4>
+					{props.flight.code} - {props.flight.airline}
+				</h4>
+				<h4>${props.flight.price} (AUD)</h4>
+				<p>
+					This flight leaves from {props.flight.departure} on{" "}
+					{props.flight.date} at {formatTime(props.flight.time)}. This
+					is a {props.flight.duration}
+					-hour flight, and will be arriving at{" "}
+					{props.flight.destination} at{" "}
+					{formatTime(props.flight.time, props.flight.duration)}
+				</p>
+			</Tile>
+		);
+	}
+
 	return (
 		<Tile
 			className="flight"

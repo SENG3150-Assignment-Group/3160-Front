@@ -13,6 +13,12 @@ import AirlineOptions from "./AirlineOptions";
 import "./FlightsStyles.css";
 
 const Flights = () => {
+	const TODAY =
+		new Date().getFullYear().toString().padStart(4, "0") +
+		"-" +
+		(new Date().getMonth() + 1).toString().padStart(2, "0") +
+		"-" +
+		new Date().getDate().toString().padStart(2, "0");
 	const MAX_PRICE = 10000;
 	const MIN_PRICE = 0;
 	const MAX_STOPS = 4;
@@ -29,28 +35,34 @@ const Flights = () => {
 
 	const [departure, setDeparture] = useState("");
 	const [destination, setDestination] = useState("");
+	const [departureDate, setDepartureDate] = useState();
 
+	const [oneWay, setOneWay] = useState(false);
 	const [minPrice, setMinPrice] = useState(MIN_PRICE);
 	const [maxPrice, setMaxPrice] = useState(MAX_PRICE);
 	const [maxStops, setMaxStops] = useState(0);
-	const [departureTime, setDepartureTime] = useState([]);
-	const [latestDepartureTime, setLatestDepartureTime] = useState([]);
+	const [airlinePreference, setAirlinePreference] = useState();
+	const [flightTimePreference, setFlightTimePreference] = useState();
+	const [latestDepartureDate, setLatestDepartureDate] = useState();
 
 	useEffect(() => {
 		fetchFlights();
-	}, []);
+	}, [destination, departure, departureDate, latestDepartureDate]);
 
 	useEffect(() => {
 		updateFlightTiles();
 	}, [
+		oneWay,
 		maxTiles,
 		flights,
 		sortOrder,
 		minPrice,
 		maxPrice,
 		maxStops,
-		departureTime,
-		latestDepartureTime,
+		airlinePreference,
+		flightTimePreference,
+		departureDate,
+		latestDepartureDate,
 	]);
 
 	/**
@@ -74,6 +86,57 @@ const Flights = () => {
 			.filter((flight) => {
 				return flight.price >= minPrice && flight.price <= maxPrice;
 			})
+			.filter((flight) => {
+				if (airlinePreference) {
+					return flight.airline === airlinePreference;
+				}
+				return true;
+			})
+			.filter((flight) => {
+				if (flightTimePreference) {
+					switch (flightTimePreference) {
+						case "early":
+							if (flight.time < 600) {
+								return true;
+							} else {
+								return false;
+							}
+						case "morning":
+							if (flight.time >= 600 && flight.time < 1200) {
+								return true;
+							} else {
+								return false;
+							}
+						case "afternoon":
+							if (flight.time >= 1200 && flight.time < 1800) {
+								return true;
+							} else {
+								return false;
+							}
+						case "late":
+							if (flight.time >= 1800) {
+								return true;
+							} else {
+								return false;
+							}
+						default:
+							return true;
+					}
+				}
+				return true;
+			})
+			.filter((flight) => {
+				if (departureDate && !latestDepartureDate) {
+					return flight.date === departureDate;
+				} else if (departureDate && latestDepartureDate) {
+					return (
+						new Date(flight.date) >= new Date(departureDate) &&
+						new Date(flight.date) <= new Date(latestDepartureDate)
+					);
+				}
+				return true;
+			})
+			// TODO(BryceTuppurainen): Add further filtering here
 			.forEach((flight, idx) => {
 				if (idx === maxTiles) {
 					tiles.push(
@@ -90,9 +153,79 @@ const Flights = () => {
 				} else if (idx > maxTiles) {
 					return;
 				}
-				tiles.push(<FlightTile flight={flight} />);
+
+				if (
+					oneWay === true ||
+					localStorage.getItem("departingFlight")
+				) {
+					tiles.push(<FlightTile flight={flight} />);
+				} else {
+					tiles.push(
+						<FlightTile
+							flight={flight}
+							departing="true"
+							onClick={() => {
+								console.log("Setting departing flight...");
+								localStorage.setItem(
+									"departingFlight",
+									JSON.stringify(flight)
+								);
+								setDestination(flight.departure);
+								setDeparture(flight.destination);
+								setDepartureDate(
+									new Date()
+										.getFullYear()
+										.toString()
+										.padStart(4, "0") +
+										"-" +
+										(new Date().getMonth() + 1)
+											.toString()
+											.padStart(2, "0") +
+										"-" +
+										(new Date().getDate() + 1)
+											.toString()
+											.padStart(2, "0")
+								);
+								setLatestDepartureDate(
+									new Date()
+										.getFullYear()
+										.toString()
+										.padStart(4, "0") +
+										"-" +
+										(new Date().getMonth() + 2)
+											.toString()
+											.padStart(2, "0") +
+										"-" +
+										(new Date().getDate() + 1)
+											.toString()
+											.padStart(2, "0")
+								);
+								window.scrollTo(0, 0);
+							}}
+						/>
+					);
+				}
+				{
+				}
 			});
-		setFlightTiles(<div className="tiles">{tiles}</div>);
+
+		if (oneWay === true) {
+			setFlightTiles(<div className="tiles">{tiles}</div>);
+		} else if (localStorage.getItem("departingFlight")) {
+			setFlightTiles(
+				<div className="tiles">
+					<h3 className="banner">Select a Return Flight</h3>
+					{tiles}
+				</div>
+			);
+		} else {
+			setFlightTiles(
+				<div className="tiles">
+					<h3 className="banner">Select a Departing Flight</h3>
+					{tiles}
+				</div>
+			);
+		}
 	};
 
 	const updateDepartureAutofill = (input) => {
@@ -162,8 +295,6 @@ const Flights = () => {
 	const fetchFlights = async () => {
 		// TODO(BryceTuppurainen): For now we're just hardcoding the flights locally, this filtering would be handled by the API NOT HERE
 
-		console.log("Fetching flights");
-
 		let tempFlights = {};
 
 		if (departure !== "" && destination !== "") {
@@ -189,14 +320,7 @@ const Flights = () => {
 		<>
 			<Header />
 
-			<form
-				className="top-criteria"
-				onSubmit={(e) => {
-					e.preventDefault();
-					fetchFlights();
-					window.scrollTo(0, 0);
-				}}
-			>
+			<form className="top-criteria">
 				<div>
 					<img src="/Images/gps-teardrop.png" alt="GPS Teardrop" />
 					<div className="autofill-wrapper">
@@ -233,9 +357,15 @@ const Flights = () => {
 					</div>
 				</div>
 				<div>
-					<input type="date" />
+					<input
+						type="date"
+						min={TODAY}
+						value={departureDate}
+						onChange={(e) => {
+							setDepartureDate(e.target.value);
+						}}
+					/>
 				</div>
-				<input type="submit" value="Search" id="search-button"></input>
 			</form>
 
 			<div id="content-wrapper">
@@ -252,17 +382,24 @@ const Flights = () => {
 						<option>Sort by Departure Date</option>
 					</select>
 
-					<select>
-						<option>One Way</option>
-						<option>Return</option>
+					<select
+						value={oneWay}
+						onChange={(e) => {
+							setOneWay(e.target.value);
+						}}
+					>
+						<option value={false}>Return</option>
+						<option value={true}>One Way</option>
 					</select>
 
+					<label for="maxStops">Max Stops:</label>
 					<input
 						type="number"
 						min={0}
 						max={MAX_STOPS}
 						placeholder="0"
 						value={maxStops}
+						name="maxStops"
 						onChange={(e) => {
 							if (e.target.value > MAX_STOPS) {
 								e.target.value = MAX_STOPS;
@@ -274,7 +411,7 @@ const Flights = () => {
 					/>
 
 					<div>
-						<label htmlFor="minimum-price">min: </label>
+						<label htmlFor="minimum-price">Min Price:</label>
 						<input
 							type="range"
 							min={MIN_PRICE}
@@ -287,7 +424,7 @@ const Flights = () => {
 						/>
 					</div>
 					<div>
-						<label htmlFor="maximum-price">max: </label>
+						<label htmlFor="maximum-price">Max Price:</label>
 						<input
 							type="range"
 							min={minPrice}
@@ -318,39 +455,47 @@ const Flights = () => {
 						($AUD)
 					</p>
 
-					<label htmlFor="latest-departure-date">
-						Latest Departure Date
-					</label>
-					<input type="date" name="latest-departure-date" />
-
-					<label htmlFor="return-date">Return Date</label>
-					<input type="date" name="return-date" />
-
-					<label htmlFor="latest-return-date">
-						Latest Return Date
-					</label>
-					<input type="date" name="latest-return-date" />
-
-					<select>
-						<option>No Preference</option>
+					<select
+						onChange={(e) => {
+							setAirlinePreference(e.target.value);
+						}}
+					>
+						<option value="">Airline - No Preference</option>
 						<AirlineOptions />
 					</select>
 
-					<select>
-						<option>No Preference</option>
+					{/* // TODO(): This is optional to implement, may do this later */}
+					{/* <select>
+						<option>Class - No Preference</option>
 						<option>First Class</option>
 						<option>Business Class</option>
 						<option>Premium Economy Class</option>
 						<option>Economy Class</option>
+					</select> */}
+
+					{/* // TODO(): This should be using a checkbox rather than select */}
+					<select
+						onChange={(e) => {
+							setFlightTimePreference(e.target.value);
+						}}
+					>
+						<option value="">Flight Time - No Preference</option>
+						<option value="early">Early (Before 6am)</option>
+						<option value="morning">Morning (6am-12pm)</option>
+						<option value="afternoon">Afternoon (12pm-6pm)</option>
+						<option value="late">Late (After 6pm)</option>
 					</select>
 
-					<select>
-						<option>No Preference</option>
-						<option>Early (Before 6am)</option>
-						<option>Morning (6am-12pm)</option>
-						<option>Afternoon (12pm-6pm)</option>
-						<option>Late (After 6pm)</option>
-					</select>
+					<label htmlFor="latest-departure-date">Latest Date</label>
+					<input
+						type="date"
+						name="latest-departure-date"
+						min={departureDate}
+						onChange={(e) => {
+							setLatestDepartureDate(e.target.value);
+						}}
+						value={latestDepartureDate}
+					/>
 				</form>
 				{flightTiles}
 			</div>

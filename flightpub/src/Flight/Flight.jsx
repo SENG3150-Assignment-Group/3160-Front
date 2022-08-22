@@ -12,6 +12,7 @@ const Flight = () => {
 	const [flight, setFlight] = useState({});
 
 	const code = new URLSearchParams(window.location.search).get("q");
+	const departingFlight = JSON.parse(localStorage.getItem("departingFlight"));
 
 	const navigate = useNavigate();
 
@@ -49,11 +50,20 @@ const Flight = () => {
 	return (
 		<>
 			<Header />
+			{departingFlight ? (
+				<h3 id="flight-title">
+					{departingFlight.code} - {departingFlight.departure} to{" "}
+					{departingFlight.destination}
+				</h3>
+			) : (
+				<></>
+			)}
 			<h3 id="flight-title">
 				{code} - {flight.departure} to {flight.destination}
 			</h3>
 			<div className="flight-container">
 				<div className="flight-information">
+					{departingFlight ? <h1>DEPARTING FLIGHT INFO</h1> : <></>}
 					<p>
 						Departing on {flight.date} at {flight.time} and Arriving
 						on {formatTime(flight.time, flight.duration)} on{" "}

@@ -31,6 +31,9 @@ const formatTime = (time, additionalHours = 0) => {
 
 const Booking = () => {
 	const [flight, setFlight] = useState({});
+	const [departingFlight] = useState(
+		JSON.parse(localStorage.getItem("departingFlight"))
+	);
 	const [numberOfSeats, setNumberOfSeats] = useState(1);
 
 	const navigate = useNavigate();
@@ -53,6 +56,136 @@ const Booking = () => {
 				</h3>
 			</>
 		);
+	} else if (departingFlight !== {}) {
+		return (
+			<>
+				<Header />
+				<div className="booking-contents">
+					<div>
+						<h3>{departingFlight.code}</h3>
+						<h3>
+							Departing Flight: {departingFlight.departure} -{" "}
+							{departingFlight.destination}
+						</h3>
+						<p>
+							Departing on {departingFlight.date} at{" "}
+							{departingFlight.time} and Arriving on{" "}
+							{formatTime(
+								departingFlight.time,
+								departingFlight.duration
+							)}{" "}
+							on {departingFlight.date}
+						</p>
+						<h3>{departingFlight.airline}</h3>
+						<p>
+							This flight is approximately{" "}
+							{departingFlight.duration} hours from take-off to
+							landing
+						</p>
+						<p>
+							There are {departingFlight.seats} seats currently
+							available on this flight
+						</p>
+						<p>{departingFlight.plane}</p>
+						<form>
+							<input
+								type="number"
+								min="1"
+								max={departingFlight.seats}
+								value={numberOfSeats}
+								onChange={(e) => {
+									if (e.target.value < 1) {
+										e.target.value = 1;
+										alert(
+											"You can't book less than 1 seat"
+										);
+									} else if (
+										e.target.value > departingFlight.seats
+									) {
+										alert(
+											`There are only ${departingFlight.seats} seats available on this plane`
+										);
+										e.target.value = departingFlight.seats;
+									}
+									setNumberOfSeats(e.target.value);
+								}}
+							/>
+							<input
+								type="button"
+								value="Place Booking"
+								onClick={(e) => {
+									// TODO(BryceTuppurainen): What a hacky way to do this... Please, Please Rework this...
+									navigate(
+										`/checkout?q=${code}&price=${
+											departingFlight.price *
+											numberOfSeats
+										}&seats=${numberOfSeats}`
+									);
+								}}
+							/>
+						</form>
+					</div>
+
+					<div>
+						<h3>{code}</h3>
+						<h3>
+							Returning Flight: {flight.departure} -{" "}
+							{flight.destination}
+						</h3>
+						<p>
+							Departing on {flight.date} at {flight.time} and
+							Arriving on{" "}
+							{formatTime(flight.time, flight.duration)} on{" "}
+							{flight.date}
+						</p>
+						<h3>{flight.airline}</h3>
+						<p>
+							This flight is approximately {flight.duration} hours
+							from take-off to landing
+						</p>
+						<p>
+							There are {flight.seats} seats currently available
+							on this flight
+						</p>
+						<p>{flight.plane}</p>
+						<form>
+							<input
+								type="number"
+								min="1"
+								max={flight.seats}
+								value={numberOfSeats}
+								onChange={(e) => {
+									if (e.target.value < 1) {
+										e.target.value = 1;
+										alert(
+											"You can't book less than 1 seat"
+										);
+									} else if (e.target.value > flight.seats) {
+										alert(
+											`There are only ${flight.seats} seats available on this plane`
+										);
+										e.target.value = flight.seats;
+									}
+									setNumberOfSeats(e.target.value);
+								}}
+							/>
+							<input
+								type="button"
+								value="Place Booking"
+								onClick={(e) => {
+									// TODO(BryceTuppurainen): What a hacky way to do this... Please, Please Rework this...
+									navigate(
+										`/checkout?q=${code}&price=${
+											flight.price * numberOfSeats
+										}&seats=${numberOfSeats}`
+									);
+								}}
+							/>
+						</form>
+					</div>
+				</div>
+			</>
+		);
 	} else {
 		return (
 			<>
@@ -60,6 +193,9 @@ const Booking = () => {
 				<div className="booking-contents">
 					<div>
 						<h3>{code}</h3>
+						<h3>
+							{flight.departure} - {flight.destination}
+						</h3>
 						<p>
 							Departing on {flight.date} at {flight.time} and
 							Arriving on{" "}

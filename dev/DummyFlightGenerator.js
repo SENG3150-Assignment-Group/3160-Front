@@ -113,10 +113,9 @@ const getRandomCode = (airline) => {
 
 const getRandomDate = () => {
 	return (
-		random(2) +
 		2022 +
 		"-" +
-		(random(11) + 1).toString().padStart(2, "0") +
+		(random(4) + 8).toString().padStart(2, "0") +
 		"-" +
 		(random(27) + 1).toString().padStart(2, "0")
 	);

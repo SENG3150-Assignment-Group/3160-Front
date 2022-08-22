@@ -32,10 +32,13 @@ const Authentication = () => {
 							localStorage.setItem(
 								"fullname",
 								email.charAt(0).toUpperCase() +
-									email.slice(1).split("@")[0]
+									email
+										.slice(1)
+										.split("@")[0]
+										.replace(".", " ")
 							);
 							localStorage.setItem("permission", "admin");
-							if (requestedRedirect !== undefined) {
+							if (requestedRedirect) {
 								navigate("/" + requestedRedirect);
 							} else {
 								navigate("/home");

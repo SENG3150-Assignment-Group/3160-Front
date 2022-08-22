@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import Header from "../Common/Header/Header";
-import Tile from "../Common/Tile/Tile";
+import FlightTile from "../Common/Tile/FlightTile";
 
 // HACK: For now we're just hardcoding the flights locally
 import dummyFlightData from "./dummy-flights.json";
@@ -42,24 +42,43 @@ const Flights = () => {
 
 	useEffect(() => {
 		updateFlightTiles();
-	}, [flights]);
+	}, [
+		flights,
+		sortOrder,
+		minPrice,
+		maxPrice,
+		maxStops,
+		departureTime,
+		latestDepartureTime,
+	]);
 
 	/**
 	 * This function is responsible for displaying the flight tiles based on the current version of the flights state
 	 */
 	const updateFlightTiles = () => {
-		let tiles = [];
-		let keys = Object.keys(flights);
-		let idx = 0;
+		// TODO(BryceTuppurainen): This is quite inefficient, we're running the full conversion to an array on the client side many times
+		let flightsAsArray = [];
+
 		for (let code in flights) {
-			if (idx > MAX_TILES) {
-				return;
-			}
-
-			tiles.push(flightTile(keys[idx], flights[code]));
-
-			idx++;
+			flightsAsArray.push({ ...flights[code], code });
 		}
+
+		let tiles = [];
+
+		// TODO(BryceTuppurainen): Allow for the changing of sort criteria
+		flightsAsArray
+			.sort((a, b) => {
+				return a.price - b.price;
+			})
+			.filter((flight) => {
+				return flight.price >= minPrice && flight.price <= maxPrice;
+			})
+			.forEach((flight, idx) => {
+				if (idx >= MAX_TILES) {
+					return;
+				}
+				tiles.push(<FlightTile flight={flight} />);
+			});
 		setFlightTiles(<div className="tiles">{tiles}</div>);
 	};
 
@@ -124,55 +143,6 @@ const Flights = () => {
 	};
 
 	/**
-	 * Helper function that returns a flight tile from a flight object
-	 */
-	const flightTile = (code, flight) => {
-		return (
-			<Tile
-				className="flight"
-				title={flight.departure + " - " + flight.destination}
-				src={"/Images/" + flight.plane + ".jpg"}
-				href={"/flight?q=" + code}
-			>
-				<h4>
-					{code} - {flight.airline}
-				</h4>
-				<h4>${flight.price} (AUD)</h4>
-				<p>
-					This flight leaves from {flight.departure} on {flight.date}{" "}
-					at {formatTime(flight.time)}. This is a {flight.duration}
-					-hour flight, and will be arriving at {
-						flight.destination
-					}{" "}
-					at {formatTime(flight.time, flight.duration)}
-				</p>
-			</Tile>
-		);
-	};
-
-	/**
-	 * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr
-	 */
-	const formatTime = (time, additionalHours = 0) => {
-		if (!time) {
-			return;
-		}
-		additionalHours = parseInt(additionalHours);
-		let h = parseInt(time.substr(0, 2));
-		let m = time.substr(2, 2);
-		let am = h < 12;
-		h += additionalHours;
-		while (h > 12) {
-			h -= 12;
-			am = !am;
-		}
-		if (am) {
-			return h + ":" + m + "am";
-		}
-		return h + ":" + m + "pm";
-	};
-
-	/**
 	 * This function is responsible for the retrieval of all flights from the server matching the query
 	 */
 	const fetchFlights = async () => {
@@ -181,7 +151,6 @@ const Flights = () => {
 		console.log("Fetching flights");
 
 		let tempFlights = {};
-		let idx = 0;
 
 		if (departure !== "" && destination !== "") {
 			for (let code in dummyFlightData) {
@@ -189,23 +158,13 @@ const Flights = () => {
 					dummyFlightData[code].departure === departure &&
 					dummyFlightData[code].destination === destination
 				) {
-					console.log("Found a match " + code);
 					tempFlights[code] = dummyFlightData[code];
-					if (idx > MAX_TILES) {
-						break;
-					}
-					idx++;
 				}
 			}
 		} else if (departure !== "") {
 			for (let code in dummyFlightData) {
 				if (dummyFlightData[code].departure === departure) {
-					if (idx > MAX_TILES) {
-						break;
-					}
-					console.log("Found a match " + code);
 					tempFlights[code] = dummyFlightData[code];
-					idx++;
 				}
 			}
 		}

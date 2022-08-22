@@ -7,7 +7,7 @@ const processView = view => {
 		case "account":
 			return (
 				<div>
-					{/* // TODO(BryceTuppurainen): Add in account management controls */}
+					{/* // TODO(BryceTuppurainen): Add in further account management controls */ }
 					<div className="tiles">
 						<div>
 							<h3>Manage Account</h3>

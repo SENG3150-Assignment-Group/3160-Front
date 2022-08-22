@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const processView = view => {
+
+	const [email, setEmail] = useState();
+	const [password, setPassword] = useState();
+	const [fullname, setFullname] = useState();
+	const [permission, setPermission] = useState();
+
 	switch (view) {
 		case "sign-up":
 			return (

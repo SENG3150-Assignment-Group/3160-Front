@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const processView = view => {
+
+	const [accountId, setAccount] = useState();
+	const [flightCode, setFlightCode] = useState();
+	const [accommodation, setAccommodation] = useState();
+	const [accommodationCost, setAccommodationCost] = useState();
+
 	switch (view) {
 		case "create-package":
 			return (
@@ -13,10 +19,10 @@ const processView = view => {
 								className="sign-up-opt"
 								onSubmit={(e) => {
 									e.preventDefault();
-									localStorage.setItem("email", email);
-									localStorage.setItem("password", password);
-									localStorage.setItem("fullname", fullname);
-									localStorage.setItem("permission", permission);
+									localStorage.setItem("accountId", accountId);
+									localStorage.setItem("flightCode", flightCode);
+									localStorage.setItem("accommodation", accommodation);
+									localStorage.setItem("accommodationCost", accommodationCost);
 									navigate("/home");
 								}}
 							>

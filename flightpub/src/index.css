@@ -22,6 +22,10 @@
 	--active-warning-compliment: rgb(255, 255, 255);
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	margin: 0;
 	padding: 2.5vh 2.5vw;

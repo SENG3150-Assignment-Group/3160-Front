@@ -25,12 +25,6 @@ const Tile = (props) => {
 					rerum minima odit sapiente in rem officia corrupti error,
 					distinctio nam repellendus harum ut ullam eligendi!
 				</p>
-				<p>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-					Facere, quod? Dolor obcaecati exercitationem laudantium,
-					rerum minima odit sapiente in rem officia corrupti error,
-					distinctio nam repellendus harum ut ullam eligendi!
-				</p>
 			</>
 		);
 	}
@@ -41,13 +35,14 @@ const Tile = (props) => {
 			onClick={() => {
 				navigate(href);
 			}}
+			key={title}
 		>
 			<div>
 				<h3>{title}</h3>
 				{children}
 			</div>
 			<div className="image-wrapper">
-				<img src={src} alt={title} />
+				<img src={src} alt={title} loading="lazy" />
 			</div>
 		</div>
 	);

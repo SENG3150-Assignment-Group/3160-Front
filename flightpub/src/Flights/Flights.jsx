@@ -14,10 +14,11 @@ import "./FlightsStyles.css";
 
 const Flights = () => {
 	// TODO(BryceTuppurainen): Allow this value to be changed and allow the user to continue scrolling after reaching the end of the list
-	const MAX_TILES = 50;
 	const MAX_PRICE = 10000;
 	const MIN_PRICE = 0;
 	const MAX_STOPS = 4;
+
+	const [maxTiles, setMaxTiles] = useState(50);
 
 	const [flights, setFlights] = useState({});
 	const [flightTiles, setFlightTiles] = useState();
@@ -43,6 +44,7 @@ const Flights = () => {
 	useEffect(() => {
 		updateFlightTiles();
 	}, [
+		maxTiles,
 		flights,
 		sortOrder,
 		minPrice,
@@ -74,7 +76,19 @@ const Flights = () => {
 				return flight.price >= minPrice && flight.price <= maxPrice;
 			})
 			.forEach((flight, idx) => {
-				if (idx >= MAX_TILES) {
+				if (idx === maxTiles) {
+					tiles.push(
+						<div
+							className="flight-extension"
+							onClick={(e) => {
+								setMaxTiles(maxTiles + 50);
+							}}
+						>
+							View next 50 flights...
+						</div>
+					);
+					return;
+				} else if (idx > maxTiles) {
 					return;
 				}
 				tiles.push(<FlightTile flight={flight} />);
@@ -96,6 +110,7 @@ const Flights = () => {
 				if (location !== destination) {
 					matches.push(
 						<p
+							key={location}
 							className="autofill-item"
 							onClick={() => {
 								setDeparture(location);
@@ -180,6 +195,7 @@ const Flights = () => {
 				onSubmit={(e) => {
 					e.preventDefault();
 					fetchFlights();
+					window.scrollTo(0, 0);
 				}}
 			>
 				<div>

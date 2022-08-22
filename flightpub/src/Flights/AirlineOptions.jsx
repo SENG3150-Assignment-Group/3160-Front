@@ -11,7 +11,7 @@ const AirlineOptions = () => {
 		let options = [];
 
 		for (let airline of airlines) {
-			options.push(<option>{airline}</option>);
+			options.push(<option key={airline}>{airline}</option>);
 		}
 
 		setAirlineTiles(<>{options}</>);

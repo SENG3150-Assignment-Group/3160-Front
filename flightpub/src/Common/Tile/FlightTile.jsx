@@ -25,25 +25,25 @@ const formatTime = (time, additionalHours = 0) => {
 };
 
 const FlightTile = (props) => {
-	let flight = props.flight;
-
 	return (
 		<Tile
 			className="flight"
-			title={flight.departure + " - " + flight.destination}
-			src={"/Images/" + flight.plane + ".jpg"}
-			href={"/flight?q=" + flight.code}
+			title={props.flight.departure + " - " + props.flight.destination}
+			src={"/Images/" + props.flight.plane + ".jpg"}
+			href={"/flight?q=" + props.flight.code}
 		>
 			<h4>
-				{flight.code} - {flight.airline}
+				{props.flight.code} - {props.flight.airline}
 			</h4>
-			<h4>${flight.price} (AUD)</h4>
+			<h4>${props.flight.price} (AUD)</h4>
 			<p>
-				This flight leaves from {flight.departure} on {flight.date} at{" "}
-				{formatTime(flight.time)}. This is a {flight.duration}
+				This flight leaves from {props.flight.departure} on{" "}
+				{props.flight.date} at {formatTime(props.flight.time)}. This is
+				a {props.flight.duration}
 				-hour flight, and will be arriving at {
-					flight.destination
-				} at {formatTime(flight.time, flight.duration)}
+					props.flight.destination
+				}{" "}
+				at {formatTime(props.flight.time, props.flight.duration)}
 			</p>
 		</Tile>
 	);

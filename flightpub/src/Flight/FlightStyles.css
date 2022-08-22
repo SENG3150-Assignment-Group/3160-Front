@@ -65,3 +65,18 @@
 .plane-information * {
 	font-size: 20pt;
 }
+
+.flight-extension {
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	padding: 20px;
+	border-radius: 15px;
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+.flight-extension:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}

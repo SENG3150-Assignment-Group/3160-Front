@@ -1,3 +1,12 @@
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 .tile-content {
 	margin: 0;
 	padding: 0;
@@ -13,6 +22,7 @@
 	padding: 10px;
 	transition: ease-in-out 350ms;
 	transition-delay: 50ms;
+	animation: fade-in 800ms ease-in-out;
 }
 
 .tile-content > div {

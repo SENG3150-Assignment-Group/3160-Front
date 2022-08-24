@@ -20,6 +20,10 @@
 	--warning-compliment: rgb(255, 255, 255);
 	--active-warning-color: rgb(255, 0, 0);
 	--active-warning-compliment: rgb(255, 255, 255);
+	--suggested-color: rgb(132, 255, 132);
+	--suggested-compliment: rgb(68, 68, 68);
+	--active-suggested-color: rgb(86, 146, 60);
+	--active-suggested-compliment: rgb(255, 255, 255);
 }
 
 html {
@@ -71,4 +75,17 @@ h1 {
 #warning:hover {
 	background-color: var(--active-warning-color);
 	color: var(--active-warning-compliment);
+}
+
+#suggested {
+	background-color: var(--suggested-color);
+	color: var(--suggested-compliment);
+	padding: 20px;
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+#suggested:hover {
+	background-color: var(--active-suggested-color);
+	color: var(--active-suggested-compliment);
 }

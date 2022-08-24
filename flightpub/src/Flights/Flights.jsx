@@ -163,7 +163,10 @@ const Flights = () => {
 					return;
 				}
 
-				if (oneWay || localStorage.getItem("departingFlight")) {
+				if (
+					oneWay === "true" ||
+					localStorage.getItem("departingFlight")
+				) {
 					tiles.push(<FlightTile flight={flight} />);
 				} else {
 					tiles.push(
@@ -215,7 +218,7 @@ const Flights = () => {
 				}
 			});
 
-		if (oneWay) {
+		if (oneWay === "true") {
 			setFlightTiles(<div className="tiles">{tiles}</div>);
 		} else if (localStorage.getItem("departingFlight")) {
 			setFlightTiles(
@@ -398,8 +401,12 @@ const Flights = () => {
 							setOneWay(e.target.value);
 						}}
 					>
-						<option value={false}>Return</option>
-						<option value={true}>One Way</option>
+						<option value="false">Return</option>
+						{!localStorage.getItem("departingFlight") ? (
+							<option value="true">One Way</option>
+						) : (
+							<></>
+						)}
 					</select>
 
 					<label for="maxStops">Max Stops:</label>

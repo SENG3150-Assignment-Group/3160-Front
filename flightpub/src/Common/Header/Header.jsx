@@ -137,7 +137,14 @@ const Header = () => {
 
 				<nav>
 					<div>
-						<a href="/flights">Flights</a>
+						<a
+							onClick={(e) => {
+								localStorage.removeItem("departingFlight");
+								navigate("/flights");
+							}}
+						>
+							Flights
+						</a>
 					</div>
 
 					<div>

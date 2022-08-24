@@ -47,7 +47,7 @@ const Flights = () => {
 
 	useEffect(() => {
 		fetchFlights();
-	}, [destination, departure, departureDate, latestDepartureDate]);
+	}, [oneWay, destination, departure, departureDate, latestDepartureDate]);
 
 	useEffect(() => {
 		updateFlightTiles();
@@ -81,7 +81,16 @@ const Flights = () => {
 		// TODO(BryceTuppurainen): Allow for the changing of sort criteria
 		flightsAsArray
 			.sort((a, b) => {
-				return a.price - b.price;
+				switch (sortOrder) {
+					case "popularity":
+						return b.popularity - a.popularity;
+					case "ascending":
+						return a.price - b.price;
+					case "descending":
+						return b.price - a.price;
+					default:
+						return new Date(a.date) - new Date(b.date);
+				}
 			})
 			.filter((flight) => {
 				return flight.price >= minPrice && flight.price <= maxPrice;
@@ -154,10 +163,7 @@ const Flights = () => {
 					return;
 				}
 
-				if (
-					oneWay === true ||
-					localStorage.getItem("departingFlight")
-				) {
+				if (oneWay || localStorage.getItem("departingFlight")) {
 					tiles.push(<FlightTile flight={flight} />);
 				} else {
 					tiles.push(
@@ -209,7 +215,7 @@ const Flights = () => {
 				}
 			});
 
-		if (oneWay === true) {
+		if (oneWay) {
 			setFlightTiles(<div className="tiles">{tiles}</div>);
 		} else if (localStorage.getItem("departingFlight")) {
 			setFlightTiles(
@@ -376,10 +382,14 @@ const Flights = () => {
 							setSortOrder(e.target.value);
 						}}
 					>
-						<option>Sort by Popularity</option>
-						<option>Sort by Price (Lowest-Highest)</option>
-						<option>Sort by Price (Highest-Lowest)</option>
-						<option>Sort by Departure Date</option>
+						<option value="popularity">Sort by Popularity</option>
+						<option value="ascending">
+							Sort by Price (Lowest-Highest)
+						</option>
+						<option value="descending">
+							Sort by Price (Highest-Lowest)
+						</option>
+						<option value="date">Sort by Departure Date</option>
 					</select>
 
 					<select

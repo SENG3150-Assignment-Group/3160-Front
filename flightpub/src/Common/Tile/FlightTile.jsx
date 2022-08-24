@@ -24,6 +24,11 @@ const formatTime = (time, additionalHours = 0) => {
 	return h + ":" + m + "pm";
 };
 
+const formatDate = (date) => {
+	let dateObject = new Date(date);
+	return dateObject.toLocaleDateString();
+};
+
 const FlightTile = (props) => {
 	if (props.departing === "true") {
 		return (
@@ -39,10 +44,15 @@ const FlightTile = (props) => {
 					{props.flight.code} - {props.flight.airline}
 				</h4>
 				<h4>${props.flight.price} (AUD)</h4>
+				<h4>FlightPub Popularity Score™ {props.flight.popularity}</h4>
 				<p>
-					This flight leaves from {props.flight.departure} on{" "}
-					{props.flight.date} at {formatTime(props.flight.time)}. This
-					is a {props.flight.duration}
+					Leaving {props.flight.departure} on{" "}
+					{formatDate(props.flight.date)} at{" "}
+					{formatTime(props.flight.time)}
+				</p>
+
+				<p>
+					This is a {props.flight.duration}
 					-hour flight, and will be arriving at{" "}
 					{props.flight.destination} at{" "}
 					{formatTime(props.flight.time, props.flight.duration)}

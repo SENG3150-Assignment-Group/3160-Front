@@ -1,10 +1,7 @@
 const fs = require("fs");
 
-/**
- * @returns Integer up to max from zero (both inclusive)
- */
 const random = (max) => {
-	return Math.round(Math.random() * max);
+	return Math.floor(Math.random() * max);
 };
 
 const getRandomAirline = () => {
@@ -54,7 +51,7 @@ const getRandomAirline = () => {
 		"Aeropostal Alas de Venezuela",
 		"Virgin Atlantic Airways",
 	];
-	return airlines[random(airlines.length - 1)];
+	return airlines[random(airlines.length)];
 };
 
 const getRandomCode = (airline) => {
@@ -166,7 +163,7 @@ const getRandomLocation = (illegalLocation) => {
 
 	locations = locations.filter((location) => location !== illegalLocation);
 
-	return locations[random(locations.length - 1)];
+	return locations[random(locations.length)];
 };
 
 const getRandomPlane = () => {
@@ -191,9 +188,10 @@ const generateFlightsJSON = (numberOfFlights) => {
 		const departure = getRandomLocation();
 		const destination = getRandomLocation(departure);
 		const plane = getRandomPlane();
-		const duration = (random(11) + 1).toString();
-		const seats = random(99) + 1;
-		const price = random(9899) + 101;
+		const duration = (random(12) + 1).toString();
+		const seats = random(100) + 1;
+		const price = random(9000) + 1000;
+		const popularity = random(101);
 
 		const flight = {
 			date,
@@ -205,6 +203,7 @@ const generateFlightsJSON = (numberOfFlights) => {
 			duration,
 			seats,
 			price,
+			popularity
 		};
 		flights[code] = flight;
 	}

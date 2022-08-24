@@ -38,7 +38,8 @@ const Authentication = () => {
 										.replace(".", " ")
 							);
 							localStorage.setItem("permission", "admin");
-							if (requestedRedirect) {
+							if (requestedRedirect !== null) {
+								console.log("Requested redirect was not null");
 								navigate("/" + requestedRedirect);
 							} else {
 								navigate("/home");
@@ -70,7 +71,7 @@ const Authentication = () => {
 							localStorage.setItem("password", password);
 							localStorage.setItem("fullname", fullname);
 							localStorage.setItem("permission", permission);
-							if (requestedRedirect !== undefined) {
+							if (requestedRedirect !== null) {
 								navigate("/" + requestedRedirect);
 							} else {
 								navigate("/home");

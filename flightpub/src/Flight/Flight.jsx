@@ -56,30 +56,35 @@ const Flight = () => {
 		<>
 			<Header />
 			{departingFlight ? (
-				<h3 id="flight-title">
-					{departingFlight.code} - {departingFlight.departure} to{" "}
-					{departingFlight.destination} - (
-					{formatDate(departingFlight.date)})
-				</h3>
+				<>
+					<h3 id="flight-title">
+						Departing {departingFlight.departure} to{" "}
+						{departingFlight.destination} - {departingFlight.code} -
+						({formatDate(departingFlight.date)})
+					</h3>
+					<h3 id="flight-title">
+						Returning {flight.departure} to {flight.destination} -{" "}
+						{code} - ({formatDate(flight.date)})
+					</h3>
+				</>
 			) : (
-				<></>
+				<h3 id="flight-title">
+					{code} - {flight.departure} to {flight.destination} - (
+					{formatDate(flight.date)})
+				</h3>
 			)}
-			<h3 id="flight-title">
-				{code} - {flight.departure} to {flight.destination} - (
-				{formatDate(flight.date)})
-			</h3>
 			<div className="flight-container">
 				<div className="flight-information">
 					{departingFlight ? (
 						<>
 							<p>
-								Departing on {departingFlight.date} at{" "}
-								{departingFlight.time} and Arriving on{" "}
+								Departing on {formatDate(departingFlight.date)}{" "}
+								at {departingFlight.time} and arriving at{" "}
 								{formatTime(
 									departingFlight.time,
 									departingFlight.duration
 								)}{" "}
-								on {departingFlight.date}
+								on {formatDate(departingFlight.date)}
 							</p>
 
 							<h3>{departingFlight.airline}</h3>
@@ -99,9 +104,14 @@ const Flight = () => {
 						<></>
 					)}
 					<p>
-						Departing on {flight.date} at {flight.time} and Arriving
-						on {formatTime(flight.time, flight.duration)} on{" "}
-						{flight.date}
+						{localStorage.getItem("departingFlight") ? (
+							<>Returning</>
+						) : (
+							<>Departing</>
+						)}{" "}
+						on {formatDate(flight.date)} at {flight.time} and
+						arriving at {formatTime(flight.time, flight.duration)}{" "}
+						on {formatDate(flight.date)}
 					</p>
 					<h3>{flight.airline}</h3>
 					<p>
@@ -116,6 +126,7 @@ const Flight = () => {
 					{localStorage.getItem("departingFlight") ? (
 						<input
 							type="button"
+							id="suggested"
 							value={`Book Now ($${
 								flight.price + departingFlight.price
 							} /seat)`}
@@ -124,6 +135,7 @@ const Flight = () => {
 					) : (
 						<input
 							type="button"
+							id="suggested"
 							value={`Book Now ($${flight.price} /seat)`}
 							onClick={() => navigate(`/booking?q=${code}`)}
 						/>
@@ -141,11 +153,29 @@ const Flight = () => {
 					/>
 				</div>
 				<div className="plane-information">
-					<img
-						src={`/Images/${flight.plane}.jpg`}
-						alt={flight.aircraft}
-					/>
-					<p>{flight.plane}</p>
+					{localStorage.getItem("departingFlight") ? (
+						<>
+							<img
+								src={`/Images/${departingFlight.plane}.jpg`}
+								alt={departingFlight.aircraft}
+							/>
+							<p>Departing on a {departingFlight.plane}</p>
+							<hr />
+							<img
+								src={`/Images/${flight.plane}.jpg`}
+								alt={flight.aircraft}
+							/>
+							<p>Returning on a {flight.plane}</p>
+						</>
+					) : (
+						<>
+							<img
+								src={`/Images/${flight.plane}.jpg`}
+								alt={flight.aircraft}
+							/>
+							<p>{flight.plane}</p>
+						</>
+					)}
 				</div>
 			</div>
 		</>

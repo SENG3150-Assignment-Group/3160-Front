@@ -182,16 +182,16 @@ const Flights = () => {
 								setDestination(flight.departure);
 								setDeparture(flight.destination);
 								setDepartureDate(
-									new Date()
+									new Date(flight.date)
 										.getFullYear()
 										.toString()
 										.padStart(4, "0") +
 										"-" +
-										(new Date().getMonth() + 1)
+										(new Date(flight.date).getMonth() + 1)
 											.toString()
 											.padStart(2, "0") +
 										"-" +
-										(new Date().getDate() + 1)
+										(new Date(flight.date).getDate() + 1)
 											.toString()
 											.padStart(2, "0")
 								);
@@ -201,11 +201,11 @@ const Flights = () => {
 										.toString()
 										.padStart(4, "0") +
 										"-" +
-										(new Date().getMonth() + 2)
+										(new Date(flight.date).getMonth() + 2)
 											.toString()
 											.padStart(2, "0") +
 										"-" +
-										(new Date().getDate() + 1)
+										(new Date(flight.date).getDate() + 1)
 											.toString()
 											.padStart(2, "0")
 								);
@@ -409,6 +409,8 @@ const Flights = () => {
 						)}
 					</select>
 
+					{/*
+					// TODO(): Temporary Removal! until this feature is implemented
 					<label for="maxStops">Max Stops:</label>
 					<input
 						type="number"
@@ -425,7 +427,7 @@ const Flights = () => {
 							}
 							setMaxStops(e.target.value);
 						}}
-					/>
+					/> */}
 
 					<div>
 						<label htmlFor="minimum-price">Min Price:</label>

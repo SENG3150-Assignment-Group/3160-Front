@@ -47,23 +47,57 @@ const Flight = () => {
 		return h + ":" + m + "pm";
 	};
 
+	const formatDate = (date) => {
+		let dateObject = new Date(date);
+		return dateObject.toLocaleDateString();
+	};
+
 	return (
 		<>
 			<Header />
 			{departingFlight ? (
 				<h3 id="flight-title">
 					{departingFlight.code} - {departingFlight.departure} to{" "}
-					{departingFlight.destination}
+					{departingFlight.destination} - (
+					{formatDate(departingFlight.date)})
 				</h3>
 			) : (
 				<></>
 			)}
 			<h3 id="flight-title">
-				{code} - {flight.departure} to {flight.destination}
+				{code} - {flight.departure} to {flight.destination} - (
+				{formatDate(flight.date)})
 			</h3>
 			<div className="flight-container">
 				<div className="flight-information">
-					{departingFlight ? <h1>DEPARTING FLIGHT INFO</h1> : <></>}
+					{departingFlight ? (
+						<>
+							<p>
+								Departing on {departingFlight.date} at{" "}
+								{departingFlight.time} and Arriving on{" "}
+								{formatTime(
+									departingFlight.time,
+									departingFlight.duration
+								)}{" "}
+								on {departingFlight.date}
+							</p>
+
+							<h3>{departingFlight.airline}</h3>
+							<p>
+								This flight is approximately{" "}
+								{departingFlight.duration} hours from take-off
+								to landing
+							</p>
+							<p>
+								There are {departingFlight.seats} seats
+								currently available on this flight
+							</p>
+							<hr />
+						</>
+					) : (
+						// TODO(BryceTuppurainen): Add departing flight information
+						<></>
+					)}
 					<p>
 						Departing on {flight.date} at {flight.time} and Arriving
 						on {formatTime(flight.time, flight.duration)} on{" "}
@@ -78,17 +112,32 @@ const Flight = () => {
 						There are {flight.seats} seats currently available on
 						this flight
 					</p>
-					<input
-						type="button"
-						value={`Book Now ($${flight.price} /seat)`}
-						onClick={() => navigate(`/booking?q=${code}`)}
-					/>
+
+					{localStorage.getItem("departingFlight") ? (
+						<input
+							type="button"
+							value={`Book Now ($${
+								flight.price + departingFlight.price
+							} /seat)`}
+							onClick={() => navigate(`/booking?q=${code}`)}
+						/>
+					) : (
+						<input
+							type="button"
+							value={`Book Now ($${flight.price} /seat)`}
+							onClick={() => navigate(`/booking?q=${code}`)}
+						/>
+					)}
+
 					<input type="button" value="Add to Watchlist" />
 					<input
 						type="button"
 						id="warning"
 						value="Return to Search"
-						onClick={() => navigate(`/flights`)}
+						onClick={() => {
+							localStorage.removeItem("departingFlight");
+							navigate(`/flights`);
+						}}
 					/>
 				</div>
 				<div className="plane-information">

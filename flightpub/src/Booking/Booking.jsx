@@ -56,7 +56,7 @@ const Booking = () => {
 				</h3>
 			</>
 		);
-	} else if (departingFlight !== {}) {
+	} else if (departingFlight) {
 		return (
 			<>
 				<Header />

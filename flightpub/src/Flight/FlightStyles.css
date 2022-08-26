@@ -6,6 +6,15 @@
 	color: var(--active-color);
 }
 
+.flight-container hr {
+	height: 1px;
+	border: none;
+	border-top: 1px solid var(--accent-color);
+	width: 100%;
+	padding: 0;
+	margin: 10px 0;
+}
+
 .flight-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -64,4 +73,19 @@
 
 .plane-information * {
 	font-size: 20pt;
+}
+
+.flight-extension {
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	padding: 20px;
+	border-radius: 15px;
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+.flight-extension:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
 }

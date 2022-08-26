@@ -16,6 +16,18 @@
 	--active-compliment: rgb(255, 255, 255);
 	--border-color: rgb(143, 143, 143);
 	--tile-color: rgb(255, 255, 255);
+	--warning-color: rgb(255, 160, 160);
+	--warning-compliment: rgb(255, 255, 255);
+	--active-warning-color: rgb(255, 0, 0);
+	--active-warning-compliment: rgb(255, 255, 255);
+	--suggested-color: rgb(132, 255, 132);
+	--suggested-compliment: rgb(68, 68, 68);
+	--active-suggested-color: rgb(86, 146, 60);
+	--active-suggested-compliment: rgb(255, 255, 255);
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 body {
@@ -50,4 +62,30 @@ h1 {
 
 #root {
 	min-height: calc(100vh - 5vh);
+}
+
+#warning {
+	background-color: var(--warning-color);
+	color: var(--warning-compliment);
+	padding: 20px;
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+#warning:hover {
+	background-color: var(--active-warning-color);
+	color: var(--active-warning-compliment);
+}
+
+#suggested {
+	background-color: var(--suggested-color);
+	color: var(--suggested-compliment);
+	padding: 20px;
+	transition: 300ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+#suggested:hover {
+	background-color: var(--active-suggested-color);
+	color: var(--active-suggested-compliment);
 }

@@ -12,6 +12,7 @@ const Flight = () => {
 	const [flight, setFlight] = useState({});
 
 	const code = new URLSearchParams(window.location.search).get("q");
+	const departingFlight = JSON.parse(localStorage.getItem("departingFlight"));
 
 	const navigate = useNavigate();
 
@@ -46,18 +47,71 @@ const Flight = () => {
 		return h + ":" + m + "pm";
 	};
 
+	const formatDate = (date) => {
+		let dateObject = new Date(date);
+		return dateObject.toLocaleDateString();
+	};
+
 	return (
 		<>
 			<Header />
-			<h3 id="flight-title">
-				{code} - {flight.departure} to {flight.destination}
-			</h3>
+			{departingFlight ? (
+				<>
+					<h3 id="flight-title">
+						Departing {departingFlight.departure} to{" "}
+						{departingFlight.destination} - {departingFlight.code} -
+						({formatDate(departingFlight.date)})
+					</h3>
+					<h3 id="flight-title">
+						Returning {flight.departure} to {flight.destination} -{" "}
+						{code} - ({formatDate(flight.date)})
+					</h3>
+				</>
+			) : (
+				<h3 id="flight-title">
+					{code} - {flight.departure} to {flight.destination} - (
+					{formatDate(flight.date)})
+				</h3>
+			)}
 			<div className="flight-container">
 				<div className="flight-information">
+					{departingFlight ? (
+						<>
+							<p>
+								Departing on {formatDate(departingFlight.date)}{" "}
+								at {departingFlight.time} and arriving at{" "}
+								{formatTime(
+									departingFlight.time,
+									departingFlight.duration
+								)}{" "}
+								on {formatDate(departingFlight.date)}
+							</p>
+
+							<h3>{departingFlight.airline}</h3>
+							<p>
+								This flight is approximately{" "}
+								{departingFlight.duration} hours from take-off
+								to landing
+							</p>
+							<p>
+								There are {departingFlight.seats} seats
+								currently available on this flight
+							</p>
+							<hr />
+						</>
+					) : (
+						// TODO(BryceTuppurainen): Add departing flight information
+						<></>
+					)}
 					<p>
-						Departing on {flight.date} at {flight.time} and Arriving
-						on {formatTime(flight.time, flight.duration)} on{" "}
-						{flight.date}
+						{localStorage.getItem("departingFlight") ? (
+							<>Returning</>
+						) : (
+							<>Departing</>
+						)}{" "}
+						on {formatDate(flight.date)} at {flight.time} and
+						arriving at {formatTime(flight.time, flight.duration)}{" "}
+						on {formatDate(flight.date)}
 					</p>
 					<h3>{flight.airline}</h3>
 					<p>
@@ -68,19 +122,60 @@ const Flight = () => {
 						There are {flight.seats} seats currently available on
 						this flight
 					</p>
+
+					{localStorage.getItem("departingFlight") ? (
+						<input
+							type="button"
+							id="suggested"
+							value={`Book Now ($${
+								flight.price + departingFlight.price
+							} /seat)`}
+							onClick={() => navigate(`/booking?q=${code}`)}
+						/>
+					) : (
+						<input
+							type="button"
+							id="suggested"
+							value={`Book Now ($${flight.price} /seat)`}
+							onClick={() => navigate(`/booking?q=${code}`)}
+						/>
+					)}
+
+					<input type="button" value="Add to Watchlist" />
 					<input
 						type="button"
-						value={`Book Now ($${flight.price} /seat)`}
-						onClick={() => navigate(`/booking?q=${code}`)}
+						id="warning"
+						value="Return to Search"
+						onClick={() => {
+							localStorage.removeItem("departingFlight");
+							navigate(`/flights`);
+						}}
 					/>
-					<input type="button" value={`Add to Watchlist`} />
 				</div>
 				<div className="plane-information">
-					<img
-						src={`/Images/${flight.plane}.jpg`}
-						alt={flight.aircraft}
-					/>
-					<p>{flight.plane}</p>
+					{localStorage.getItem("departingFlight") ? (
+						<>
+							<img
+								src={`/Images/${departingFlight.plane}.jpg`}
+								alt={departingFlight.aircraft}
+							/>
+							<p>Departing on a {departingFlight.plane}</p>
+							<hr />
+							<img
+								src={`/Images/${flight.plane}.jpg`}
+								alt={flight.aircraft}
+							/>
+							<p>Returning on a {flight.plane}</p>
+						</>
+					) : (
+						<>
+							<img
+								src={`/Images/${flight.plane}.jpg`}
+								alt={flight.aircraft}
+							/>
+							<p>{flight.plane}</p>
+						</>
+					)}
 				</div>
 			</div>
 		</>

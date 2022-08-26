@@ -15,7 +15,7 @@ summary:hover {
 .top-criteria {
 	width: 95vw;
 	display: grid;
-	grid-template-columns: 1fr 0.2fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 0.2fr 1fr 1fr;
 	gap: 10px;
 	margin: 30px 0;
 	align-items: center;
@@ -100,7 +100,6 @@ summary:hover {
 	grid-template-columns: 1fr;
 	width: 15vw;
 	height: min-content;
-	gap: 15px;
 	border: solid var(--accent-color) 1px;
 	padding: 15px;
 	border-radius: 5px;
@@ -178,4 +177,10 @@ summary:hover {
 	padding: 0;
 	width: 5vw;
 	border: none;
+}
+
+.banner {
+	color: var(--accent-color);
+	font-weight: 600;
+	font-size: 24pt;
 }

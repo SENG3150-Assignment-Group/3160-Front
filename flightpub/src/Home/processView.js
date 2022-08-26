@@ -7,7 +7,7 @@ const processView = view => {
 		case "account":
 			return (
 				<div>
-					{/* // TODO(BryceTuppurainen): Add in account management controls */}
+					{/* // TODO(BryceTuppurainen): Add in further account management controls */ }
 					<div className="tiles">
 						<div>
 							<h3>Manage Account</h3>
@@ -47,12 +47,10 @@ const processView = view => {
 					<Tile />
 				</div>
 			);
-		case "history":
+		case "bookings":
 			return (
 				<div className="tiles">
-					<h3>{localStorage.fullname}'s Previous Bookings</h3>
-					<Tile />
-					<Tile />
+					<h3>{localStorage.fullname}'s Bookings</h3>
 					<Tile />
 				</div>
 			);

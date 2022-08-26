@@ -6,8 +6,6 @@ import permission from "../Permission/Permission";
 
 import "./HeaderStyles.css";
 
-// TODO(BryceTuppurainen): Implement authentication
-
 const Header = () => {
 	const [opts, setOpts] = useState(<></>);
 
@@ -139,7 +137,14 @@ const Header = () => {
 
 				<nav>
 					<div>
-						<a href="/flights">Flights</a>
+						<a
+							onClick={(e) => {
+								localStorage.removeItem("departingFlight");
+								navigate("/flights");
+							}}
+						>
+							Flights
+						</a>
 					</div>
 
 					<div>

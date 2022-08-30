@@ -47,6 +47,10 @@ const Authentication = () => {
 						}}
 					>
 						<h3>Sign-In</h3>
+						<p>
+								This is the view where you would be able to
+								create an account
+						</p>
 						<input
 							type="email"
 							placeholder="Email"

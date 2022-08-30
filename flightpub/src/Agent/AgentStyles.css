@@ -1,0 +1,72 @@
+.wishlist-table h3 {
+	font-size: 30pt;
+	color: var(--accent-color);
+}
+
+.wishlist-table {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.wishlist-table > div {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	margin: 0;
+}
+
+.wishlist-table > div > * {
+	border: solid rgb(0, 0, 0) 1px;
+	margin: 0;
+	padding: 15px;
+}
+
+.agent p {
+	margin: 0;
+}
+
+.agent main {
+	display: grid;
+	grid-template-columns: 1fr 7fr;
+	gap: 50px;
+}
+
+.agent #view-selector {
+	margin: 20px 0 0 0;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--accent-color);
+	width: 100%;
+	height: min-content;
+	padding: 15px;
+	border-radius: 10px;
+	position: sticky;
+	top: 5vh;
+}
+
+.agent #view-selector p {
+	margin: 0;
+	background-color: var(--background-color);
+	color: rgb(0, 0, 0);
+	padding: 15px;
+	border-radius: 10px;
+	transition: ease-in-out 400ms;
+	transition-delay: 100ms;
+}
+
+.agent #view-selector p:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}
+
+.agent #view-content {
+	height: 100%;
+}
+
+.agent h3 {
+	font-size: 26pt;
+}
+

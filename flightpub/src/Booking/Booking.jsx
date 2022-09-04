@@ -7,6 +7,8 @@ import permission from "../Common/Permission/Permission";
 
 import dummyFlightData from "../Flights/dummy-flights.json";
 
+import "./BookingStyles.css";
+
 /**
  * Helper function to perform hour addition on 24-hr time strings  and convert 24-hr time to 12-hr
  */
@@ -112,6 +114,7 @@ const Booking = () => {
 						</p>
 						<p>{flight.plane}</p>
 					</div>
+
 					<form>
 						<input
 							type="number"
@@ -174,6 +177,7 @@ const Booking = () => {
 						</p>
 						<p>{flight.plane}</p>
 						<form>
+							<p>Seats: </p>
 							<input
 								type="number"
 								min="1"

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import Header from "../Common/Header/Header";
 
+import "./CheckoutStyles.css";
+
 const Checkout = () => {
 	const code = new URLSearchParams(window.location.search).get("q");
 	const price = new URLSearchParams(window.location.search).get("price");
@@ -92,6 +94,7 @@ const Checkout = () => {
 						pattern="[0-9]{3}"
 						required
 					/>
+					<br />
 					<button type="submit">Book</button>
 				</form>
 			</div>

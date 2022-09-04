@@ -1,0 +1,35 @@
+.booking-contents {
+	width: 100%;
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	grid-template-columns: 1fr;
+}
+
+.booking-contents > div {
+	width: 50%;
+	text-align: center;
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	margin: 20px 0;
+	border-radius: 15px;
+	padding: 30px;
+}
+
+.booking-contents > div > h3 {
+	font-size: 20pt;
+	font-weight: bold;
+}
+
+.booking-contents input[type="button"] {
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	transition: ease-in-out 300ms;
+	margin: 0 10px;
+}
+
+.booking-contents input[type="button"]:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}

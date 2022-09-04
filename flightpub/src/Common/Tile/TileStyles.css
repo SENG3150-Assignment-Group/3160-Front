@@ -11,8 +11,7 @@
 	margin: 0;
 	padding: 0;
 	width: calc(100% - 25px);
-	min-height: 15vh;
-	max-height: 40vh;
+	height: fit-content;
 	background-color: var(--tile-color);
 	border: solid 1px var(--border-color);
 	border-radius: 20px;
@@ -23,6 +22,7 @@
 	transition: ease-in-out 350ms;
 	transition-delay: 50ms;
 	animation: fade-in 800ms ease-in-out;
+	overflow: hidden;
 }
 
 .tile-content > div {
@@ -46,8 +46,8 @@
 }
 
 .tile-content img {
-	width: 450px;
-	aspect-ratio: 1920/1280;
+	height: 35vh;
+	/* aspect-ratio: 1920/1280; */
 	border-radius: 40px;
 	margin: 0;
 	object-fit: cover;

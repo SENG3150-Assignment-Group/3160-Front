@@ -115,7 +115,7 @@ summary:hover {
 .left-criteria input,
 .left-criteria select,
 .left-criteria option {
-	height: 3.5vh;
+	min-height: 3.5vh;
 	color: rgb(0, 0, 0);
 	cursor: pointer;
 }

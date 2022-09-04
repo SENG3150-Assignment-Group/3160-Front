@@ -13,7 +13,6 @@ const Tile = (props) => {
 	let children = props.children;
 	let onClick = props.onClick;
 	if (props.onClick === undefined) {
-		console.log("Updating onClick in the tile to navigate away");
 		onClick = () => {
 			navigate(href);
 		};

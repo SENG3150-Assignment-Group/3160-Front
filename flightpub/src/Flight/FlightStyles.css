@@ -32,7 +32,7 @@
 }
 
 .flight-container input {
-	height: 3.5rem;
+	min-height: 4rem;
 	width: 100%;
 	background-color: var(--accent-color);
 	color: var(--accent-compliment);
@@ -41,8 +41,6 @@
 }
 
 .flight-container input:hover {
-	height: 3.5rem;
-	width: 100%;
 	background-color: var(--active-color);
 	color: var(--active-compliment);
 	cursor: pointer;

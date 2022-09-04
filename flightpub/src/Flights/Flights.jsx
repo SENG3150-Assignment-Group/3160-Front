@@ -214,8 +214,6 @@ const Flights = () => {
 						/>
 					);
 				}
-				{
-				}
 			});
 
 		if (oneWay === "true") {
@@ -338,8 +336,10 @@ const Flights = () => {
 							placeholder="Leaving from..."
 							name="departure"
 							onChange={(e) => {
-								setDeparture(e.target.value);
-								updateDepartureAutofill(e.target.value);
+								if (!localStorage.getItem("departingFlight")) {
+									setDeparture(e.target.value);
+									updateDepartureAutofill(e.target.value);
+								}
 							}}
 							value={departure}
 						></input>
@@ -357,8 +357,10 @@ const Flights = () => {
 							placeholder="Heading to..."
 							name="destination"
 							onChange={(e) => {
-								setDestination(e.target.value);
-								updateDestinationAutofill(e.target.value);
+								if (!localStorage.getItem("departingFlight")) {
+									setDestination(e.target.value);
+									updateDestinationAutofill(e.target.value);
+								}
 							}}
 							value={destination}
 						></input>

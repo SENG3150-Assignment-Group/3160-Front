@@ -104,7 +104,7 @@ const getRandomCode = (airline) => {
 
 	return (
 		airlineCodes[airline].toString() +
-		random(9999).toString().padEnd(4, "0")
+		random(99999).toString().padEnd(4, "0")
 	);
 };
 
@@ -168,7 +168,8 @@ const getRandomLocation = (illegalLocation) => {
 
 const getRandomPlane = () => {
 	// TODO(): Add more planes...
-	return "Boeing737";
+	const planes = ["Boeing737", "BoeingDreamliner"];
+	return planes[random(planes.length)];
 };
 
 const generateFlightsJSON = (numberOfFlights) => {
@@ -177,6 +178,7 @@ const generateFlightsJSON = (numberOfFlights) => {
 	let codes = [];
 
 	for (let i = 0; i < numberOfFlights; i++) {
+		console.log(i + " / " + numberOfFlights);
 		const airline = getRandomAirline();
 		let code = getRandomCode(airline);
 		while (codes.includes(code)) {
@@ -203,7 +205,7 @@ const generateFlightsJSON = (numberOfFlights) => {
 			duration,
 			seats,
 			price,
-			popularity
+			popularity,
 		};
 		flights[code] = flight;
 	}

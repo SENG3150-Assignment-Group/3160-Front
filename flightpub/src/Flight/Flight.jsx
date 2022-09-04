@@ -126,7 +126,6 @@ const Flight = () => {
 					{localStorage.getItem("departingFlight") ? (
 						<input
 							type="button"
-							id="suggested"
 							value={`Book Now ($${
 								flight.price + departingFlight.price
 							} /seat)`}
@@ -135,7 +134,6 @@ const Flight = () => {
 					) : (
 						<input
 							type="button"
-							id="suggested"
 							value={`Book Now ($${flight.price} /seat)`}
 							onClick={() => navigate(`/booking?q=${code}`)}
 						/>
@@ -144,7 +142,6 @@ const Flight = () => {
 					<input type="button" value="Add to Watchlist" />
 					<input
 						type="button"
-						id="warning"
 						value="Return to Search"
 						onClick={() => {
 							localStorage.removeItem("departingFlight");

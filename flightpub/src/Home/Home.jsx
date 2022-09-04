@@ -51,13 +51,15 @@ const Home = () => {
 							>
 								My Account
 							</p>
+							{/* 
+							// TODO(BryceTuppurainen): Currently unimplemented feature
 							<p
 								onClick={(e) => {
 									setView("watchlist");
 								}}
 							>
 								Watchlist
-							</p>
+							</p> */}
 							<p
 								onClick={(e) => {
 									setView("bookings");

@@ -63,29 +63,3 @@ h1 {
 #root {
 	min-height: calc(100vh - 5vh);
 }
-
-#warning {
-	background-color: var(--warning-color);
-	color: var(--warning-compliment);
-	padding: 20px;
-	transition: 300ms ease-in-out;
-	transition-delay: 200ms;
-}
-
-#warning:hover {
-	background-color: var(--active-warning-color);
-	color: var(--active-warning-compliment);
-}
-
-#suggested {
-	background-color: var(--suggested-color);
-	color: var(--suggested-compliment);
-	padding: 20px;
-	transition: 300ms ease-in-out;
-	transition-delay: 200ms;
-}
-
-#suggested:hover {
-	background-color: var(--active-suggested-color);
-	color: var(--active-suggested-compliment);
-}

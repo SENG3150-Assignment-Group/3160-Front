@@ -87,43 +87,6 @@ const Booking = () => {
 							available on this flight
 						</p>
 						<p>{departingFlight.plane}</p>
-						<form>
-							<input
-								type="number"
-								min="1"
-								max={departingFlight.seats}
-								value={numberOfSeats}
-								onChange={(e) => {
-									if (e.target.value < 1) {
-										e.target.value = 1;
-										alert(
-											"You can't book less than 1 seat"
-										);
-									} else if (
-										e.target.value > departingFlight.seats
-									) {
-										alert(
-											`There are only ${departingFlight.seats} seats available on this plane`
-										);
-										e.target.value = departingFlight.seats;
-									}
-									setNumberOfSeats(e.target.value);
-								}}
-							/>
-							<input
-								type="button"
-								value="Place Booking"
-								onClick={(e) => {
-									// TODO(BryceTuppurainen): What a hacky way to do this... Please, Please Rework this...
-									navigate(
-										`/checkout?q=${code}&price=${
-											departingFlight.price *
-											numberOfSeats
-										}&seats=${numberOfSeats}`
-									);
-								}}
-							/>
-						</form>
 					</div>
 
 					<div>
@@ -148,41 +111,39 @@ const Booking = () => {
 							on this flight
 						</p>
 						<p>{flight.plane}</p>
-						<form>
-							<input
-								type="number"
-								min="1"
-								max={flight.seats}
-								value={numberOfSeats}
-								onChange={(e) => {
-									if (e.target.value < 1) {
-										e.target.value = 1;
-										alert(
-											"You can't book less than 1 seat"
-										);
-									} else if (e.target.value > flight.seats) {
-										alert(
-											`There are only ${flight.seats} seats available on this plane`
-										);
-										e.target.value = flight.seats;
-									}
-									setNumberOfSeats(e.target.value);
-								}}
-							/>
-							<input
-								type="button"
-								value="Place Booking"
-								onClick={(e) => {
-									// TODO(BryceTuppurainen): What a hacky way to do this... Please, Please Rework this...
-									navigate(
-										`/checkout?q=${code}&price=${
-											flight.price * numberOfSeats
-										}&seats=${numberOfSeats}`
-									);
-								}}
-							/>
-						</form>
 					</div>
+					<form>
+						<input
+							type="number"
+							min="1"
+							max={flight.seats}
+							value={numberOfSeats}
+							onChange={(e) => {
+								if (e.target.value < 1) {
+									e.target.value = 1;
+									alert("You can't book less than 1 seat");
+								} else if (e.target.value > flight.seats) {
+									alert(
+										`There are only ${flight.seats} seats available on this plane`
+									);
+									e.target.value = flight.seats;
+								}
+								setNumberOfSeats(e.target.value);
+							}}
+						/>
+						<input
+							type="button"
+							value="Place Booking"
+							onClick={(e) => {
+								// TODO(BryceTuppurainen): What a hacky way to do this... Please, Please Rework this...
+								navigate(
+									`/checkout?q=${code}&price=${
+										flight.price * numberOfSeats
+									}&seats=${numberOfSeats}`
+								);
+							}}
+						/>
+					</form>
 				</div>
 			</>
 		);

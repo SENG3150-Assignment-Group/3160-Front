@@ -32,9 +32,22 @@ const Checkout = () => {
 				<form
 					onSubmit={(e) => {
 						e.preventDefault();
-						// HACK: This simply states that the seats are booked, remove this notice and make this more effective of a solution
-						alert("Seats Booked!");
-						localStorage.removeItem("departingFlight");
+						let bookings = [];
+						if (localStorage.bookings) {
+							bookings = JSON.parse(localStorage.bookings);
+						}
+						bookings.push(code);
+						if (localStorage.departingFlight) {
+							console.log("Pushing departing flight");
+							bookings.push(
+								JSON.parse(localStorage.departingFlight).code
+							);
+							localStorage.removeItem("departingFlight");
+						}
+						localStorage.setItem(
+							"bookings",
+							JSON.stringify(bookings)
+						);
 						navigate("/home?view=bookings");
 						// TODO(BryceTuppurainen): Submit a booking to the server with the provided information
 					}}

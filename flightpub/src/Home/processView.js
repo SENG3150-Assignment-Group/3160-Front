@@ -1,8 +1,36 @@
 import React from "react";
+import FlightTile from "../Common/Tile/FlightTile";
 
-import Tile from "../Common/Tile/Tile";
+import dummyFlights from "../Flights/dummy-flights.json";
 
-const processView = (view) => {
+const ProcessView = (view) => {
+	const flights = dummyFlights;
+
+	const getBookings = () => {
+		let bookingTiles = [];
+		if (localStorage.bookings) {
+			const bookings = JSON.parse(localStorage.bookings);
+			console.log("Bookings: " + bookings);
+			bookings.forEach((code) => {
+				console.log(code);
+				const flight = flights[code];
+				flight["code"] = code;
+				bookingTiles.push(<FlightTile flight={flight} />);
+			});
+		}
+		return bookingTiles;
+	};
+
+	const getRandomTile = () => {
+		const randomCode =
+			Object.keys(flights)[
+				Math.floor(Math.random() * Object.keys(flights).length)
+			];
+		const randomFlight = flights[randomCode];
+		randomFlight["code"] = randomCode;
+		return <FlightTile flight={randomFlight} />;
+	};
+
 	switch (view) {
 		case "account":
 			return (
@@ -142,27 +170,28 @@ const processView = (view) => {
 			return (
 				<div className="tiles">
 					<h3>{localStorage.fullname}'s Watchlist</h3>
-					<Tile />
 				</div>
 			);
 		case "bookings":
 			return (
 				<div className="tiles">
 					<h3>{localStorage.fullname}'s Bookings</h3>
-					<Tile />
+					{getBookings()}
 				</div>
 			);
 		default:
 			// Assume 'home'
 			return (
 				<div className="tiles">
-					<h3>Our Recommendations for {localStorage.fullname}</h3>
-					<Tile />
-					<Tile />
-					<Tile />
+					<h3>
+						Our Latest Recommendations for {localStorage.fullname}
+					</h3>
+					{getRandomTile()}
+					{getRandomTile()}
+					{getRandomTile()}
 				</div>
 			);
 	}
 };
 
-export default processView;
+export default ProcessView;

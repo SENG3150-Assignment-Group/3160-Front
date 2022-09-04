@@ -1,0 +1,23 @@
+.checkout-content {
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	padding: 20px;
+	border-radius: 15px;
+	text-align: center;
+	width: 50%;
+	margin: 30px auto;
+}
+
+.checkout-content button {
+	background-color: var(--accent-color);
+	color: var(--accent-compliment);
+	transition: ease-in-out 300ms;
+	margin: 30px 0;
+	padding: 15px 40px;
+}
+
+.checkout-content button:hover {
+	background-color: var(--active-color);
+	color: var(--active-compliment);
+	cursor: pointer;
+}
